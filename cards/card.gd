@@ -4,14 +4,12 @@ class_name CardEx
 
 @export var card_name:String = "CARD" :
 	set(value):
-		#if Engine.is_editor_hint():
 		card_name = value
 		if has_node("%CardNameLabel"):
 			%CardNameLabel.text = card_name
 
 @export var art:Texture :
 	set(value):
-		#if Engine.is_editor_hint():
 		art = value
 		if has_node("%Art"):
 			%Art.texture = art

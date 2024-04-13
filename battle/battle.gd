@@ -118,3 +118,17 @@ func add_unit(unit: Unit, position: Vector2):
 
 func _on_button_quit_pressed() -> void:
 	Game.game.open_overworld()
+
+func _battle_field_area_child_entered_tree(node: Node) -> void:
+	if node is CardEx:
+		await get_tree().create_timer(0.3).timeout
+		node.queue_free()
+		var unit = node.spawns.instantiate()
+		add_unit(unit, get_global_mouse_position())
+		mana -= node.mana_cost
+		
+		var new_card = preload("res://cards/cards/archer.tscn").instantiate()
+		new_card.global_position = %NewCardSpawn.global_position
+		
+		if %HandArea.get_card_children().size() < 3:
+			%HandArea.add_child(new_card)
