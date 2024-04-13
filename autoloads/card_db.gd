@@ -1,9 +1,5 @@
 extends Node
 
-const ART = "art"
-const MANA_COST = "mana_cost"
-const TIER = "tier"
-
 const CARD_PATHS = [
 	"res://cards/cards/archer.tscn",
 	"res://cards/cards/knight.tscn"

@@ -27,6 +27,7 @@ mouse_filter = 1
 script = ExtResource("1_a0qxh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="SacrificeButton" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
@@ -44,15 +45,13 @@ theme_override_fonts/font = ExtResource("3_84gwk")
 theme_override_font_sizes/font_size = 32
 text = "SACRIFICE"
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
 offset_right = 1440.0
 offset_bottom = 810.0
 texture = ExtResource("2_olr0h")
 metadata/_edit_lock_ = true
 
-[node name="NewCard" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
+[node name="NewCard" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -60,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
-[node name="Label" type="Label" parent="NewCard"]
+[node name="Label" type="Label" parent="CanvasLayer/NewCard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -79,7 +78,7 @@ text = "YOU GOT <CARD_NAME>!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardImage" type="TextureRect" parent="NewCard"]
+[node name="CardImage" type="TextureRect" parent="CanvasLayer/NewCard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -94,7 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_cubwq")
 
-[node name="ConfirmButton" type="Button" parent="NewCard"]
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/NewCard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -122,9 +121,11 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
+handle_input_locally = false
 physics_object_picking = true
 gui_snap_controls_to_pixels = false
 size = Vector2i(1440, 810)
+render_target_update_mode = 4
 
 [node name="HandTest" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
@@ -199,4 +200,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19768, -0.737752)
 shape = SubResource("BoxShape3D_skted")
 
 [connection signal="pressed" from="CanvasLayer/SacrificeButton" to="." method="_on_sacrifice_button_pressed"]
-[connection signal="pressed" from="NewCard/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/NewCard/ConfirmButton" to="." method="_on_confirm_button_pressed"]

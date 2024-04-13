@@ -2,19 +2,10 @@ extends Control
 
 const REQUIRED_SACRIFICE_COUNT = 3
 
-
-
-@onready var sacrifice_slots := [
-	$SacrificeSlot1,
-	$SacrificeSlot2,
-	$SacrificeSlot3,
-]
-
 @onready var sacrifice_button := $CanvasLayer/SacrificeButton
-@onready var new_card := $NewCard
-@onready var new_card_label := $NewCard/Label
-
-var cards_to_sacrifice := []
+@onready var new_card := $CanvasLayer/NewCard
+@onready var new_card_label := $CanvasLayer/NewCard/Label
+@onready var sacrifice_slot := $SubViewportContainer/SubViewport/HandTest/SacrificeSlot
 
 func _ready() -> void:
 	#sacrifice_button.hide()
@@ -22,17 +13,14 @@ func _ready() -> void:
 	new_card.hide()
 	return
 
-func _can_add_sacrifice() -> bool:
-	return cards_to_sacrifice.size() < REQUIRED_SACRIFICE_COUNT
-
-func _can_sacrifice() -> bool:
-	return cards_to_sacrifice.size() == REQUIRED_SACRIFICE_COUNT
-
-func add_sacrifice() -> void:
-	if _can_sacrifice():
-		sacrifice_button.show()
-		sacrifice_button.disabled = false
-
+func _physics_process(delta: float) -> void:
+	if not sacrifice_button.visible:
+		if sacrifice_slot.get_card_children().size() == REQUIRED_SACRIFICE_COUNT:
+			sacrifice_button.visible = true
+	else:
+		if sacrifice_slot.get_card_children().size() < REQUIRED_SACRIFICE_COUNT:
+			sacrifice_button.visible = false
+			
 func _on_sacrifice_button_pressed() -> void:
 	#REMOVE CARDS FROM DECK
 	
