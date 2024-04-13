@@ -25,4 +25,5 @@ func _draw() -> void:
 
 
 func _on_area_brush_2d_mouse_clicked() -> void:
+	Game.game.transition.set_circle_position(global_position)
 	Game.game.open_battle("res://battle/battles/%s.tscn" % name.to_snake_case())

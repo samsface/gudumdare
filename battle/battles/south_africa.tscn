@@ -5,5 +5,8 @@
 
 [node name="Battle" instance=ExtResource("1_2wj42")]
 
+[node name="ColorRect" parent="." index="0"]
+color = Color(0.83979, 0.722539, 0.314236, 1)
+
 [node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_vta33")]
 position = Vector2(1087, 290)

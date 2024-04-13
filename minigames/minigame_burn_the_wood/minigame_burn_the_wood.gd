@@ -1,7 +1,7 @@
 extends Minigame
 
 
-@export var number_of_sticks := 10
+@export var number_of_sticks := 20
 
 var stick_count := 0
 var selected_stick: Stick = null
@@ -59,12 +59,14 @@ func _on_fire_area_entered(area: Area2D) -> void:
 		return
 
 	hide_flames()
-	match stick_count:
-		8, 9, 10:
-			$Fire/FlameLarge.show()
-		5, 6, 7:
-			$Fire/FlameMedium.show()
-		2, 3, 4:
-			$Fire/FlameSmall.show()
-		0, 1:
-			$Fire/FlameStart.show()
+
+	var stick_percentage: float = stick_count as float / number_of_sticks as float
+	print(stick_percentage)
+	if stick_percentage >= 0.8:
+		$Fire/FlameLarge.show()
+	elif stick_percentage >= 0.5:
+		$Fire/FlameMedium.show()
+	elif stick_percentage >= 0.25:
+		$Fire/FlameSmall.show()
+	else:
+		$Fire/FlameStart.show()

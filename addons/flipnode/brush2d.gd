@@ -261,7 +261,7 @@ func update_bounds():
 
 func generate_lods():
 	lods = []
-	var tolerances = [2.0]
+	var tolerances = [1.0]
 	#var tolerances = [0.6, 1.0, 3.0, 10.0, 20.0]
 	for level in lod_levels:
 		var tolerance = tolerances[level]
