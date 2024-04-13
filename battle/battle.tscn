@@ -76,10 +76,6 @@ position = Vector2(286, 418)
 [node name="TowerEnemy" parent="Fight" instance=ExtResource("3_8e3ng")]
 unique_name_in_owner = true
 position = Vector2(1199, 455)
-projectile_type = "arrow"
-is_foe = false
-speed = 300.0
-reload_duration = 0.5
 
 [node name="SubViewports" type="Control" parent="."]
 layout_mode = 3
@@ -114,7 +110,6 @@ input_ray_pickable = false
 sort = true
 
 [node name="StaticBody3D" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
-sidelay = false
 
 [node name="StaticBody3D9" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
 card_name = "Rain"
@@ -124,17 +119,14 @@ sidelay = true
 [node name="StaticBody3D2" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("6_8oqba")]
 
 [node name="StaticBody3D3" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
-sidelay = false
 
 [node name="StaticBody3D4" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("6_8oqba")]
 
 [node name="StaticBody3D5" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
-sidelay = false
 
 [node name="StaticBody3D6" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("6_8oqba")]
 
 [node name="StaticBody3D7" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
-sidelay = false
 
 [node name="StaticBody3D8" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("6_8oqba")]
 

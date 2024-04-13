@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dth0ombg8dem2"]
+[gd_scene load_steps=6 format=3 uid="uid://dth0ombg8dem2"]
 
 [ext_resource type="Script" path="res://battle/units/effect_rain.gd" id="1_c1fk6"]
+[ext_resource type="PackedScene" uid="uid://bw1u7600nmpdv" path="res://minigames/minigame_samurai_worm/minigame_worm_samurai.tscn" id="2_yo0dw"]
 
 [sub_resource type="Curve" id="Curve_uuy1w"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.511111, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -25,6 +26,7 @@ turbulence_enabled = true
 
 [node name="EffectRain" type="Node2D"]
 script = ExtResource("1_c1fk6")
+mini_game = ExtResource("2_yo0dw")
 health = 10000
 attackable = false
 

@@ -1,4 +1,7 @@
+class_name UnitEffect
 extends Unit
+
+@export var mini_game:PackedScene
 
 func _ready() -> void:
 	set_process(false)
@@ -15,13 +18,12 @@ func _ready() -> void:
 	
 	battle.units.erase(self)
 
+	var minigame_window_scene := preload("res://minigames/minigame_components/minigame_window_scene.tscn").instantiate()
+	add_child(minigame_window_scene)
+	minigame_window_scene.load_minigame(mini_game.resource_path)
 
-	var minigame := preload("res://minigames/minigame_components/minigame_window_scene.tscn").instantiate()
-	add_child(minigame)
-	minigame.load_minigame("res://minigames/minigame_spike_the_birds/minigame_spike_the_birds.tscn")
-
-	await minigame.minigame_ended
-	minigame.queue_free()
+	await minigame_window_scene.minigame_ended
+	minigame_window_scene.queue_free()
 
 	tween = create_tween()
 	tween.set_parallel()

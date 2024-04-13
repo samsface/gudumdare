@@ -1,6 +1,6 @@
 extends Minigame
 
-@onready var sword: Area2D = $Actors/Sword
+@onready var sword: Button = $Actors/Sword
 @onready var birdList: Node2D = $Actors/BirdList
 @onready var hero: AnimatedSprite2D = $Actors/Hero/AnimatedSprite2D
 
