@@ -10,3 +10,27 @@ color = Color(0.368851, 0.504493, 0.245564, 1)
 
 [node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_1f0x1")]
 position = Vector2(1087, 290)
+
+[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="0"]
+sidelay = null
+
+[node name="StaticBody3D2" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="1"]
+sidelay = null
+
+[node name="StaticBody3D3" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="2"]
+sidelay = null
+
+[node name="StaticBody3D4" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="3"]
+sidelay = null
+
+[node name="StaticBody3D5" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="4"]
+sidelay = null
+
+[node name="StaticBody3D6" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="5"]
+sidelay = null
+
+[node name="StaticBody3D7" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="6"]
+sidelay = null
+
+[node name="StaticBody3D8" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="7"]
+sidelay = null
