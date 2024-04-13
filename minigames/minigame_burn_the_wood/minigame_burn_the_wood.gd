@@ -1,6 +1,8 @@
 extends Minigame
 
 
+@export var number_of_sticks := 10
+
 var stick_count := 0
 var selected_stick: Stick = null
 
@@ -17,7 +19,7 @@ func _ready() -> void:
 
 	var spawns = $SpawnPoints.get_children()
 	spawns.shuffle()
-	var sticks = $StickSpawner.spawn(spawns)
+	var sticks = $StickSpawner.spawn(number_of_sticks, spawns)
 
 	for stick: Stick in sticks:
 		stick.stick_selected.connect(handle_stick_selected)
@@ -49,6 +51,12 @@ func _on_fire_area_entered(area: Area2D) -> void:
 	selected_stick = null
 
 	stick_count += 1
+
+	# No true "lose" condition, at least right now
+	if stick_count >= number_of_sticks:
+		$CanvasLayer/Instructions.hide()
+		win(1.0)
+		return
 
 	hide_flames()
 	match stick_count:
