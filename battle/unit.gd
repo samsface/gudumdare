@@ -1,6 +1,8 @@
 class_name Unit
 extends Node2D
 
+signal died
+
 var battle: Battle
 
 
@@ -57,6 +59,7 @@ func hit(damage):
 	health -= 1
 	if health <= 0:
 		remove()
+		died.emit()
 
 func get_closest_enemy():
 	var enemies = battle.friends if is_foe else battle.foes

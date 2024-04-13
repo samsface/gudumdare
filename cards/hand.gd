@@ -6,7 +6,7 @@ signal card_dropped
 @export var max_cards := 999999
 
 var invert = true
-var spread := 0.5
+@export var spread := 0.5
 
 func get_card_children() -> Array:
 	var res := []
