@@ -22,6 +22,7 @@ var dragging := false
 var hovered := false
 var just_dropped := false
 var hover_cooldown:SceneTreeTimer
+var spin_tween:Tween
 
 func _mouse_entered() -> void:
 	if hover_cooldown and hover_cooldown.time_left > 0.0:
