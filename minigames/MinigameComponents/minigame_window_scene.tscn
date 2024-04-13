@@ -1,12 +1,12 @@
 [gd_scene load_steps=19 format=3 uid="uid://cdwjkjxuwje8l"]
 
-[ext_resource type="Script" path="res://minigames/minigame_window.gd" id="1_g0em6"]
-[ext_resource type="Texture2D" uid="uid://d1yvmow74jd7b" path="res://minigames/art/wormninepatch.png" id="2_3q0bx"]
-[ext_resource type="Script" path="res://minigames/minigame_timer.gd" id="2_dugyg"]
+[ext_resource type="Script" path="res://minigames/MinigameComponents/minigame_window.gd" id="1_g0em6"]
+[ext_resource type="Texture2D" uid="uid://d1yvmow74jd7b" path="res://minigames/MinigameComponents/art/wormninepatch.png" id="2_3q0bx"]
+[ext_resource type="Script" path="res://minigames/MinigameComponents/minigame_timer.gd" id="2_dugyg"]
 [ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="3_crilh"]
-[ext_resource type="Texture2D" uid="uid://cyev0lpnw2uoi" path="res://minigames/art/wormHead-sheet.png" id="3_eygej"]
-[ext_resource type="Texture2D" uid="uid://cb1d34g7c3us5" path="res://minigames/art/wormbody.png" id="4_h3ybh"]
-[ext_resource type="Texture2D" uid="uid://dgjt431rsabh8" path="res://minigames/art/birdSheet.png" id="5_x5p64"]
+[ext_resource type="Texture2D" uid="uid://cyev0lpnw2uoi" path="res://minigames/MinigameComponents/art/wormHead-sheet.png" id="3_eygej"]
+[ext_resource type="Texture2D" uid="uid://cb1d34g7c3us5" path="res://minigames/MinigameComponents/art/wormbody.png" id="4_h3ybh"]
+[ext_resource type="Texture2D" uid="uid://dgjt431rsabh8" path="res://minigames/MinigameComponents/art/birdSheet.png" id="5_x5p64"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tmmp1"]
 atlas = ExtResource("3_eygej")
@@ -173,6 +173,7 @@ offset_bottom = 810.0
 
 [node name="SubViewport" type="SubViewport" parent="MiniGameControl/SubViewportContainer"]
 handle_input_locally = false
+physics_object_picking = true
 size = Vector2i(1440, 810)
 render_target_update_mode = 4
 

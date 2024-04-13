@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgjt431rsabh8"
-path="res://.godot/imported/birdSheet.png-87f7d35b1c339b36a0c0055380d3d580.ctex"
+uid="uid://d1yvmow74jd7b"
+path="res://.godot/imported/wormninepatch.png-d9b3e32d8e3c80e7192f6832dd682d72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/art/birdSheet.png"
-dest_files=["res://.godot/imported/birdSheet.png-87f7d35b1c339b36a0c0055380d3d580.ctex"]
+source_file="res://minigames/MinigameComponents/art/wormninepatch.png"
+dest_files=["res://.godot/imported/wormninepatch.png-d9b3e32d8e3c80e7192f6832dd682d72.ctex"]
 
 [params]
 
