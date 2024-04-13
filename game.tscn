@@ -1,15 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1iqvvhbjidkb"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_f1tk0"]
-[ext_resource type="PackedScene" uid="uid://dcnq1dkwqkvny" path="res://battle/battle.tscn" id="2_xesj0"]
+[ext_resource type="PackedScene" uid="uid://dchn7h40cx3ei" path="res://battle/battles/battle1.tscn" id="2_lklt0"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_f1tk0")
 
-[node name="Battle" parent="." instance=ExtResource("2_xesj0")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TransitionCircle" type="ColorRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Battle" parent="." instance=ExtResource("2_lklt0")]

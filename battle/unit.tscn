@@ -114,6 +114,7 @@ script = ExtResource("1_6o2lw")
 
 [node name="Shadow" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.529412)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_n8qwa")
 strokes = [SubResource("Resource_dk1x1")]
 bounds = Rect2(-53.4214, -7.43895, 105.749, 24.6772)
@@ -122,8 +123,18 @@ lods = [[SubResource("Resource_a0ahp")], [SubResource("Resource_a4suk")]]
 [node name="Model" type="Node2D" parent="."]
 
 [node name="Brush2D" type="Node2D" parent="Model"]
-position = Vector2(0, -59)
+position = Vector2(0, -33)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_n8qwa")
 strokes = [SubResource("Resource_uqnno"), SubResource("Resource_wgqea"), SubResource("Resource_3ch1q"), SubResource("Resource_a5ekb")]
 bounds = Rect2(-44.8423, -61.764, 91.8362, 130.288)
 lods = [[SubResource("Resource_jk7gu"), SubResource("Resource_y4bt4"), SubResource("Resource_rhv23"), SubResource("Resource_ept38")], [SubResource("Resource_rdrue"), SubResource("Resource_s85iw"), SubResource("Resource_rf0i8"), SubResource("Resource_ebtrq")]]
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -35.0
+offset_top = -90.0
+offset_right = 35.0
+offset_bottom = -75.0
+max_value = 1.0
+show_percentage = false
