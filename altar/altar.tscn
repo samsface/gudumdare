@@ -29,6 +29,12 @@ script = ExtResource("1_a0qxh")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1440.0
+offset_bottom = 810.0
+texture = ExtResource("2_olr0h")
+metadata/_edit_lock_ = true
+
 [node name="SacrificeButton" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -44,12 +50,6 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_84gwk")
 theme_override_font_sizes/font_size = 32
 text = "SACRIFICE"
-
-[node name="Background" type="TextureRect" parent="CanvasLayer"]
-offset_right = 1440.0
-offset_bottom = 810.0
-texture = ExtResource("2_olr0h")
-metadata/_edit_lock_ = true
 
 [node name="NewCard" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -171,6 +171,7 @@ shape = SubResource("BoxShape3D_4a4sw")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/HandTest"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.150354, 1.934)
+current = true
 fov = 70.0
 
 [node name="RayCast3D" type="RayCast3D" parent="SubViewportContainer/SubViewport/HandTest/Camera3D"]

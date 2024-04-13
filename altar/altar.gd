@@ -2,23 +2,30 @@ extends Control
 
 const REQUIRED_SACRIFICE_COUNT = 3
 
+@onready var player_hand = $SubViewportContainer/SubViewport/HandTest/PlayerHand
 @onready var sacrifice_button := $CanvasLayer/SacrificeButton
 @onready var new_card := $CanvasLayer/NewCard
 @onready var new_card_label := $CanvasLayer/NewCard/Label
 @onready var sacrifice_slot := $SubViewportContainer/SubViewport/HandTest/SacrificeSlot
 
 func _ready() -> void:
-	#sacrifice_button.hide()
-	#sacrifice_button.disabled = true
+	#Signals
+	sacrifice_slot.card_dropped.connect(_check_sacrifice_button)
+	player_hand.card_dropped.connect(_check_sacrifice_button)
+	#Hide stuff
 	new_card.hide()
-	return
+	#Funcs
+	_check_sacrifice_button()
+	
 
-func _physics_process(delta: float) -> void:
+func _check_sacrifice_button():
 	if not sacrifice_button.visible:
 		if sacrifice_slot.get_card_children().size() == REQUIRED_SACRIFICE_COUNT:
+			sacrifice_button.disabled = false
 			sacrifice_button.visible = true
 	else:
 		if sacrifice_slot.get_card_children().size() < REQUIRED_SACRIFICE_COUNT:
+			sacrifice_button.disabled = true
 			sacrifice_button.visible = false
 			
 func _on_sacrifice_button_pressed() -> void:
