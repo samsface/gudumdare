@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dswu5hx8nsth2"]
+
+[node name="Skilltree" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 196.0
+offset_top = 90.0
+offset_right = 249.0
+offset_bottom = 113.0
+text = "Skillz"

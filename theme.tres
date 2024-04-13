@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bd071vba4lnc4"]
+
+[ext_resource type="FontFile" uid="uid://da7xd0ojorof3" path="res://Mario-Party-Hudson-Font.ttf" id="1_50e4w"]
+
+[resource]
+default_font = ExtResource("1_50e4w")
+default_font_size = 48
