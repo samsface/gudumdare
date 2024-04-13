@@ -1,5 +1,7 @@
 extends Area3D
 
+signal card_dropped
+
 @export var sort := false
 @export var max_cards := 999999
 
@@ -75,6 +77,9 @@ func drop(card):
 	
 	card.get_parent().remove_child(card)
 	nearest_drop[1].add_child(card)
+	
+	print("emitted card_dropped")
+	emit_signal("card_dropped") 
 	
 	card.global_position = p
 	card.global_rotation = r
