@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp1lcmiomom2y"
-path="res://.godot/imported/worm_sheet.png-796bbb742079bb27f0432eb2bd6262b7.ctex"
+uid="uid://byxmowknxwd62"
+path="res://.godot/imported/samuraiWorm.png-8cad286554a28c86a0246e2f66ae5f07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/minigame_summon_worms/worm_sheet.png"
-dest_files=["res://.godot/imported/worm_sheet.png-796bbb742079bb27f0432eb2bd6262b7.ctex"]
+source_file="res://minigames/minigame_samurai_worm/art/samuraiWorm.png"
+dest_files=["res://.godot/imported/samuraiWorm.png-8cad286554a28c86a0246e2f66ae5f07.ctex"]
 
 [params]
 

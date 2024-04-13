@@ -21,18 +21,27 @@ enum SpriteAnimations {
 
 @onready var sprite := $AnimatedSprite2D
 @onready var trumpet_area := $TrumpetArea
-@onready var allow_draw := true
+#@onready var allow_draw := true
 @onready var god_song := $GodSong
 @onready var sprite_timer := $SpriteTimer
+
+@onready var circle_timer := $CircleSprites/CircleTimer
+@onready var circle_index := 0
+@onready var circle_sprites = [
+	$CircleSprites/Sprite1,
+	$CircleSprites/Sprite2,
+]
+
 
 
 func _ready() -> void:
 	#sprite.play(ANIM_IDLE)
 	god_song.play()
 	sprite_timer.start()
+	circle_timer.start()
 	
 func place(new_global_pos) -> void:
-	allow_draw = false
+	#allow_draw = false
 	global_position = new_global_pos
 	
 	#Restart timer and anim
@@ -47,9 +56,9 @@ func place(new_global_pos) -> void:
 func return_reached_areas() -> Array:
 	return trumpet_area.get_overlapping_areas()
 
-func _draw() -> void:
-	if allow_draw:
-		draw_circle(to_local(global_position), 128, Color("#bbaa265f"))
+#func _draw() -> void:
+	#if allow_draw:
+		#draw_circle(to_local(global_position), 256, Color("#bbaa265f"))
 
 func _on_god_song_finished() -> void:
 	god_song.play()
@@ -72,3 +81,13 @@ func _on_sprite_timer_timeout() -> void:
 	current_sprite.hide() #Hide old
 	current_sprite = sprites_to_check[index] #set new sprite
 	current_sprite.show() #Show new
+
+
+func _on_circle_timer_timeout() -> void:
+	circle_sprites[circle_index].hide()
+	
+	circle_index += 1
+	if circle_index > 1:
+		circle_index = 0
+	
+	circle_sprites[circle_index].show()
