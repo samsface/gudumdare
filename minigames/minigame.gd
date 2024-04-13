@@ -1,25 +1,15 @@
 class_name Minigame
 extends Node2D
 
+signal minigame_gameover_lost
+signal minigame_gameover_won(rating: float)
 
-func _ready() -> void:
-	%CompleteScreen.visible = false
-
+# Override those if you want a custom behaviour.
 func win(rating: float = 1.0):
-	%CompleteScreen.visible = true
-	if randf() < 0.5:
-		%CompleteHeader.text = "YOU WIN 10 WORMS!"
-		if Game.game:
-			Game.game.worms += 10
-	else:
-		%CompleteHeader.text = "YOU WIN 7 GOLD!"
-		if Game.game:
-			Game.game.gold += 7
+	minigame_gameover_won.emit(rating)
 
 func loose():
-	%CompleteScreen.visible = true
-	%CompleteHeader.text = "YOU SUCK!"
+	minigame_gameover_lost.emit()
 
-
-func _on_button_exit_pressed() -> void:
-	Game.game.open_overworld()
+func timer_ended():
+	loose()

@@ -33,3 +33,11 @@ func _on_area_brush_2d_mouse_clicked() -> void:
 		Game.game.open_altar()
 		return
 	Game.game.open_battle("res://battle/battles/%s.tscn" % name.to_snake_case())
+
+
+func _on_area_brush_2d_mouse_entered() -> void:
+	get_parent().set_title(name.capitalize())
+
+
+func _on_area_brush_2d_mouse_exited() -> void:
+	get_parent().set_title()

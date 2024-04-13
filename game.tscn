@@ -50,6 +50,7 @@ script = ExtResource("1_f1tk0")
 
 [node name="Transition" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+layer = 3
 script = ExtResource("2_rowvi")
 
 [node name="TransitionCircle" type="ColorRect" parent="Transition"]
@@ -63,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+layer = 5
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_5imi4")
