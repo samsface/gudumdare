@@ -1,20 +1,43 @@
-extends Node3D
+extends Area3D
 
-@export var spread := 0.6
+@export var sort := false
+@export var max_cards := 999999
 
 var invert = true
+var spread := 0.5
 
-@onready var camera = $"../Camera3D"
-@onready var ray_cast = $"../Camera3D/RayCast3D"
+func get_card_children() -> Array:
+	var res := []
+	for child in get_children():
+		if child is CardEx:
+			res.push_back(child)
+
+	return res
+
+func _ready() -> void:
+	input_ray_pickable = false
 
 func _process(delta) -> void:
-	sort_(delta)
+
+	for child in get_card_children():
+		if child.just_dropped:
+			drop(child)
+			continue
+	
+	for child in get_card_children():
+		if child.dragging:
+			drag(delta, child)
+
+	if sort:
+		sort_(delta)
 
 func get_nearest_drop() -> Array:
 	var pos = get_viewport().get_mouse_position()
 	
+	var camera = get_viewport().get_camera_3d()
+	var ray_cast = get_viewport().get_camera_3d().get_node("RayCast3D")
+	
 	ray_cast.target_position = camera.project_ray_origin(pos)
-	print(camera.project_ray_normal(pos))
 	ray_cast.target_position = camera.global_position + camera.project_ray_normal(pos) * 100
 
 	ray_cast.force_raycast_update()
@@ -25,6 +48,8 @@ func get_nearest_drop() -> Array:
 	return []
 
 func drag(delta, card) -> void:
+	delta *= 10.0
+	
 	var nearest_drop = get_nearest_drop()
 	if not nearest_drop:
 		return
@@ -33,12 +58,18 @@ func drag(delta, card) -> void:
 	card.global_rotation = lerp(card.global_rotation, nearest_drop[1].global_rotation, delta)
 
 func drop(card):
+	card.just_dropped = false
+	
 	var nearest_drop = get_nearest_drop()
 	if not nearest_drop:
 		return
 	
-	card.just_dropped = false
+	if nearest_drop[1] == self:
+		return
 	
+	if not nearest_drop[1].can_drop():
+		return
+
 	var p = card.global_position
 	var r = card.global_rotation
 	
@@ -48,36 +79,36 @@ func drop(card):
 	card.global_position = p
 	card.global_rotation = r
 	
-	var tween = create_tween()
-	tween.set_parallel()
-	tween.tween_property(card, "rotation:y", PI * 2.0, 0.2)
-	tween.tween_property(card, "rotation:z", randf_range(-1.0, 1.0) * 0.1, 0.2)
-	tween.tween_property(card, "position:z", card.position.z + 1.0, 0.1)
-	tween.tween_property(card, "position:z", card.position.z, 0.1).set_delay(0.1)
 	
+	if card.spin_tween:
+		card.spin_tween.kill()
+
+	card.spin_tween = create_tween()
+	card.spin_tween.set_parallel()
+	card.spin_tween.tween_property(card, "rotation:y", PI * 2.0, 0.2)
+	card.spin_tween.tween_property(card, "rotation:z", randf_range(-1.0, 1.0) * 0.1, 0.2)
+	card.spin_tween.tween_property(card, "position:z", card.position.z + 1.0, 0.1)
+	card.spin_tween.tween_property(card, "position:z", card.position.z - 0.01, 0.1).set_delay(0.1)
+	card.spin_tween.tween_property(card, "rotation:y", 0.0, 0.0).set_delay(0.2)
 
 func sort_(delta:float) -> void:
+	var card_children = get_card_children()
+	
 	delta *= 10.0
 
-	var total_length := 0.0
-	for child in get_children():
-		total_length += spread
+	var total_length := card_children.size() * spread
 
-	for child in get_children():
-		if child.just_dropped:
-			drop(child)
-			continue
+	var child_count := card_children.size()
 
-	var child_count := get_child_count()
+	for i in card_children.size():
+		var card = card_children[i]
 
-	for i in child_count:
-		if get_child(i).dragging:
-			drag(delta, get_child(i))
+		if card.dragging:
 			continue
 		
-		var x = get_child(i).position.x
+		var x = card.position.x
 		var to = i * spread - (total_length * 0.5) + spread * 0.5
-		get_child(i).position.x = lerp(x, to, delta)
+		card.position.x = lerp(x, to, delta)
 
 		var t = -1.0 if invert else 1.0
 
@@ -89,11 +120,20 @@ func sort_(delta:float) -> void:
 		#get_child(i).position.y = lerp(get_child(i).position.y, t * abs(distance_to_origin * 0.2), delta)
 		#get_child(i).rotation.z = distance_to_origin * 0.2 * t
 
-		if get_child(i).hovered:
-			get_child(i).scale = lerp(get_child(i).scale, Vector3.ONE * 1.1, delta)
+		if card.spin_tween and card.spin_tween.is_running():
+			continue
+
+		if card.hovered:
+			card.scale = lerp(card.scale, Vector3.ONE * 1.1, delta)
 			#get_child(i).position.z = 0.01
 		else:
-			get_child(i).scale = lerp(get_child(i).scale, Vector3.ONE, delta)
-			get_child(i).position.y = lerp(get_child(i).position.y, 0.0, delta)
-			get_child(i).position.z = lerp(get_child(i).position.z, 0.0, delta)
-			get_child(i).rotation = lerp(get_child(i).rotation, Vector3.ZERO, delta)
+			card.scale = lerp(card.scale, Vector3.ONE, delta)
+			card.position.y = lerp(card.position.y, 0.0, delta)
+			card.position.z = lerp(card.position.z, 0.0, delta)
+			card.rotation = lerp(card.rotation, Vector3.ZERO, delta)
+
+func can_drop() -> bool:
+	if get_card_children().size() >= max_cards:
+		return false
+
+	return true
