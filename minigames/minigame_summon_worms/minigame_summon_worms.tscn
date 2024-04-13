@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgvtqs51x35y2"]
+[gd_scene load_steps=4 format=3 uid="uid://dgvtqs51x35y2"]
 
 [ext_resource type="PackedScene" uid="uid://csteqwo8thlu4" path="res://minigames/minigame.tscn" id="1_r4x0q"]
 [ext_resource type="Script" path="res://minigames/minigame_summon_worms/minigame_summon_worms.gd" id="1_v7445"]
 [ext_resource type="PackedScene" uid="uid://8jwhfpejnqg7" path="res://minigames/minigame_summon_worms/player.tscn" id="2_37vpd"]
-[ext_resource type="PackedScene" uid="uid://qat7yjbw1y6c" path="res://minigames/minigame_summon_worms/pool.tscn" id="3_pa1pd"]
-[ext_resource type="PackedScene" uid="uid://4jicxhiwg8vq" path="res://minigames/minigame_summon_worms/poop.tscn" id="4_kjuvk"]
-[ext_resource type="PackedScene" uid="uid://dn46itmu16ncm" path="res://minigames/minigame_summon_worms/rock.tscn" id="4_vtaia"]
 
 [node name="Minigame" instance=ExtResource("1_r4x0q")]
+
+[node name="CanvasLayer" parent="." index="0"]
+visible = false
 
 [node name="CompleteScreen" parent="CanvasLayer" index="0"]
 visible = true
@@ -27,30 +27,9 @@ offset_right = 720.0
 offset_bottom = 405.0
 color = Color(0.249991, 0.153796, 0, 1)
 
-[node name="WormLocationPool" parent="MinigameSummonWorms/Background" index="1" instance=ExtResource("3_pa1pd")]
-position = Vector2(118, 330)
-
-[node name="WormLocationPool2" parent="MinigameSummonWorms/Background" index="2" instance=ExtResource("3_pa1pd")]
-position = Vector2(638, 306)
-
-[node name="WormLocationPool3" parent="MinigameSummonWorms/Background" index="3" instance=ExtResource("3_pa1pd")]
-position = Vector2(638, 306)
-
 [node name="Timer" type="Timer" parent="MinigameSummonWorms" index="2"]
 wait_time = 5.0
 one_shot = true
-
-[node name="WormLocationPool" parent="MinigameSummonWorms/Timer" index="0" instance=ExtResource("4_vtaia")]
-position = Vector2(699, 339)
-
-[node name="WormLocationPool2" parent="MinigameSummonWorms/Timer" index="1" instance=ExtResource("4_vtaia")]
-position = Vector2(113, 38)
-
-[node name="WormLocationPool3" parent="MinigameSummonWorms/Timer" index="2" instance=ExtResource("4_vtaia")]
-position = Vector2(53, 98)
-
-[node name="WormLocationPool4" parent="MinigameSummonWorms/Timer" index="3" instance=ExtResource("4_vtaia")]
-position = Vector2(247, 81)
 
 [node name="Origin" type="Node2D" parent="MinigameSummonWorms" index="3"]
 
@@ -59,20 +38,5 @@ position = Vector2(720, 0)
 
 [node name="BotCornerLeft" type="Node2D" parent="MinigameSummonWorms" index="5"]
 position = Vector2(0, 405)
-
-[node name="WormLocationPool" parent="MinigameSummonWorms" index="6" instance=ExtResource("4_kjuvk")]
-position = Vector2(532, 72)
-
-[node name="WormLocationPool2" parent="MinigameSummonWorms" index="7" instance=ExtResource("4_kjuvk")]
-position = Vector2(597, 117)
-
-[node name="WormLocationPool3" parent="MinigameSummonWorms" index="8" instance=ExtResource("4_kjuvk")]
-position = Vector2(531, 147)
-
-[node name="WormLocationPool5" parent="MinigameSummonWorms" index="9" instance=ExtResource("4_kjuvk")]
-position = Vector2(267, 247)
-
-[node name="WormLocationPool4" parent="MinigameSummonWorms" index="10" instance=ExtResource("4_kjuvk")]
-position = Vector2(554, 374)
 
 [connection signal="timeout" from="MinigameSummonWorms/Timer" to="MinigameSummonWorms" method="_on_timer_timeout"]
