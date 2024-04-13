@@ -129,10 +129,10 @@ func _battle_field_area_child_entered_tree(node: Node) -> void:
 		mana -= node.mana_cost
 		
 		var new_card = load("res://cards/cards/archer.tscn").instantiate()
-		new_card.global_position = %NewCardSpawn.global_position
 		
 		if %HandArea.get_card_children().size() < 3:
 			%HandArea.add_child(new_card)
+			new_card.global_position = %NewCardSpawn.global_position
 
 func _tower_enemy_died() -> void:
 	var reward = load("res://battle/reward.tscn").instantiate()
