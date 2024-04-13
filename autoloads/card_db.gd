@@ -22,7 +22,7 @@ func _ready() -> void:
 func return_cards_by_tier(tier):
 	var array: Array
 	for card in cards:
-		if cards[card][TIER] == tier:
+		if cards[card].tier == tier:
 			array.append(card)
 			
 	return array
