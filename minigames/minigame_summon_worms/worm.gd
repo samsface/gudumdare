@@ -27,10 +27,11 @@ func reveal() -> void:
 func _on_sprite_timer_timeout() -> void:
 	var index := 0 
 	
+	var previous_index = index
 	index = sprites.find(current_sprite) + 1
 	if index > MAX_SPRITE:
-		current_sprite = sprites[PRE_LAST_SPRITE] 
-	else:
-		current_sprite.hide() #Hide old
-		current_sprite = sprites[index] #set new sprite
-		current_sprite.show() #Show new
+		index = PRE_LAST_SPRITE 
+
+	current_sprite.hide() #Hide old
+	current_sprite = sprites[index] #set new sprite
+	current_sprite.show() #Show new
