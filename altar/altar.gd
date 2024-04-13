@@ -3,9 +3,9 @@ extends Control
 const REQUIRED_SACRIFICE_COUNT = 3
 
 @onready var player_hand = $SubViewportContainer/SubViewport/HandTest/PlayerHand
-@onready var sacrifice_button := $CanvasLayer/SacrificeButton
-@onready var new_card := $CanvasLayer/NewCard
-@onready var new_card_label := $CanvasLayer/NewCard/Label
+@onready var sacrifice_button := $TopPlayer/SacrificeButton
+@onready var new_card := $TopPlayer/NewCard
+@onready var new_card_label := $TopPlayer/NewCard/Label
 @onready var sacrifice_slot := $SubViewportContainer/SubViewport/HandTest/SacrificeSlot
 
 func _ready() -> void:
@@ -17,7 +17,6 @@ func _ready() -> void:
 	#Funcs
 	_check_sacrifice_button()
 	
-
 func _check_sacrifice_button():
 	print(str(sacrifice_slot.get_card_children().size()))
 	
@@ -41,7 +40,14 @@ func _on_sacrifice_button_pressed() -> void:
 	var new_card_name = cards[random_index]
 	
 	new_card.show()
+	sacrifice_button.hide()
 	new_card_label.text = "YOU GOT " + new_card_name + "!"
+	#Delete cards from scene TODO delete from player too
+	for card in sacrifice_slot.get_card_children():
+		card.queue_free()
 
 func _on_confirm_button_pressed() -> void:
+	
+	
 	new_card.hide()
+	sacrifice_button.show()

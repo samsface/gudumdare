@@ -20,15 +20,15 @@ z_index = 10
 position = Vector2(360, 202)
 
 [node name="Timer" type="Timer" parent="MinigameSummonWorms" index="2"]
-wait_time = 5.0
+wait_time = 500.0
 one_shot = true
 
 [node name="Origin" type="Node2D" parent="MinigameSummonWorms" index="3"]
 
 [node name="TopCornerRight" type="Node2D" parent="MinigameSummonWorms" index="4"]
-position = Vector2(720, 0)
+position = Vector2(1440, 0)
 
 [node name="BotCornerLeft" type="Node2D" parent="MinigameSummonWorms" index="5"]
-position = Vector2(0, 405)
+position = Vector2(0, 810)
 
 [connection signal="timeout" from="MinigameSummonWorms/Timer" to="MinigameSummonWorms" method="_on_timer_timeout"]
