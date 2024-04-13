@@ -81,7 +81,6 @@ func reset_bird_guard():
 	$Effects/Question_Mark1.hide()
 	$Effects/Question_Mark2.hide()
 	$Effects/Question_Mark3.hide()
-	
 
 func loose():
 	super.loose()

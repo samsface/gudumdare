@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqjta8uodixn7"]
+
+[ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_uamwq"]
+[ext_resource type="PackedScene" uid="uid://tivqdbwul3u2" path="res://battle/units/unit_archer.tscn" id="2_5rdev"]
+
+[node name="StaticBody3D" instance=ExtResource("1_uamwq")]
+card_name = "Archer"
+spawns = ExtResource("2_5rdev")
+
+[node name="CardNameLabel" parent="MeshInstance3D" index="0"]
+text = "Archer"
