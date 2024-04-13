@@ -22,6 +22,7 @@ func open_overworld():
 
 func open_battle(scene_path):
 	start_scene(scene_path)
+	play_music_battle()
 
 func open_minigame(scene_path):
 	start_scene(scene_path)
@@ -41,3 +42,13 @@ func start_scene(path):
 	current_scene = load(path).instantiate()
 	add_child(current_scene)
 	transition.open()
+
+
+
+func play_music_overworld():
+	$Music.stream = load("res://music/1226674_Rhythm-Factory.ogg")
+	$Music.play()
+
+func play_music_battle():
+	$Music.stream = load("res://music/Battle Against a Suave Opponent.mp3")
+	$Music.play()

@@ -23,7 +23,7 @@ func _ready() -> void:
 			if not neighbor.neighbors.has(self):
 				neighbor.neighbors.push_back(self)
 	%Name.text = name.capitalize()
-	
+	Game.game.play_music_overworld()
 
 func _process(delta: float) -> void:
 	t += delta
@@ -41,16 +41,19 @@ func _draw() -> void:
 
 func _on_area_brush_2d_mouse_clicked() -> void:
 	Game.game.transition.set_circle_position(global_position)
+	$AudioEnter.play()
 	if is_altar:
 		Game.game.open_altar()
 		return
 	Game.game.open_battle("res://battle/battles/%s.tscn" % name.to_snake_case())
 	get_parent().entering = true
+	
 
 
 func _on_area_brush_2d_mouse_entered() -> void:
 	get_parent().set_title(name.capitalize())
 	hovering = true
+	$AudioHover.play()
 
 
 func _on_area_brush_2d_mouse_exited() -> void:
