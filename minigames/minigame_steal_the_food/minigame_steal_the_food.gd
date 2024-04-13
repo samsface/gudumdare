@@ -1,7 +1,7 @@
-extends Node2D
+extends Minigame
 
 @export var turning_speed_time_max: float = 0.3
-@export var turning_speed_time_min: float = 0.1
+@export var turning_speed_time_min: float = 0.15
 @export var guard_lookout_time: float = 1
 @export var hero_speed = 600
 
@@ -13,6 +13,8 @@ extends Node2D
 @onready var bird_guard: Node2D = $Actors/Bird_Guard
 @onready var hero: Node2D = $Actors/Hero
 @onready var basket: Node2D = $Actors/Fruit_Basket
+
+var wormWon: int = 0
 
 var is_hero_moving: bool = false
 var is_bird_looking_out: bool = false
@@ -32,7 +34,7 @@ func _process(delta: float) -> void:
 func process_hero(delta: float):
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		if(is_bird_looking_out):
-			game_over_lost()
+			loose()
 			return
 		else:
 			basket.position.y = basket_y_lifted_offset
@@ -81,17 +83,13 @@ func reset_bird_guard():
 	$Effects/Question_Mark3.hide()
 	
 
-func game_over_lost():
+func loose():
+	super.loose()
 	is_game_on = false
-	$Effects/Exclamation.show()
-	$CanvasLayer/Game_Over_Lost.show()
-	$CanvasLayer/Instructions.hide()
 
-func game_over_won():
+func win(rating: float = 1.0):
+	super.win(rating)
 	is_game_on = false
-	$CanvasLayer/Game_Over_Won.show()
-	$CanvasLayer/Instructions.hide()
-
 
 func _on_hero_area_2d_area_entered(area: Area2D) -> void:
-	game_over_won()
+	win(wormWon)
