@@ -1,11 +1,9 @@
-extends Node2D
+extends Minigame
 
 const WORM_OFFSET = 32
 
 @onready var player: SummonPlayer = $Player
 @onready var timer: Timer = $Timer
-@onready var hud := $HUD
-@onready var hud_label := $HUD/Label
 @onready var timer_running := true
 @onready var total_worm_count := 0
 
@@ -16,8 +14,7 @@ var max_y: int
 
 func _ready() -> void:
 	timer.start()
-	hud.hide()
-	
+
 	min_x = $Origin.global_position.x + WORM_OFFSET
 	max_x = $TopCornerRight.global_position.x - WORM_OFFSET
 	min_y = $Origin.global_position.y + WORM_OFFSET
@@ -42,11 +39,10 @@ func _physics_process(delta: float) -> void:
 			area.reveal_worms()
 			total_worm_count += area.worm_count
 			
-		hud.show()
-		hud_label.text = "You got " + str(total_worm_count) + " worms"
-		
+		win(total_worm_count)
+			
 
 func _on_timer_timeout() -> void:
-	print("TIMEOUT")
-	player.hide()
+	player.place(player.global_position) #Place player whereever he is right now
 	timer_running = false
+	win(0)
