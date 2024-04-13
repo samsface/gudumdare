@@ -5,8 +5,11 @@
 
 [node name="Battle" instance=ExtResource("1_ia33k")]
 
-[node name="ColorRect" parent="." index="0"]
+[node name="ColorRect" parent="." index="1"]
 color = Color(0.643136, 0.666173, 0.292987, 1)
 
 [node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_re1v0")]
 position = Vector2(1087, 290)
+
+[node name="Camera3D" parent="SubViewports/SubViewportContainer/SubViewport/HandTest" index="2"]
+current = true

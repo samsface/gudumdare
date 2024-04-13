@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://l37wanjg81e"]
+
+[ext_resource type="PackedScene" uid="uid://dcnq1dkwqkvny" path="res://battle/battle.tscn" id="1_qp3xm"]
+[ext_resource type="Texture2D" uid="uid://b6b6x0ranecsv" path="res://battle/battles/backgrounds/places3.png" id="2_3xom7"]
+[ext_resource type="PackedScene" uid="uid://dxaqk6lkr8gyp" path="res://battle/units/foe_tower.tscn" id="2_uadvp"]
+
+[node name="Battle" instance=ExtResource("1_qp3xm")]
+
+[node name="ColorRect" parent="." index="1"]
+visible = true
+color = Color(0.545098, 0.607843, 0.705882, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." index="2"]
+auto_translate_mode = 1
+offset_right = 1440.0
+offset_bottom = 810.0
+texture = ExtResource("2_3xom7")
+
+[node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_uadvp")]
+position = Vector2(1087, 290)
