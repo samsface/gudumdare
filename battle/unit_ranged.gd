@@ -1,0 +1,14 @@
+class_name UnitRanged
+extends Unit
+
+@export var projectile_type := "arrow"
+
+var projectile_scene: PackedScene
+func _ready() -> void:
+	projectile_scene = load("res://battle/projectiles/projectile_%s.tscn" % projectile_type)
+
+func attack():
+	var projectile: Projectile = projectile_scene.instantiate()
+	get_parent().add_child(projectile)
+	projectile.position = position
+	projectile.init(battle, closest_enemy, is_foe)
