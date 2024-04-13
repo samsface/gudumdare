@@ -26,6 +26,10 @@ func open_battle(scene_path):
 func open_minigame(scene_path):
 	start_scene(scene_path)
 
+func open_altar():
+	start_scene("res://altar/altar.tscn")
+
+
 func open_shop():
 	start_scene("res://shop/shop.tscn")
 

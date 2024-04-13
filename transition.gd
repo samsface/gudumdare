@@ -13,7 +13,7 @@ func close():
 	visible = true
 	var tween = create_tween()
 	tweening = true
-	tween.tween_property(self, "open_value", 0.0, 0.3)
+	tween.tween_property(self, "open_value", 0.0, 0.4)
 	await tween.finished
 	closed.emit()
 
@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 func open():
 	set_circle_position(Game.SCREEN_SIZE * 0.5)
 	var tween = create_tween()
-	tween.tween_property(self, "open_value", 1.0, 0.3)
+	tween.tween_property(self, "open_value", 1.0, 0.2)
 	await tween.finished
 	visible = false
 	tweening = false
