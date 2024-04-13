@@ -45,6 +45,9 @@ func hide_flames():
 
 
 func _on_fire_area_entered(area: Area2D) -> void:
+	if not selected_stick:
+		return
+		
 	selected_stick.queue_free()
 	selected_stick = null
 
