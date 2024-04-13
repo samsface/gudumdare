@@ -15,8 +15,6 @@ var selected_stick: Stick = null
 
 
 func _ready() -> void:
-	super()
-
 	var spawns = $SpawnPoints.get_children()
 	spawns.shuffle()
 	var sticks = $StickSpawner.spawn(number_of_sticks, spawns)
