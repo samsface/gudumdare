@@ -26,16 +26,18 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_a0qxh")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BottomLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Background" type="TextureRect" parent="CanvasLayer"]
+[node name="Background" type="TextureRect" parent="BottomLayer"]
 offset_right = 1440.0
 offset_bottom = 810.0
 texture = ExtResource("2_olr0h")
 metadata/_edit_lock_ = true
 
-[node name="SacrificeButton" type="Button" parent="CanvasLayer"]
+[node name="TopPlayer" type="CanvasLayer" parent="."]
+
+[node name="SacrificeButton" type="Button" parent="TopPlayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,7 +53,7 @@ theme_override_fonts/font = ExtResource("3_84gwk")
 theme_override_font_sizes/font_size = 32
 text = "SACRIFICE"
 
-[node name="Label" type="Label" parent="CanvasLayer/SacrificeButton"]
+[node name="Label" type="Label" parent="TopPlayer/SacrificeButton"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -69,7 +71,7 @@ text = "Sacrifice 3 cards for a dark gift!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NewCard" type="ColorRect" parent="CanvasLayer"]
+[node name="NewCard" type="ColorRect" parent="TopPlayer"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,7 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
-[node name="Label" type="Label" parent="CanvasLayer/NewCard"]
+[node name="Label" type="Label" parent="TopPlayer/NewCard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,9 +88,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -720.0
-offset_top = -104.0
+offset_top = -184.0
 offset_right = 720.0
-offset_bottom = -72.0
+offset_bottom = -152.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_84gwk")
@@ -97,7 +99,7 @@ text = "YOU GOT <CARD_NAME>!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardImage" type="TextureRect" parent="CanvasLayer/NewCard"]
+[node name="CardImage" type="TextureRect" parent="TopPlayer/NewCard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -105,24 +107,24 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -128.0
-offset_top = -56.0
+offset_top = -136.0
 offset_right = 128.0
-offset_bottom = 200.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_cubwq")
 
-[node name="ConfirmButton" type="Button" parent="CanvasLayer/NewCard"]
+[node name="ConfirmButton" type="Button" parent="TopPlayer/NewCard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = 208.5
-offset_right = 41.0
-offset_bottom = 239.5
+offset_left = -67.5
+offset_top = 124.0
+offset_right = 67.5
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_84gwk")
@@ -210,7 +212,7 @@ shadow_opacity = 0.45
 shadow_blur = 0.736
 
 [node name="BackgroundHand" parent="SubViewportContainer/SubViewport/HandTest" instance=ExtResource("5_lgg7v")]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.31885, 0, -0.51066)
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.31885, 0, 0.200655)
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
@@ -221,5 +223,5 @@ max_cards = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19768, -0.737752)
 shape = SubResource("BoxShape3D_skted")
 
-[connection signal="pressed" from="CanvasLayer/SacrificeButton" to="." method="_on_sacrifice_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/NewCard/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="TopPlayer/SacrificeButton" to="." method="_on_sacrifice_button_pressed"]
+[connection signal="pressed" from="TopPlayer/NewCard/ConfirmButton" to="." method="_on_confirm_button_pressed"]
