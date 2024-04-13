@@ -9,9 +9,6 @@
 [node name="CanvasLayer" parent="." index="0"]
 visible = false
 
-[node name="CompleteScreen" parent="CanvasLayer" index="0"]
-visible = true
-
 [node name="MinigameSummonWorms" type="Node2D" parent="." index="1"]
 script = ExtResource("1_v7445")
 

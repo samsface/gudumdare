@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn7tis25yttdr"
-path="res://.godot/imported/mock_bg.png-ae76de1c338df41467743a80e50903a0.ctex"
+uid="uid://dgjt431rsabh8"
+path="res://.godot/imported/birdSheet.png-db89f4bcc1832c81829379587dca430b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://altar/mock_bg.png"
-dest_files=["res://.godot/imported/mock_bg.png-ae76de1c338df41467743a80e50903a0.ctex"]
+source_file="res://minigames/minigame_components/art/birdSheet.png"
+dest_files=["res://.godot/imported/birdSheet.png-db89f4bcc1832c81829379587dca430b.ctex"]
 
 [params]
 
