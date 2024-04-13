@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://csteqwo8thlu4"]
+
+[ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="1_5rsoa"]
+[ext_resource type="Script" path="res://minigames/minigame.gd" id="1_6ynw4"]
+
+[node name="Minigame" type="Node2D"]
+script = ExtResource("1_6ynw4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CompleteScreen" type="Panel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5rsoa")
+
+[node name="CompleteHeader" type="Label" parent="CanvasLayer/CompleteScreen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 377.0
+offset_top = 101.0
+offset_right = 1023.0
+offset_bottom = 158.0
+text = "YOU WON!"
+horizontal_alignment = 1
+
+[node name="ButtonExit" type="Button" parent="CanvasLayer/CompleteScreen"]
+layout_mode = 0
+offset_left = 597.0
+offset_top = 464.0
+offset_right = 913.0
+offset_bottom = 607.0
+text = "EXIT"
+
+[connection signal="pressed" from="CanvasLayer/CompleteScreen/ButtonExit" to="." method="_on_button_exit_pressed"]

@@ -6,6 +6,10 @@ static var game: Game
 
 var current_scene
 
+var gold := 0
+var souls := 0
+var worms := 0
+
 func _ready() -> void:
 	game = self
 	open_overworld()
@@ -15,6 +19,9 @@ func open_overworld():
 	start_scene("res://overworld/overworld.tscn")
 
 func open_battle(scene_path):
+	start_scene(scene_path)
+
+func open_minigame(scene_path):
 	start_scene(scene_path)
 
 func open_shop():
