@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb1d34g7c3us5"
-path="res://.godot/imported/wormbody.png-64736c54224eedba6e6c15fb60a85cbf.ctex"
+uid="uid://cyev0lpnw2uoi"
+path="res://.godot/imported/wormHead-sheet.png-f5a07f7ad71afb36430a6392a6f8e9b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/art/wormbody.png"
-dest_files=["res://.godot/imported/wormbody.png-64736c54224eedba6e6c15fb60a85cbf.ctex"]
+source_file="res://minigames/MinigameComponents/art/wormHead-sheet.png"
+dest_files=["res://.godot/imported/wormHead-sheet.png-f5a07f7ad71afb36430a6392a6f8e9b3.ctex"]
 
 [params]
 
