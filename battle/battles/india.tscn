@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://csqdcrlwh1mj3"]
+
+[ext_resource type="PackedScene" uid="uid://dcnq1dkwqkvny" path="res://battle/battle.tscn" id="1_mry7r"]
+[ext_resource type="PackedScene" uid="uid://dxaqk6lkr8gyp" path="res://battle/units/foe_tower.tscn" id="2_6x7n1"]
+
+[node name="Battle" instance=ExtResource("1_mry7r")]
+
+[node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_6x7n1")]
+position = Vector2(1087, 290)
