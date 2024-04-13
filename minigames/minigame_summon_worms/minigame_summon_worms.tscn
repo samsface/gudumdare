@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgvtqs51x35y2"]
+[gd_scene load_steps=7 format=3 uid="uid://dgvtqs51x35y2"]
 
 [ext_resource type="PackedScene" uid="uid://csteqwo8thlu4" path="res://minigames/minigame.tscn" id="1_r4x0q"]
 [ext_resource type="Script" path="res://minigames/minigame_summon_worms/minigame_summon_worms.gd" id="1_v7445"]
 [ext_resource type="PackedScene" uid="uid://8jwhfpejnqg7" path="res://minigames/minigame_summon_worms/player.tscn" id="2_37vpd"]
+[ext_resource type="PackedScene" uid="uid://4jicxhiwg8vq" path="res://minigames/minigame_summon_worms/poop.tscn" id="4_6ohg7"]
+[ext_resource type="PackedScene" uid="uid://dn46itmu16ncm" path="res://minigames/minigame_summon_worms/rock.tscn" id="5_3n5fr"]
+[ext_resource type="PackedScene" uid="uid://qat7yjbw1y6c" path="res://minigames/minigame_summon_worms/pool.tscn" id="6_kp2ge"]
 
 [node name="Minigame" instance=ExtResource("1_r4x0q")]
 
@@ -13,7 +16,7 @@ script = ExtResource("1_v7445")
 auto_translate_mode = 1
 offset_right = 1440.0
 offset_bottom = 810.0
-color = Color(0.583333, 0.378027, 0.22189, 1)
+color = Color(0.373856, 0.232826, 0.124792, 1)
 
 [node name="Player" parent="MinigameSummonWorms" index="1" instance=ExtResource("2_37vpd")]
 z_index = 10
@@ -30,5 +33,44 @@ position = Vector2(1440, 0)
 
 [node name="BotCornerLeft" type="Node2D" parent="MinigameSummonWorms" index="5"]
 position = Vector2(0, 810)
+
+[node name="Level" type="Node2D" parent="." index="2"]
+position = Vector2(360, 176)
+
+[node name="WormLocationPool8" parent="Level" index="0" instance=ExtResource("4_6ohg7")]
+position = Vector2(172, -104)
+
+[node name="WormLocationPool9" parent="Level" index="1" instance=ExtResource("4_6ohg7")]
+position = Vector2(237, -59)
+
+[node name="WormLocationPool10" parent="Level" index="2" instance=ExtResource("4_6ohg7")]
+position = Vector2(171, -29)
+
+[node name="WormLocationPool11" parent="Level" index="3" instance=ExtResource("4_6ohg7")]
+position = Vector2(-93, 71)
+
+[node name="WormLocationPool12" parent="Level" index="4" instance=ExtResource("4_6ohg7")]
+position = Vector2(194, 198)
+
+[node name="WormLocationPool4" parent="Level" index="5" instance=ExtResource("5_3n5fr")]
+position = Vector2(339, 163)
+
+[node name="WormLocationPool5" parent="Level" index="6" instance=ExtResource("5_3n5fr")]
+position = Vector2(-247, -138)
+
+[node name="WormLocationPool6" parent="Level" index="7" instance=ExtResource("5_3n5fr")]
+position = Vector2(-307, -78)
+
+[node name="WormLocationPool7" parent="Level" index="8" instance=ExtResource("5_3n5fr")]
+position = Vector2(-113, -95)
+
+[node name="WormLocationPool" parent="Level" index="9" instance=ExtResource("6_kp2ge")]
+position = Vector2(-242, 154)
+
+[node name="WormLocationPool2" parent="Level" index="10" instance=ExtResource("6_kp2ge")]
+position = Vector2(278, 130)
+
+[node name="WormLocationPool3" parent="Level" index="11" instance=ExtResource("6_kp2ge")]
+position = Vector2(278, 130)
 
 [connection signal="timeout" from="MinigameSummonWorms/Timer" to="MinigameSummonWorms" method="_on_timer_timeout"]
