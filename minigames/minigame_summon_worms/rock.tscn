@@ -13,7 +13,7 @@ script = ExtResource("1_xp2ik")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 texture = ExtResource("2_4oakv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -23,9 +23,9 @@ shape = ExtResource("3_qbe8b")
 [node name="Worms" type="Node2D" parent="."]
 
 [node name="Worm" parent="Worms" instance=ExtResource("4_j6ahr")]
-position = Vector2(-14, 6)
+position = Vector2(-30, 14)
 animation = &"default"
 
 [node name="Worm2" parent="Worms" instance=ExtResource("4_j6ahr")]
-position = Vector2(14, 9)
+position = Vector2(30, 17)
 animation = &"default"

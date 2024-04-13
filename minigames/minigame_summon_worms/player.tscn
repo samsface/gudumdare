@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://8jwhfpejnqg7"]
+[gd_scene load_steps=9 format=3 uid="uid://8jwhfpejnqg7"]
 
 [ext_resource type="Script" path="res://minigames/minigame_summon_worms/player.gd" id="1_itev7"]
 [ext_resource type="Texture2D" uid="uid://d3bajvrowirvb" path="res://minigames/minigame_summon_worms/player_sheet.png" id="1_yy14d"]
+[ext_resource type="AudioStream" uid="uid://do3ym8igadepq" path="res://minigames/minigame_summon_worms/trumpet.wav" id="3_jwpbs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhepb"]
 atlas = ExtResource("1_yy14d")
@@ -45,7 +46,7 @@ script = ExtResource("1_itev7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_rycw7")
 animation = &"idle"
 
@@ -57,3 +58,8 @@ collision_mask = 16
 self_modulate = Color(0.735001, 0.664799, 0.150931, 0.721569)
 shape = SubResource("CircleShape2D_k6wcp")
 debug_color = Color(0.945187, 6.93083e-06, 0.593625, 0.42)
+
+[node name="GodSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jwpbs")
+
+[connection signal="finished" from="GodSong" to="." method="_on_god_song_finished"]

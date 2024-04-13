@@ -19,23 +19,24 @@ func _ready() -> void:
 	
 
 func _check_sacrifice_button():
-	if not sacrifice_button.visible:
-		if sacrifice_slot.get_card_children().size() == REQUIRED_SACRIFICE_COUNT:
-			sacrifice_button.disabled = false
-			sacrifice_button.visible = true
+	print(str(sacrifice_slot.get_card_children().size()))
+	
+	if sacrifice_slot.get_card_children().size() == REQUIRED_SACRIFICE_COUNT:
+		sacrifice_button.disabled = false
 	else:
-		if sacrifice_slot.get_card_children().size() < REQUIRED_SACRIFICE_COUNT:
-			sacrifice_button.disabled = true
-			sacrifice_button.visible = false
+		sacrifice_button.disabled = true
 			
 func _on_sacrifice_button_pressed() -> void:
 	#REMOVE CARDS FROM DECK
 	
-	#GIVE NEW CARD
-	#Tier logic
-	var lowest_tier = 1
-	#Reach into DB to get random new card
-	var cards = CardDB.return_cards_by_tier(lowest_tier + 1)
+	#GET NEW CARD
+	var lowest_tier = 666 #Should replace with actual highest tier :-)
+	for card in sacrifice_slot.get_card_children():
+		if card.tier < lowest_tier:
+			lowest_tier = card.tier
+	print("lowest tier is now " + str(lowest_tier))
+	
+	var cards = CardDB.return_cards_by_tier(lowest_tier)
 	var random_index = RNG.random_int(0, cards.size() - 1) 
 	var new_card_name = cards[random_index]
 	
