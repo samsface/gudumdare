@@ -43,5 +43,9 @@ func gameover_won(rating: float):
 	_on_ok_button_pressed()
 
 func _on_ok_button_pressed() -> void:
+	$Score.visible = true
+	# hack way to pause the mini game
+	%SubViewport.render_target_update_mode = 0
+	await get_tree().create_timer(0.5).timeout
 	minigame_ended.emit(rating)
 	queue_free()

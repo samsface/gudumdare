@@ -17,12 +17,13 @@ var birds_missed := 0
 @onready var spiked_label = %SpikedValue
 @onready var missed_label = %MissedValue
 
-
 func _ready() -> void:
 	# Replace 8.0 here with the time limit for the minigame
 	var bird_spawn_rate: float = 8.0 / total_birds as float
 	timer.wait_time = bird_spawn_rate
 	timer.start()
+	# initial wave just so we don't waste a second for the first timeout
+	_on_bird_timer_timeout()
 
 
 func spawn_bird():
