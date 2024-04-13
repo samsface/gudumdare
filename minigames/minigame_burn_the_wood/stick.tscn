@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://addons/flipnode/stroke.gd" id="3_ug2y1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nawxc"]
-size = Vector2(79, 20)
+size = Vector2(96, 40)
 
 [sub_resource type="Resource" id="Resource_2hf66"]
 script = ExtResource("3_ug2y1")
@@ -22,11 +22,11 @@ polygon = PackedVector2Array(-10.9921, -26.347, -7.84931, -18.8405, -12.8163, -9
 holes = Array[PackedVector2Array]([])
 
 [node name="Stick" type="Area2D"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 script = ExtResource("1_wq4ig")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
+position = Vector2(0.666666, -2)
 shape = SubResource("RectangleShape2D_nawxc")
 
 [node name="Art" type="Node2D" parent="."]
