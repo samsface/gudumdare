@@ -42,3 +42,4 @@ func _on_area_brush_2d_mouse_clicked() -> void:
 			Game.game.open_battle(scene)
 		Type.MINI_1, Type.MINI_2, Type.MINI_3:
 			Game.game.open_minigame(scene)
+			Game.game.transition.set_circle_position(global_position)

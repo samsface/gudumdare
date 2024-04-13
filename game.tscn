@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1iqvvhbjidkb"]
+[gd_scene load_steps=7 format=3 uid="uid://d1iqvvhbjidkb"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_f1tk0"]
 [ext_resource type="Script" path="res://transition.gd" id="2_rowvi"]
@@ -14,22 +14,42 @@ void fragment() {
 	vec2 uv = UV;
 	vec2 ratio = vec2(1440.0 / 810.0, 1.0);
 	uv *= ratio;
-	float dist = distance(uv, pos);
+
+	float dist = distance(uv, mix(pos, vec2(0.5), open * open) * ratio);
 	uv /= ratio;
-	COLOR.a = smoothstep(open, open, dist);
+	COLOR.a = smoothstep(open * 1.1, open * 1.1, dist);
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ywh0w"]
 shader = SubResource("Shader_u50t5")
-shader_parameter/pos = Vector2(0.5, 0.5)
-shader_parameter/open = null
+shader_parameter/pos = Vector2(0.1, 0.5)
+shader_parameter/open = 1.0
+
+[sub_resource type="Shader" id="Shader_8np40"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D screen_texture : hint_screen_texture;
+
+void fragment() {
+	ivec2 coords = ivec2(floor(SCREEN_UV / SCREEN_PIXEL_SIZE)/2.0) * 2;
+	vec4 color = vec4(0);
+	color += texelFetch(screen_texture, coords + ivec2(0, 0), 0);
+	color += texelFetch(screen_texture, coords + ivec2(0, 1), 0);
+	color += texelFetch(screen_texture, coords + ivec2(1, 0), 0);
+	color += texelFetch(screen_texture, coords + ivec2(1, 1), 0);
+	color /= 4.0;
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5imi4"]
+shader = SubResource("Shader_8np40")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_f1tk0")
 
 [node name="Transition" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("2_rowvi")
 
 [node name="TransitionCircle" type="ColorRect" parent="Transition"]
@@ -41,3 +61,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_5imi4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
