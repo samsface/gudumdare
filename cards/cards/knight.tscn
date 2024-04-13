@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://glirm2jvo8nx"]
+
+[ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_xtdbm"]
+[ext_resource type="PackedScene" uid="uid://c50peisua1rf1" path="res://battle/units/unit_knight.tscn" id="2_qjtq5"]
+
+[node name="StaticBody3D" instance=ExtResource("1_xtdbm")]
+card_name = "Knight"
+spawns = ExtResource("2_qjtq5")
+
+[node name="CardNameLabel" parent="MeshInstance3D" index="0"]
+text = "Knight"
