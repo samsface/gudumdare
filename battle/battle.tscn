@@ -15,6 +15,7 @@ offset_left = -23.0
 offset_top = -18.0
 offset_right = 1462.0
 offset_bottom = 827.0
+mouse_filter = 2
 
 [node name="Deck" type="Node2D" parent="."]
 unique_name_in_owner = true
