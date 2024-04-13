@@ -1,4 +1,4 @@
-extends Unit
+extends UnitRanged
 
 
 func process_movement(delta):

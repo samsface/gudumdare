@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://djh6y3jvh2q2c"]
+
+[ext_resource type="PackedScene" uid="uid://dcnq1dkwqkvny" path="res://battle/battle.tscn" id="1_61plf"]
+[ext_resource type="PackedScene" uid="uid://dxaqk6lkr8gyp" path="res://battle/units/foe_tower.tscn" id="2_dxvtv"]
+
+[node name="Battle" instance=ExtResource("1_61plf")]
+
+[node name="ColorRect" parent="." index="0"]
+color = Color(0.199593, 0.422147, 0.220381, 1)
+
+[node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_dxvtv")]
+position = Vector2(1087, 290)

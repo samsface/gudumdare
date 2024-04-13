@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://byn01iuu63rd4"]
+
+[ext_resource type="Texture2D" uid="uid://cp1lcmiomom2y" path="res://minigames/minigame_summon_worms/worm_sheet.png" id="1_kh04p"]
+[ext_resource type="Script" path="res://minigames/minigame_summon_worms/worm.gd" id="2_nqnb6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5rnn"]
+atlas = ExtResource("1_kh04p")
+region = Rect2(4, 0, 4, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bly6"]
+atlas = ExtResource("1_kh04p")
+region = Rect2(8, 0, 4, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcqvr"]
+atlas = ExtResource("1_kh04p")
+region = Rect2(12, 0, 4, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mygxl"]
+atlas = ExtResource("1_kh04p")
+region = Rect2(0, 0, 4, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ilear"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5rnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bly6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcqvr")
+}],
+"loop": false,
+"name": &"appear",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mygxl")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Worm" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ilear")
+animation = &"appear"
+script = ExtResource("2_nqnb6")

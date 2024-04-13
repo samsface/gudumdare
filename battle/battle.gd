@@ -18,18 +18,17 @@ var dragging_card: Card
 
 var mana := 0.0
 var max_mana := 10
-var mana_regen_per_sec := 1.0
+var mana_regen_per_sec := 1.5
 
 func _ready() -> void:
 	var card_knight = load("res://battle/cards/card_knight.tscn")
 	var card_buff = load("res://battle/cards/card_buff.tscn")
 	var card_archer = load("res://battle/cards/card_archer.tscn")
-	add_card(card_knight.instantiate())
+	var card_rain = load("res://battle/cards/card_rain.tscn")
 	add_card(card_knight.instantiate())
 	add_card(card_buff.instantiate())
-	add_card(card_buff.instantiate())
 	add_card(card_archer.instantiate())
-	add_card(card_archer.instantiate())
+	add_card(card_rain.instantiate())
 	
 	tower_player.battle = self
 	friends.push_back(tower_player)

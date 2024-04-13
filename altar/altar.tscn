@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf4vd783dyum8"]
+
+[ext_resource type="Script" path="res://altar/altar.gd" id="1_a0qxh"]
+[ext_resource type="Texture2D" uid="uid://dn7tis25yttdr" path="res://altar/mock_bg.png" id="2_kwiq4"]
+
+[node name="Altar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a0qxh")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1440.0
+offset_bottom = 810.0
+texture = ExtResource("2_kwiq4")
+metadata/_edit_lock_ = true
+
+[node name="SacrificeSlot1" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 480.0
+offset_top = 488.0
+offset_right = 480.0
+offset_bottom = 488.0
+
+[node name="SacrificeSlot2" type="Control" parent="."]
+auto_translate_mode = 1
+anchors_preset = 0
+offset_left = 712.0
+offset_top = 496.0
+offset_right = 712.0
+offset_bottom = 496.0
+
+[node name="SacrificeSlot3" type="Control" parent="."]
+auto_translate_mode = 1
+anchors_preset = 0
+offset_left = 952.0
+offset_top = 496.0
+offset_right = 952.0
+offset_bottom = 496.0
+
+[node name="SacrificeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -55.5
+offset_right = 43.0
+offset_bottom = -24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SACRIFICE"
+
+[node name="NewCard" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.470588)
+
+[node name="Label" type="Label" parent="NewCard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.5
+offset_top = -99.5
+offset_right = 95.5
+offset_bottom = -76.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU GOT <CARD_NAME>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardImage" type="ColorRect" parent="NewCard"]
+layout_mode = 0
+offset_left = 639.0
+offset_top = 392.0
+offset_right = 800.0
+offset_bottom = 598.0
+
+[node name="ConfirmButton" type="Button" parent="NewCard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = 208.5
+offset_right = 41.0
+offset_bottom = 239.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONFIRM"
+
+[connection signal="pressed" from="SacrificeButton" to="." method="_on_sacrifice_button_pressed"]
+[connection signal="pressed" from="NewCard/ConfirmButton" to="." method="_on_confirm_button_pressed"]

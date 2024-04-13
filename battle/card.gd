@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_released("LMB"):
 			release()
 		scale = scale.lerp(
-				Vector2.ONE * (0.5 if position.y < -100 else 1.0),
+				Vector2.ONE * (0.5 if position.y < -50 else 1.0),
 				min(delta * 30.0, 1.0)
 		)
 	else:
@@ -41,7 +41,7 @@ func grab():
 
 func release():
 	battle.dragging_card = null
-	if position.y < -100 and battle.mana > mana_cost:
+	if position.y < -50 and battle.mana > mana_cost:
 		battle.mana -= mana_cost
 		battle.put_card(self)
 		position = Vector2(0, 200)
