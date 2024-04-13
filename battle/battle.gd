@@ -22,10 +22,14 @@ var mana_regen_per_sec := 1.0
 
 func _ready() -> void:
 	var card_knight = load("res://battle/cards/card_knight.tscn")
+	var card_buff = load("res://battle/cards/card_buff.tscn")
+	var card_archer = load("res://battle/cards/card_archer.tscn")
 	add_card(card_knight.instantiate())
 	add_card(card_knight.instantiate())
-	add_card(card_knight.instantiate())
-	add_card(card_knight.instantiate())
+	add_card(card_buff.instantiate())
+	add_card(card_buff.instantiate())
+	add_card(card_archer.instantiate())
+	add_card(card_archer.instantiate())
 	
 	tower_player.battle = self
 	friends.push_back(tower_player)

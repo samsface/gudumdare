@@ -1,11 +1,25 @@
-extends Node
+class_name Projectile
+extends Node2D
 
+@export var damage := 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var battle: Battle
+var velocity := Vector2()
+var is_foe := false
 
+func init(battle: Battle, target: Unit, is_foe: bool):
+	self.battle = battle
+	velocity = position.direction_to(target.position) * 1000.0
+	%Model.rotation = velocity.angle()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var range_squared := 20.0 ** 2
+	position += velocity * delta
+	
+	var enemies = battle.friends if is_foe else battle.foes
+	var closest_distance := 999999.0
+	for enemy in enemies:
+		var distance = position.distance_squared_to(enemy.position)
+		if distance < range_squared:
+			queue_free()
+			enemy.hit(damage)

@@ -10,6 +10,7 @@ var battle: Battle
 func init(battle):
 	self.battle = battle
 	%Name.text = card_name
+	%Cost.text = str(mana_cost)
 
 
 func summon():
