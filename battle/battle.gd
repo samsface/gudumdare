@@ -118,3 +118,27 @@ func add_unit(unit: Unit, position: Vector2):
 
 func _on_button_quit_pressed() -> void:
 	Game.game.open_overworld()
+
+func _battle_field_area_child_entered_tree(node: Node) -> void:
+	if node is CardEx:
+		var mouse_position := get_global_mouse_position()
+		await get_tree().create_timer(0.3).timeout
+		node.queue_free()
+		var unit = node.spawns.instantiate()
+		add_unit(unit, mouse_position)
+		mana -= node.mana_cost
+		
+		var new_card = load("res://cards/cards/archer.tscn").instantiate()
+		new_card.global_position = %NewCardSpawn.global_position
+		
+		if %HandArea.get_card_children().size() < 3:
+			%HandArea.add_child(new_card)
+
+func _tower_enemy_died() -> void:
+	var reward = load("res://battle/reward.tscn").instantiate()
+	
+	$SubViewports.add_child(reward)
+	$SubViewports/SubViewportContainer.queue_free()
+	$CanvasLayer.visible = false
+
+	reward.done.connect(_on_button_quit_pressed)

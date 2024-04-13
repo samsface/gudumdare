@@ -1,7 +1,7 @@
 extends Minigame
 
-const MAX_LEVEL = 3
-const WORM_OFFSET = 32
+const MAX_LEVEL = 1
+const WORM_OFFSET = 64
 const LEVEL_PATH = "res://minigames/minigame_summon_worms/level"
 const TSCN = ".tscn"
 

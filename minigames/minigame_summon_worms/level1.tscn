@@ -1,44 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://0acgh0xjdevc"]
+[gd_scene load_steps=4 format=3 uid="uid://7ko2o7or1h72"]
 
-[ext_resource type="PackedScene" uid="uid://4jicxhiwg8vq" path="res://minigames/minigame_summon_worms/poop.tscn" id="1_1x3bn"]
 [ext_resource type="PackedScene" uid="uid://dn46itmu16ncm" path="res://minigames/minigame_summon_worms/rock.tscn" id="2_awxas"]
+[ext_resource type="PackedScene" uid="uid://feswwgcri5rp" path="res://minigames/minigame_summon_worms/grass.tscn" id="3_el2qb"]
 [ext_resource type="PackedScene" uid="uid://qat7yjbw1y6c" path="res://minigames/minigame_summon_worms/pool.tscn" id="3_po8hr"]
 
 [node name="Level" type="Node2D"]
 position = Vector2(360, 176)
 
-[node name="WormLocationPool8" parent="." instance=ExtResource("1_1x3bn")]
-position = Vector2(172, -104)
+[node name="WormLocationRock2" parent="." instance=ExtResource("2_awxas")]
+position = Vector2(-283, 373)
 
-[node name="WormLocationPool9" parent="." instance=ExtResource("1_1x3bn")]
-position = Vector2(237, -59)
+[node name="WormLocationRock" parent="." instance=ExtResource("2_awxas")]
+position = Vector2(-113, -125)
 
-[node name="WormLocationPool10" parent="." instance=ExtResource("1_1x3bn")]
-position = Vector2(171, -29)
+[node name="WormLocationRock4" parent="." instance=ExtResource("2_awxas")]
+position = Vector2(-170, 91)
 
-[node name="WormLocationPool11" parent="." instance=ExtResource("1_1x3bn")]
-position = Vector2(-93, 71)
-
-[node name="WormLocationPool12" parent="." instance=ExtResource("1_1x3bn")]
-position = Vector2(194, 198)
-
-[node name="WormLocationPool4" parent="." instance=ExtResource("2_awxas")]
-position = Vector2(339, 163)
-
-[node name="WormLocationPool5" parent="." instance=ExtResource("2_awxas")]
-position = Vector2(-247, -138)
-
-[node name="WormLocationPool6" parent="." instance=ExtResource("2_awxas")]
+[node name="WormLocationRock3" parent="." instance=ExtResource("2_awxas")]
 position = Vector2(-307, -78)
 
-[node name="WormLocationPool7" parent="." instance=ExtResource("2_awxas")]
-position = Vector2(-113, -95)
+[node name="WormLocationRock5" parent="." instance=ExtResource("2_awxas")]
+position = Vector2(466, 142)
 
 [node name="WormLocationPool" parent="." instance=ExtResource("3_po8hr")]
-position = Vector2(-242, 154)
+position = Vector2(-194, 521)
 
 [node name="WormLocationPool2" parent="." instance=ExtResource("3_po8hr")]
-position = Vector2(278, 130)
+position = Vector2(615, 286)
+
+[node name="WormLocationPool9" parent="." instance=ExtResource("3_po8hr")]
+position = Vector2(341, -101)
 
 [node name="WormLocationPool3" parent="." instance=ExtResource("3_po8hr")]
-position = Vector2(278, 130)
+position = Vector2(887, 536)
+
+[node name="WormLocationGrass" parent="." instance=ExtResource("3_el2qb")]
+position = Vector2(-9, -40)
+
+[node name="WormLocationGrass2" parent="." instance=ExtResource("3_el2qb")]
+position = Vector2(948, -83)
+
+[node name="WormLocationGrass3" parent="." instance=ExtResource("3_el2qb")]
+position = Vector2(738, -117)
+
+[node name="WormLocationGrass4" parent="." instance=ExtResource("3_el2qb")]
+position = Vector2(881, 34)
+
+[node name="WormLocationGrass5" parent="." instance=ExtResource("3_el2qb")]
+position = Vector2(403, 542)
+
+[node name="WormLocationGrass6" parent="." instance=ExtResource("3_el2qb")]
+position = Vector2(328, 432)
