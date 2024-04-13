@@ -1,28 +1,89 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6b7itobp5p5u"]
+[gd_scene load_steps=6 format=3 uid="uid://b6b7itobp5p5u"]
 
 [ext_resource type="Script" path="res://minigames/minigame_summon_worms/minigame_summon_worms.gd" id="1_v7445"]
 [ext_resource type="PackedScene" uid="uid://8jwhfpejnqg7" path="res://minigames/minigame_summon_worms/player.tscn" id="2_37vpd"]
+[ext_resource type="PackedScene" uid="uid://qat7yjbw1y6c" path="res://minigames/minigame_summon_worms/pool.tscn" id="3_pa1pd"]
+[ext_resource type="PackedScene" uid="uid://4jicxhiwg8vq" path="res://minigames/minigame_summon_worms/poop.tscn" id="4_kjuvk"]
+[ext_resource type="PackedScene" uid="uid://dn46itmu16ncm" path="res://minigames/minigame_summon_worms/rock.tscn" id="4_vtaia"]
 
 [node name="MinigameSummonWorms" type="Node2D"]
 script = ExtResource("1_v7445")
 
 [node name="Player" parent="." instance=ExtResource("2_37vpd")]
 z_index = 10
-position = Vector2(80, 176)
+position = Vector2(360, 176)
 
 [node name="Background" type="Node" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
-offset_right = 1440.0
-offset_bottom = 810.0
-color = Color(1, 0.737255, 0.368627, 1)
+offset_right = 720.0
+offset_bottom = 405.0
+color = Color(0.249991, 0.153796, 0, 1)
+
+[node name="WormLocationPool" parent="Background" instance=ExtResource("3_pa1pd")]
+position = Vector2(118, 330)
+
+[node name="WormLocationPool2" parent="Background" instance=ExtResource("3_pa1pd")]
+position = Vector2(638, 306)
+
+[node name="WormLocationPool3" parent="Background" instance=ExtResource("3_pa1pd")]
+position = Vector2(638, 306)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 500.0
+one_shot = true
+
+[node name="WormLocationPool" parent="Timer" instance=ExtResource("4_vtaia")]
+position = Vector2(699, 339)
+
+[node name="WormLocationPool2" parent="Timer" instance=ExtResource("4_vtaia")]
+position = Vector2(113, 38)
+
+[node name="WormLocationPool3" parent="Timer" instance=ExtResource("4_vtaia")]
+position = Vector2(53, 98)
+
+[node name="WormLocationPool4" parent="Timer" instance=ExtResource("4_vtaia")]
+position = Vector2(247, 81)
+
+[node name="Origin" type="Node2D" parent="."]
+
+[node name="TopCornerRight" type="Node2D" parent="."]
+position = Vector2(720, 0)
+
+[node name="BotCornerLeft" type="Node2D" parent="."]
+position = Vector2(0, 405)
 
 [node name="HUD" type="CanvasLayer" parent="."]
-layer = 10
+visible = false
 
-[node name="WormsLabel" type="Label" parent="HUD"]
-self_modulate = Color(1, 0.218367, 0.310162, 1)
-offset_right = 40.0
-offset_bottom = 23.0
-scale = Vector2(2, 2)
-text = "WORMS:  0"
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+offset_right = 720.0
+offset_bottom = 405.0
+color = Color(0, 0, 0, 0.34902)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HUD"]
+offset_top = 160.0
+offset_right = 720.0
+offset_bottom = 183.0
+text = "YOU GOT X WORMS!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="WormLocationPool" parent="." instance=ExtResource("4_kjuvk")]
+position = Vector2(532, 72)
+
+[node name="WormLocationPool2" parent="." instance=ExtResource("4_kjuvk")]
+position = Vector2(597, 117)
+
+[node name="WormLocationPool3" parent="." instance=ExtResource("4_kjuvk")]
+position = Vector2(531, 147)
+
+[node name="WormLocationPool5" parent="." instance=ExtResource("4_kjuvk")]
+position = Vector2(267, 247)
+
+[node name="WormLocationPool4" parent="." instance=ExtResource("4_kjuvk")]
+position = Vector2(554, 374)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

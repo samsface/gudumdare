@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://4jicxhiwg8vq"]
+
+[ext_resource type="Script" path="res://minigames/minigame_summon_worms/worm_location.gd" id="1_evfbq"]
+[ext_resource type="Texture2D" uid="uid://dbho6plrobwq6" path="res://minigames/minigame_summon_worms/poop.png" id="2_vbut6"]
+[ext_resource type="Shape2D" uid="uid://bfs6cht8hb632" path="res://minigames/minigame_summon_worms/poop_shape.tres" id="3_qg3jq"]
+[ext_resource type="PackedScene" uid="uid://byn01iuu63rd4" path="res://minigames/minigame_summon_worms/worm.tscn" id="3_qx25d"]
+
+[node name="WormLocationPool" type="Area2D"]
+z_index = 5
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_evfbq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_vbut6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = ExtResource("3_qg3jq")
+
+[node name="Worms" type="Node2D" parent="."]
+
+[node name="Worm" parent="Worms" instance=ExtResource("3_qx25d")]
+position = Vector2(-17, 9)
+animation = &"default"
+
+[node name="Worm2" parent="Worms" instance=ExtResource("3_qx25d")]
+position = Vector2(-12, -15)
+animation = &"default"
+
+[node name="Worm4" parent="Worms" instance=ExtResource("3_qx25d")]
+position = Vector2(15, 3)
+animation = &"default"
