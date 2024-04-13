@@ -19,6 +19,8 @@ func _process(delta: float) -> void:
 	var enemies = battle.friends if is_foe else battle.foes
 	var closest_distance := 999999.0
 	for enemy in enemies:
+		if not is_instance_valid(enemy):
+			continue
 		var distance = position.distance_squared_to(enemy.position)
 		if distance < range_squared:
 			queue_free()
