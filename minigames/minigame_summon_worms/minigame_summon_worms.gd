@@ -1,6 +1,9 @@
 extends Minigame
 
+const MAX_LEVEL = 3
 const WORM_OFFSET = 32
+const LEVEL_PATH = "res://minigames/minigame_summon_worms/level"
+const TSCN = ".tscn"
 
 @onready var player: SummonPlayer = $Player
 @onready var timer: Timer = $Timer
@@ -12,7 +15,15 @@ var max_x: int
 var min_y: int
 var max_y: int
 
+func _load_random_level():
+	var random_level = RNG.random_int(1, MAX_LEVEL)
+	var level_path = LEVEL_PATH + str(random_level) + TSCN
+	var level = load(level_path).instantiate()
+	add_child(level)
+
 func _ready() -> void:
+	_load_random_level()
+	
 	timer.start()
 
 	min_x = $Origin.global_position.x + WORM_OFFSET

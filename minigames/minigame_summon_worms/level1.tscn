@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://0acgh0xjdevc"]
+
+[ext_resource type="PackedScene" uid="uid://4jicxhiwg8vq" path="res://minigames/minigame_summon_worms/poop.tscn" id="1_1x3bn"]
+[ext_resource type="PackedScene" uid="uid://dn46itmu16ncm" path="res://minigames/minigame_summon_worms/rock.tscn" id="2_awxas"]
+[ext_resource type="PackedScene" uid="uid://qat7yjbw1y6c" path="res://minigames/minigame_summon_worms/pool.tscn" id="3_po8hr"]
+
+[node name="Level" type="Node2D"]
+position = Vector2(360, 176)
+
+[node name="WormLocationPool8" parent="." instance=ExtResource("1_1x3bn")]
+position = Vector2(172, -104)
+
+[node name="WormLocationPool9" parent="." instance=ExtResource("1_1x3bn")]
+position = Vector2(237, -59)
+
+[node name="WormLocationPool10" parent="." instance=ExtResource("1_1x3bn")]
+position = Vector2(171, -29)
+
+[node name="WormLocationPool11" parent="." instance=ExtResource("1_1x3bn")]
+position = Vector2(-93, 71)
+
+[node name="WormLocationPool12" parent="." instance=ExtResource("1_1x3bn")]
+position = Vector2(194, 198)
+
+[node name="WormLocationPool4" parent="." instance=ExtResource("2_awxas")]
+position = Vector2(339, 163)
+
+[node name="WormLocationPool5" parent="." instance=ExtResource("2_awxas")]
+position = Vector2(-247, -138)
+
+[node name="WormLocationPool6" parent="." instance=ExtResource("2_awxas")]
+position = Vector2(-307, -78)
+
+[node name="WormLocationPool7" parent="." instance=ExtResource("2_awxas")]
+position = Vector2(-113, -95)
+
+[node name="WormLocationPool" parent="." instance=ExtResource("3_po8hr")]
+position = Vector2(-242, 154)
+
+[node name="WormLocationPool2" parent="." instance=ExtResource("3_po8hr")]
+position = Vector2(278, 130)
+
+[node name="WormLocationPool3" parent="." instance=ExtResource("3_po8hr")]
+position = Vector2(278, 130)
