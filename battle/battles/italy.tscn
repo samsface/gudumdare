@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj40b7f6cm58g"]
+[gd_scene load_steps=3 format=3 uid="uid://7t63vufoqw17"]
 
 [ext_resource type="PackedScene" uid="uid://dcnq1dkwqkvny" path="res://battle/battle.tscn" id="1_qp3xm"]
 [ext_resource type="PackedScene" uid="uid://dxaqk6lkr8gyp" path="res://battle/units/foe_tower.tscn" id="2_uadvp"]
