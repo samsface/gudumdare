@@ -17,6 +17,7 @@ class_name CardEx
 @export var spawns:PackedScene
 @export var mana_cost := 2
 @export var tier := 0
+@export var sidelay := false
 
 var dragging := false
 var hovered := false

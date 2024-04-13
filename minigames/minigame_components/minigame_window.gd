@@ -32,12 +32,14 @@ func gameover_lost():
 	minigame_timer.stop_timer()
 	gameover_group.show()
 	gameover_group_lost.show()
+	_on_ok_button_pressed()
 
 func gameover_won(rating: float):
 	self.rating = rating
 	minigame_timer.stop_timer()
 	gameover_group.show()
 	gameover_group_won.show()
+	_on_ok_button_pressed()
 
 func _on_ok_button_pressed() -> void:
 	minigame_ended.emit(rating)

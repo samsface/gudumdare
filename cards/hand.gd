@@ -59,6 +59,11 @@ func drag(delta, card) -> void:
 	card.global_position = lerp(card.global_position, nearest_drop[0], delta)
 	card.global_rotation = lerp(card.global_rotation, nearest_drop[1].global_rotation, delta)
 
+	var drop_area_rotation = nearest_drop[1].global_rotation
+
+	card.global_rotation = lerp(card.global_rotation, drop_area_rotation, delta)
+
+
 func drop(card):
 	card.just_dropped = false
 	
@@ -91,7 +96,12 @@ func drop(card):
 	card.spin_tween = create_tween()
 	card.spin_tween.set_parallel()
 	card.spin_tween.tween_property(card, "rotation:y", PI * 2.0, 0.2)
-	card.spin_tween.tween_property(card, "rotation:z", randf_range(-1.0, 1.0) * 0.1, 0.2)
+	
+	if not card.sidelay:
+		card.spin_tween.tween_property(card, "rotation:z", randf_range(-1.0, 1.0) * 0.1, 0.2)
+	else:
+		card.spin_tween.tween_property(card, "rotation_degrees:z", -90, 0.2)
+		
 	card.spin_tween.tween_property(card, "position:z", card.position.z + 1.0, 0.1)
 	card.spin_tween.tween_property(card, "position:z", card.position.z - 0.01, 0.1).set_delay(0.1)
 	card.spin_tween.tween_property(card, "rotation:y", 0.0, 0.0).set_delay(0.2)

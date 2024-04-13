@@ -4,7 +4,7 @@ extends Node2D
 signal died
 
 var battle: Battle
-
+var card
 
 @export var health := 10
 @onready var max_health: float = health
@@ -13,6 +13,7 @@ var battle: Battle
 @export var speed := 300.0
 @export var attack_range := 100.0
 @export var reload_duration := 0.5
+@export var attackable := true
 
 var reload_t := 0.0
 
@@ -67,6 +68,8 @@ func get_closest_enemy():
 	var closest_distance := 999999.0
 	for enemy in enemies:
 		if not is_instance_valid(enemy):
+			continue
+		if not enemy.attackable:
 			continue
 		var distance = position.distance_squared_to(enemy.position)
 		if distance < closest_distance:

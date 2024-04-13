@@ -5,6 +5,8 @@ extends Unit
 
 var projectile_scene: PackedScene
 func _ready() -> void:
+	if card:
+		card.queue_free()
 	projectile_scene = load("res://battle/projectiles/projectile_%s.tscn" % projectile_type)
 
 func attack():

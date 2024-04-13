@@ -105,10 +105,11 @@ func get_card_position(card):
 	var padding := 200.0
 	return Vector2((hand.find(card) - (hand.size() - 1) * 0.5) * padding, 0)
 
-func add_unit(unit: Unit, position: Vector2):
-	%Fight.add_child(unit)
+func add_unit(unit: Unit, position: Vector2, card = null):
 	unit.battle = self
 	unit.position = position
+	unit.card = card
+	%Fight.add_child(unit)
 	if unit.is_foe:
 		foes.push_back(unit)
 	else:
@@ -122,12 +123,11 @@ func _on_button_quit_pressed() -> void:
 func _battle_field_area_child_entered_tree(node: Node) -> void:
 	if node is CardEx:
 		var mouse_position := get_global_mouse_position()
-		await get_tree().create_timer(0.3).timeout
-		node.queue_free()
+		await get_tree().create_timer(0.25).timeout
 		var unit = node.spawns.instantiate()
-		add_unit(unit, mouse_position)
+		add_unit(unit, mouse_position, node)
 		mana -= node.mana_cost
-		
+
 		var new_card = load("res://cards/cards/archer.tscn").instantiate()
 		new_card.global_position = %NewCardSpawn.global_position
 		

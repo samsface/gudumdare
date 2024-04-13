@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd51eepjlm2jb"]
+
+[ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_wubgd"]
+[ext_resource type="PackedScene" uid="uid://tivqdbwul3u2" path="res://battle/units/unit_archer.tscn" id="2_uepi3"]
+
+[node name="StaticBody3D" instance=ExtResource("1_wubgd")]
+card_name = "Rain"
+spawns = ExtResource("2_uepi3")
+
+[node name="CardNameLabel" parent="MeshInstance3D" index="0"]
+text = "Rain"
