@@ -120,7 +120,6 @@ static func catmull_rom_closed(points, max_length = 10.0) -> PackedVector2Array:
 static func douglas_peucker(points: PackedVector2Array, tolerance := 1.0) -> PackedVector2Array:
 	if points.size() < 3:
 		return points
-	
 	# Find the point with the maximum distance from the line between the first and last point.
 	var dmax := 0.0
 	var index := 0

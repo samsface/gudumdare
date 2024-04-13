@@ -1,19 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1iqvvhbjidkb"]
+[gd_scene load_steps=5 format=3 uid="uid://d1iqvvhbjidkb"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_f1tk0"]
-[ext_resource type="PackedScene" uid="uid://dchn7h40cx3ei" path="res://battle/battles/battle1.tscn" id="2_lklt0"]
+[ext_resource type="Script" path="res://transition.gd" id="2_rowvi"]
+
+[sub_resource type="Shader" id="Shader_u50t5"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform vec2 pos;
+uniform float open;
+
+void fragment() {
+	vec2 uv = UV;
+	vec2 ratio = vec2(1440.0 / 810.0, 1.0);
+	uv *= ratio;
+	float dist = distance(uv, pos);
+	uv /= ratio;
+	COLOR.a = smoothstep(open, open, dist);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywh0w"]
+shader = SubResource("Shader_u50t5")
+shader_parameter/pos = Vector2(0.5, 0.5)
+shader_parameter/open = null
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_f1tk0")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TransitionCircle" type="ColorRect" parent="CanvasLayer"]
+[node name="Transition" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 visible = false
+script = ExtResource("2_rowvi")
+
+[node name="TransitionCircle" type="ColorRect" parent="Transition"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_ywh0w")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Battle" parent="." instance=ExtResource("2_lklt0")]

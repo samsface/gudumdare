@@ -28,11 +28,15 @@ func _ready() -> void:
 	add_card(card_knight.instantiate())
 	
 	tower_player.battle = self
-	tower_enemy.battle = self
 	friends.push_back(tower_player)
+	units.push_back(tower_player)
+	
+	tower_enemy.battle = self
 	foes.push_back(tower_enemy)
+	units.push_back(tower_enemy)
 	
 	%Mana.max_value = max_mana
+	%ManaWhole.max_value = max_mana
 
 
 func add_card(card):
@@ -45,6 +49,7 @@ func _process(delta: float) -> void:
 	process_add_to_hand(delta)
 	mana = move_toward(mana, max_mana, delta * mana_regen_per_sec)
 	%Mana.value = mana
+	%ManaWhole.value = floor(mana)
 
 func _physics_process(delta: float) -> void:
 	for i in units.size():
@@ -55,11 +60,13 @@ func _physics_process(delta: float) -> void:
 			var distance = unit_a.position.distance_squared_to(unit_b.position)
 			if distance < radius * radius:
 				distance = sqrt(distance)
-				var push = radius - distance
+				var push = (radius - distance) * 10.0
 				var ratio = unit_a.weight / unit_b.weight
+				if ratio > 1.0:
+					ratio = 1.0 / ratio
 				var direction = unit_a.position.direction_to(unit_b.position)
-				unit_a.position -= direction * push * ratio
-				unit_b.position += direction * push * (1.0 - ratio)
+				unit_a.position -= direction * push * ratio * delta
+				unit_b.position += direction * push * (1.0 - ratio) * delta
 
 func process_add_to_hand(delta):
 	if deck.size() <= 0:
@@ -104,3 +111,7 @@ func add_unit(unit: Unit, position: Vector2):
 	else:
 		friends.push_back(unit)
 	units.push_back(unit)
+
+
+func _on_button_quit_pressed() -> void:
+	Game.game.open_overworld()

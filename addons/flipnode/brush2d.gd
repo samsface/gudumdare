@@ -13,7 +13,7 @@ var layer: Layer2D
 
 
 @export_group("LODs")
-var lod_levels := 2
+var lod_levels := 1
 @export var lods := []
 var lod_level := 0
 
@@ -102,7 +102,7 @@ func move_stroke_to_front(stroke_data: Stroke):
 
 
 func draw(lod_level := -1):
-	var draw_strokes = lods[lod_level] if lod_level >= 0 else strokes
+	var draw_strokes = lods[lod_level - 1] if lod_level >= 0 else strokes
 	for child in get_children():
 		if child is StrokePolygon2D:
 			remove_child(child)
@@ -261,17 +261,18 @@ func update_bounds():
 
 func generate_lods():
 	lods = []
-	var tolerances = [0.6, 1.0, 3.0, 10.0, 20.0]
+	var tolerances = [2.0]
+	#var tolerances = [0.6, 1.0, 3.0, 10.0, 20.0]
 	for level in lod_levels:
 		var tolerance = tolerances[level]
 		lods.push_back(generate_lod(tolerance))
-
 
 func generate_lod(tolerance) -> Array:
 	var lod_strokes = []
 	for stroke: Stroke in strokes:
 		var lod_stroke: Stroke = stroke.duplicate()
 		lod_stroke.optimize(tolerance)
+		lod_stroke.generate_unified_polygon()
 		lod_strokes.push_back(lod_stroke)
 	return lod_strokes
 
