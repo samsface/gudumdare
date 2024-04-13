@@ -9,10 +9,12 @@ func win(rating: float = 1.0):
 	%CompleteScreen.visible = true
 	if randf() < 0.5:
 		%CompleteHeader.text = "YOU WIN 10 WORMS!"
-		Game.game.worms += 10
+		if Game.game:
+			Game.game.worms += 10
 	else:
 		%CompleteHeader.text = "YOU WIN 7 GOLD!"
-		Game.game.gold += 7
+		if Game.game:
+			Game.game.gold += 7
 
 func loose():
 	%CompleteScreen.visible = true
