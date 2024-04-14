@@ -154,7 +154,7 @@ text = "YOU GOT <CARD_NAME>!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardImage" type="TextureRect" parent="TopPlayer/NewCard"]
+[node name="Image" type="TextureRect" parent="TopPlayer/NewCard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
