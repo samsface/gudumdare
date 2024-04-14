@@ -15,7 +15,7 @@ var current_battle_node: Node2D
 
 func _ready() -> void:
 	Game.game.play_music_overworld()
-	
+	Game.game.duck_music(false)
 	%Camera2D.zoom = Vector2.ONE * 3.3
 	
 	#Check if battle was won and unlock new nodes
@@ -28,7 +28,6 @@ func _ready() -> void:
 			#neighbour_name = neighbour_name.replace("&","") #Wtf Godot
 			Game.game.unlocked_nodes.append(neighbor.my_name)
 			#MAYBE ANIMATION HERE 
-	
 	
 	print("overworld ready")
 	print(str(Game.game.unlocked_nodes))

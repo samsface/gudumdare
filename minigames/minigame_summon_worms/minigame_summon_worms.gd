@@ -16,7 +16,7 @@ var min_y: int
 var max_y: int
 
 func _load_random_level():
-	var random_level = 5#RNG.random_int(1, MAX_LEVEL)
+	var random_level = RNG.random_int(1, MAX_LEVEL)
 	var level_path = LEVEL_PATH + str(random_level) + TSCN
 	var level = load(level_path).instantiate()
 	add_child(level)
@@ -32,6 +32,11 @@ func _ready() -> void:
 	max_y = $BotCornerLeft.global_position.y - WORM_OFFSET
 
 func _physics_process(delta: float) -> void:
+	if player.placed and Game.worm_added > 1.5:
+		%ClickToContinue.visible = fmod(Game.worm_added / 0.4, 1.0) > 0.05
+		if Input.is_action_just_pressed("LMB"):
+			Game.game.open_overworld()
+			Game.game.lowpass_music(false)
 	if not timer_running:
 		return
 		
@@ -51,7 +56,7 @@ func _physics_process(delta: float) -> void:
 			total_worm_count += area.worm_count
 			
 		win(total_worm_count)
-			
+	
 
 func _on_timer_timeout() -> void:
 	player.place(player.global_position) #Place player whereever he is right now

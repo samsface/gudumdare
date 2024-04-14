@@ -161,7 +161,10 @@ func _tower_enemy_died() -> void:
 	$SubViewports/SubViewportContainer.queue_free()
 	$CanvasLayer.visible = false
 
-	reward.done.connect(_on_button_quit_pressed)
+	reward.done.connect(on_reward_done)
+
+func on_reward_done():
+	Game.game.open_worm_summon()
 
 func _add_to_deck(card_name: String):
 	deck.push_back(card_name)

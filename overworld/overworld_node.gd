@@ -6,6 +6,7 @@ class_name OverworldNode extends Node2D
 @export var available := false
 
 @export var is_altar := false
+@export var is_shop := false
 
 enum Type{BATTLE, BATTLE_PATH, MINI_1, MINI_2, MINI_3}
 
@@ -31,6 +32,8 @@ func _ready() -> void:
 		hide()
 
 func _process(delta: float) -> void:
+	if Input.is_key_pressed(KEY_P):
+		unlock()
 	t += delta
 	
 	if not available:
@@ -70,6 +73,9 @@ func _on_area_brush_2d_mouse_clicked() -> void:
 	
 	Game.game.transition.set_circle_position(global_position)
 	$AudioEnter.play()
+	if is_shop:
+		Game.game.open_shop()
+		return
 	if is_altar:
 		Game.game.open_altar()
 		return

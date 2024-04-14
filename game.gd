@@ -9,9 +9,8 @@ static var battle
 var current_scene
 var transition
 
-var gold := 0
-var souls := 0
-var worms := 0
+static var worms := 0
+static var worm_added := 0.0
 
 #Overworld nodes
 @onready var battle_won := false
@@ -32,6 +31,7 @@ func _ready() -> void:
 	game = self
 	transition = %Transition
 	open_overworld()
+	#open_worm_summon()
 	duck_music(false)
 	
 	add_card(CardDB.CN_ARCHER)
@@ -58,6 +58,9 @@ func open_altar():
 
 func open_shop():
 	start_scene("res://shop/shop.tscn")
+
+func open_worm_summon():
+	start_scene("res://minigames/minigame_summon_worms/minigame_summon_worms.tscn")
 
 func start_scene(path):
 	transition.close()
@@ -91,3 +94,9 @@ func _process(delta: float) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	if Input.is_action_just_pressed("mute"):
 		AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
+	worm_added += delta
+	%WormCount.text = str(worms)
+
+var upgrades := []
+func unlock_upgrade(upgrade):
+	upgrades.push_back(upgrade)
