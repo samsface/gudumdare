@@ -12,13 +12,13 @@ var souls := 0
 var worms := 0
 
 #CARD CODE
-var cards = []
+var player_cards = []
 
 func add_card(card_name: String) -> void: #Add card by name, names are consts in CardDB
-	cards.append(card_name)
+	player_cards.append(card_name)
 #END OF CARD CODE
 func remove_card(card_name: String): #Erase card by name, names are consts in CardDB
-	cards.erase(card_name)
+	player_cards.erase(card_name)
 
 func _ready() -> void:
 	game = self
@@ -33,7 +33,7 @@ func _ready() -> void:
 	add_card(CardDB.CN_KNIGHT)
 	add_card(CardDB.CN_RAIN)
 	print("game done adding cards")
-	print(cards)
+	print(player_cards)
 
 func open_overworld():
 	start_scene("res://overworld/overworld.tscn")
