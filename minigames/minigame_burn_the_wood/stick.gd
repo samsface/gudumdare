@@ -10,7 +10,16 @@ var rotation_velocity := 0.0
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("LMB"):
 		get_parent().selected_stick = self
+		got_selected()
 		%AudioPop.play()
+
+func got_selected():
+	$Model/OutlineRed.show()
+	$Model/OutlineWhite.hide()
+
+func got_unselected():
+	$Model/OutlineRed.hide()
+	$Model/OutlineWhite.show()
 
 func _process(delta: float) -> void:
 	if get_parent().selected_stick == self:
@@ -56,3 +65,4 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	modulate = Color.WHITE
+	got_unselected()
