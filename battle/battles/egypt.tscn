@@ -9,11 +9,17 @@ track = 1
 
 [node name="ColorRect" parent="." index="1"]
 visible = true
-color = Color(0.880671, 0.737355, 0.324396, 1)
+offset_left = -489.0
+offset_top = -249.0
+offset_right = 1928.0
+offset_bottom = 1058.0
+color = Color(0.854902, 0.615686, 0.247059, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." index="2"]
-offset_right = 1440.0
-offset_bottom = 810.0
+offset_left = -82.0
+offset_top = -79.0
+offset_right = 1518.0
+offset_bottom = 891.0
 texture = ExtResource("2_uilik")
 
 [node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_tvlml")]

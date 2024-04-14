@@ -1,36 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp47bq84ekngm"]
+[gd_scene load_steps=4 format=3 uid="uid://dp47bq84ekngm"]
 
 [ext_resource type="PackedScene" uid="uid://dcnq1dkwqkvny" path="res://battle/battle.tscn" id="1_doscg"]
 [ext_resource type="PackedScene" uid="uid://dxaqk6lkr8gyp" path="res://battle/units/foe_tower.tscn" id="2_1f0x1"]
+[ext_resource type="Texture2D" uid="uid://dvy0ueyvjsuyl" path="res://battle/battles/backgrounds/places7.png" id="2_1lp73"]
 
 [node name="Battle" instance=ExtResource("1_doscg")]
 
-[node name="ColorRect" parent="." index="0"]
-color = Color(0.368851, 0.504493, 0.245564, 1)
+[node name="ColorRect" parent="." index="1"]
+visible = true
+offset_left = -901.0
+offset_top = -395.0
+offset_right = 2340.0
+offset_bottom = 1204.0
+color = Color(0.545098, 0.607843, 0.705882, 1)
+
+[node name="TextureRect" parent="ColorRect" index="0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1lp73")
 
 [node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_1f0x1")]
 position = Vector2(1087, 290)
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="0"]
-sidelay = null
-
-[node name="StaticBody3D2" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="1"]
-sidelay = null
-
-[node name="StaticBody3D3" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="2"]
-sidelay = null
-
-[node name="StaticBody3D4" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="3"]
-sidelay = null
-
-[node name="StaticBody3D5" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="4"]
-sidelay = null
-
-[node name="StaticBody3D6" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="5"]
-sidelay = null
-
-[node name="StaticBody3D7" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="6"]
-sidelay = null
-
-[node name="StaticBody3D8" parent="SubViewportContainer/SubViewport/HandTest/HandArea" index="7"]
-sidelay = null

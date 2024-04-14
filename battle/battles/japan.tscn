@@ -9,12 +9,18 @@ track = 2
 
 [node name="ColorRect" parent="." index="1"]
 visible = true
+offset_left = -696.0
+offset_top = -453.0
+offset_right = 2135.0
+offset_bottom = 1262.0
 color = Color(0.545098, 0.607843, 0.705882, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." index="2"]
 auto_translate_mode = 1
-offset_right = 1440.0
-offset_bottom = 810.0
+offset_left = -75.0
+offset_top = -96.0
+offset_right = 1525.0
+offset_bottom = 874.0
 texture = ExtResource("2_ls3on")
 
 [node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_fbo2k")]
