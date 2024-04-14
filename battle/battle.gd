@@ -166,7 +166,7 @@ func _tower_enemy_died() -> void:
 	# win signal is getting called twice sometimes, don't know why
 	if won:
 		return
-	
+	mana = max_mana
 	won = true
 	Game.game.battle_won = true
 	
