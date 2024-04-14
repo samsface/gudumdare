@@ -35,7 +35,7 @@ resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_trstd")
 shader_parameter/mana = 1.0
-shader_parameter/cost = 6.0
+shader_parameter/cost = null
 shader_parameter/texture = ExtResource("3_po2xc")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aus35"]

@@ -206,7 +206,6 @@ stream_4/stream = ExtResource("8_3t0nf")
 stream_4/weight = 1.0
 
 [node name="Worm" type="Node2D"]
-z_index = 2
 texture_filter = 1
 script = ExtResource("2_nqnb6")
 
