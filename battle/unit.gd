@@ -31,8 +31,9 @@ var speed_boost_multi := 1.0
 
 func _process(delta: float) -> void:
 	process_movement(delta)
-	%Healthbar.value = health / max_health
-
+	%Healthbar2.value = health / max_health
+	%Healthbar.value = move_toward(%Healthbar.value, %Healthbar2.value, delta / 1.0)
+	
 	if speed_boost_t > 0:
 		speed_boost_t -= delta
 		if speed_boost_t <= 0:
@@ -58,7 +59,8 @@ func attack():
 	pass
 
 func hit(damage):
-	GenericTween.flash_red(self)
+	GenericTween.flash_red(%Model)
+	GenericTween.shake(%Model, 2, 2.0)
 
 	health -= 1
 	if health <= 0:

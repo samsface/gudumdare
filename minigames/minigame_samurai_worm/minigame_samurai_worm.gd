@@ -13,6 +13,7 @@ func _ready():
 	sword.samurai_ready.connect(samurai_is_ready)
 	sword.samurai_attacked.connect(samurai_attack)
 	birds_max = birdList.get_child_count()
+	hero.play("Ready")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -32,6 +33,8 @@ func samurai_attack():
 	rating = birds_destroyed / birds_max
 	if (birds_destroyed >= birds_max):
 		win(rating)
+	%AudioSlash.play()
+	shake()
 
 func find_next_available_bird():
 	for bird in birdList.get_children():

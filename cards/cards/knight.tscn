@@ -5,4 +5,6 @@
 
 [node name="StaticBody3D" instance=ExtResource("1_xtdbm")]
 spawns = ExtResource("2_qjtq5")
-mana_cost = 2
+
+[node name="ManaCost" parent="MeshInstance3D3" index="0"]
+text = "2"

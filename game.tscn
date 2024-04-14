@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1iqvvhbjidkb"]
+[gd_scene load_steps=9 format=3 uid="uid://d1iqvvhbjidkb"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_f1tk0"]
 [ext_resource type="Script" path="res://transition.gd" id="2_rowvi"]
+[ext_resource type="AudioStream" uid="uid://biot1nx0dhtkc" path="res://sfx/transition_swish.wav" id="3_35ux2"]
+[ext_resource type="AudioStream" uid="uid://c5c8q2b0ss883" path="res://sfx/transition_woosh.wav" id="4_vrvsu"]
 
 [sub_resource type="Shader" id="Shader_u50t5"]
 code = "shader_type canvas_item;
@@ -62,6 +64,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AudioSwish" type="AudioStreamPlayer" parent="Transition"]
+unique_name_in_owner = true
+stream = ExtResource("3_35ux2")
+
+[node name="AudioSwoosh" type="AudioStreamPlayer" parent="Transition"]
+unique_name_in_owner = true
+stream = ExtResource("4_vrvsu")
+pitch_scale = 1.2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5

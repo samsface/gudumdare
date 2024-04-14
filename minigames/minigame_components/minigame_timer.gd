@@ -2,7 +2,7 @@ extends Control
 
 signal minigame_timer_ended
 
-@export var timer_seconds_value: float = 2.0
+@export var timer_seconds_value: float = 3.0
 
 @onready var worm_timer_group: Control = $TimerWormArt
 @onready var worm_timer_body: Sprite2D = $TimerWormArt/WormBody

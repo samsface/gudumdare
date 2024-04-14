@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_t1di5"]
 [ext_resource type="Texture2D" uid="uid://bdnks4gpk781e" path="res://battle/units/sprites/worm_samurai_card_art.png" id="2_hot8j"]
-[ext_resource type="PackedScene" path="res://battle/units/effect_rain.tscn" id="3_kpceh"]
+[ext_resource type="PackedScene" uid="uid://d0gai6a7radmv" path="res://battle/units/effect_rain.tscn" id="3_kpceh"]
 
 [node name="StaticBody3D" instance=ExtResource("1_t1di5")]
 card_name = "Rain"

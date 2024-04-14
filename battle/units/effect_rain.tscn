@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dth0ombg8dem2"]
+[gd_scene load_steps=7 format=3 uid="uid://d0gai6a7radmv"]
 
 [ext_resource type="Script" path="res://battle/units/effect_rain.gd" id="1_c1fk6"]
 [ext_resource type="PackedScene" uid="uid://bw1u7600nmpdv" path="res://minigames/minigame_samurai_worm/minigame_worm_samurai.tscn" id="2_yo0dw"]
+[ext_resource type="AudioStream" uid="uid://c3glj4ugx1wcv" path="res://minigames/ninja.wav" id="3_rd8fs"]
 
 [sub_resource type="Curve" id="Curve_uuy1w"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.511111, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -36,3 +37,8 @@ amount = 100
 process_material = SubResource("ParticleProcessMaterial_uma1o")
 one_shot = true
 explosiveness = 0.81
+
+[node name="AudioPlay" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_rd8fs")
+autoplay = true

@@ -134,7 +134,7 @@ func _on_button_quit_pressed() -> void:
 func _battle_field_area_child_entered_tree(node: Node) -> void:
 	if node is CardEx:
 		var mouse_position := get_global_mouse_position()
-		await get_tree().create_timer(0.25).timeout
+		#await get_tree().create_timer(0.25).timeout
 		var unit = node.spawns.instantiate()
 		add_unit(unit, mouse_position, node)
 		mana -= node.mana_cost

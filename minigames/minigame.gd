@@ -6,6 +6,8 @@ signal minigame_gameover_won(rating: float)
 
 @export var prompt := "do something epic"
 
+var window: MinigameWindow
+
 # Override those if you want a custom behaviour.
 func win(rating: float = 1.0):
 	minigame_gameover_won.emit(rating)
@@ -15,3 +17,6 @@ func loose():
 
 func timer_ended():
 	loose()
+
+func shake():
+	window.shake()

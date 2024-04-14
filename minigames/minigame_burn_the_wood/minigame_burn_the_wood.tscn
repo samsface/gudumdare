@@ -1582,7 +1582,6 @@ lods = [[SubResource("Resource_gkfa1"), SubResource("Resource_ueimp"), SubResour
 unique_name_in_owner = true
 position = Vector2(14, -59)
 script = ExtResource("6_qub32")
-current_frame = 2
 length = 4
 fps = 3.0
 is_playing = true
@@ -1594,7 +1593,6 @@ transform_keys_frames = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Trans
 brush_frames = [NodePath("Brush2D (Frame 0)"), NodePath("Brush2D (Frame 1)"), NodePath("Brush2D (Frame 2)"), NodePath("Brush2D (Frame 3)")]
 
 [node name="Brush2D (Frame 0)" type="Node2D" parent="Fire/BrushAnimation2D/Layer 1" index="0"]
-visible = false
 script = ExtResource("2_ply8t")
 strokes = [SubResource("Resource_6hxm7"), SubResource("Resource_1m7mf"), SubResource("Resource_k4i4o"), SubResource("Resource_bee20"), SubResource("Resource_c1b23"), SubResource("Resource_o6uab"), SubResource("Resource_b2kcf"), SubResource("Resource_71coi"), SubResource("Resource_4qgvd"), SubResource("Resource_c6nkv"), SubResource("Resource_xa6aw"), SubResource("Resource_8d7y2"), SubResource("Resource_oiets"), SubResource("Resource_v7011"), SubResource("Resource_72pkj"), SubResource("Resource_wyiqo"), SubResource("Resource_yijme")]
 bounds = Rect2(569.363, 123.803, 199.46, 274.433)
@@ -1609,6 +1607,7 @@ frame_num = 1
 lods = [[SubResource("Resource_rvuib"), SubResource("Resource_luxvk"), SubResource("Resource_yd6ys"), SubResource("Resource_sui5p"), SubResource("Resource_sgs1p"), SubResource("Resource_0ca1f"), SubResource("Resource_iw17o"), SubResource("Resource_aoa8w"), SubResource("Resource_ia16w"), SubResource("Resource_hblbu"), SubResource("Resource_hjeq6"), SubResource("Resource_yts3r"), SubResource("Resource_r2ol6"), SubResource("Resource_wf6kn"), SubResource("Resource_54fr3"), SubResource("Resource_qeg1f"), SubResource("Resource_odks3")]]
 
 [node name="Brush2D (Frame 2)" type="Node2D" parent="Fire/BrushAnimation2D/Layer 1" index="2"]
+visible = false
 script = ExtResource("2_ply8t")
 strokes = [SubResource("Resource_yeh0r"), SubResource("Resource_wnghb"), SubResource("Resource_dawxt"), SubResource("Resource_4h0hn"), SubResource("Resource_6awid"), SubResource("Resource_eovws"), SubResource("Resource_7b1bi"), SubResource("Resource_54dj8"), SubResource("Resource_hk42s"), SubResource("Resource_2e53l"), SubResource("Resource_lly0x"), SubResource("Resource_vowe6"), SubResource("Resource_6v8y6"), SubResource("Resource_28a1b"), SubResource("Resource_8sy5k"), SubResource("Resource_fo3ms"), SubResource("Resource_ts3a4")]
 bounds = Rect2(569.363, 123.803, 199.46, 274.433)

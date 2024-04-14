@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cdwjkjxuwje8l"]
+[gd_scene load_steps=27 format=3 uid="uid://cdwjkjxuwje8l"]
 
 [ext_resource type="Script" path="res://minigames/minigame_components/minigame_window.gd" id="1_g0em6"]
 [ext_resource type="Texture2D" uid="uid://bk4xnliqpem8r" path="res://minigames/checker.png" id="2_1fvgc"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dgjt431rsabh8" path="res://minigames/minigame_components/art/birdSheet.png" id="5_x5p64"]
 [ext_resource type="FontFile" uid="uid://da7xd0ojorof3" path="res://Mario-Party-Hudson-Font.ttf" id="8_mcpcr"]
 [ext_resource type="Script" path="res://text_effect_jiggle.gd" id="9_ishqi"]
+[ext_resource type="AudioStream" uid="uid://d3d73oeiipn1q" path="res://music/1200185_Bonus-Stage.mp3" id="11_rnlgl"]
+[ext_resource type="AudioStream" uid="uid://djynsd3l0xs2t" path="res://battle/sfx/win.mp3" id="12_ooopl"]
 
 [sub_resource type="Shader" id="Shader_857ba"]
 code = "shader_type canvas_item;
@@ -200,6 +202,7 @@ sprite_frames = SubResource("SpriteFrames_655wo")
 animation = &"Idle"
 
 [node name="MiniGameControl" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -378,5 +381,15 @@ theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
 text = "[jiggle amp=2 freq=5][center]CHINA[/center][/jiggle]"
 custom_effects = [SubResource("RichTextEffect_jy63y")]
+
+[node name="MusicBonus" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_rnlgl")
+volume_db = -10.0
+bus = &"Chorus"
+
+[node name="AudioWin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ooopl")
+pitch_scale = 1.5
+bus = &"Echo"
 
 [connection signal="pressed" from="MiniGameControl/SubViewportContainer/SubViewport/CanvasLayer/GameOver/OkButton" to="." method="_on_ok_button_pressed"]

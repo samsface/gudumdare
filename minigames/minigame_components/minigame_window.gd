@@ -1,3 +1,4 @@
+class_name MinigameWindow
 extends CanvasLayer
 
 signal minigame_ended(rating: float)
@@ -29,19 +30,25 @@ func load_minigame(minigame: String):
 	
 	minigame_scene.minigame_gameover_lost.connect(gameover_lost)
 	minigame_scene.minigame_gameover_won.connect(gameover_won)
+	minigame_scene.window = self
+	$MusicBonus.play()
 
 func gameover_lost():
-	minigame_timer.stop_timer()
-	gameover_group.show()
 	gameover_group_lost.show()
-	_on_ok_button_pressed()
+	complete()
 
 func gameover_won(rating: float):
 	self.rating = rating
+	gameover_group_won.show()
+	complete()
+
+func complete():
 	minigame_timer.stop_timer()
 	gameover_group.show()
-	gameover_group_won.show()
 	_on_ok_button_pressed()
+	Game.game.duck_music(false)
+	$MusicBonus.stop()
+	$AudioWin.play()
 
 func _on_ok_button_pressed() -> void:
 	$Score.visible = true
@@ -53,8 +60,22 @@ func _on_ok_button_pressed() -> void:
 
 
 var border_color_t := 0.0
+var time := 0.0
 func _process(delta: float) -> void:
 	border_color_t += delta * 2.0
 	%Border.modulate = lerp(Color.MAGENTA, Color.BLUE, pingpong(border_color_t, 1.0))
 	
 	%BackgroundRotator.rotation += sin(border_color_t * 0.5) * delta * 0.2
+	process_shake(delta)
+	
+	time += delta / 1.2
+	$MusicBonus.pitch_scale = 1.0 + time
+
+
+var shake_t := 0.0
+func shake():
+	shake_t = 1.0
+
+func process_shake(delta):
+	shake_t = move_toward(shake_t, 0, delta / 0.3)
+	%MiniGameControl.position = Vector2.from_angle(randf() * TAU) * randf_range(2, 20) * shake_t
