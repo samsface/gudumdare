@@ -54,7 +54,6 @@ stream_2/weight = 1.0
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_flom2")
-track = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
