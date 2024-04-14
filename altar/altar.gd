@@ -51,6 +51,8 @@ func _on_sacrifice_button_pressed() -> void:
 	for card in sacrifice_slot.get_card_children():
 		card.queue_free()
 
+	$Sacrafice.play()
+
 func _on_confirm_button_pressed() -> void:
 	
 	
@@ -67,3 +69,7 @@ func _process(delta: float) -> void:
 	#$Background.position = -mouse_off * 0.02 + Vector2(-30, -20)
 	$Foreground.position = -mouse_off * 0.02 + Vector2(-35, -20)
 	$Camera2D.position = mouse_off * 0.02 + Game.SCREEN_SIZE * 0.5
+	
+	$MusicLayer0.volume_db = 0.0 if filled_to > 0 else -80.0
+	$MusicLayer1.volume_db = 0.0 if filled_to > 1 else -80.0
+	$MusicLayer2.volume_db = 0.0 if filled_to > 2 else -80.0

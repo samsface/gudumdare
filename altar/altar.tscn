@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cf4vd783dyum8"]
+[gd_scene load_steps=19 format=3 uid="uid://cf4vd783dyum8"]
 
 [ext_resource type="Script" path="res://altar/altar.gd" id="1_a0qxh"]
 [ext_resource type="Texture2D" uid="uid://c8t7i4g3eb78u" path="res://altar/bg_back.png" id="2_du5v5"]
@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://d2s4h5hax5j1o" path="res://cards/art_placeholder.png" id="4_cubwq"]
 [ext_resource type="PackedScene" uid="uid://cwseclmja5rko" path="res://cards/hand.tscn" id="5_lgg7v"]
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="6_ixx5x"]
+[ext_resource type="AudioStream" uid="uid://dcpjyf5qt2ekp" path="res://altar/music/drum.ogg" id="9_84bn7"]
+[ext_resource type="AudioStream" uid="uid://2cgjynw7ne27" path="res://altar/music/layer_0.ogg" id="10_en63m"]
+[ext_resource type="AudioStream" uid="uid://t1gu8n2ha82w" path="res://altar/music/layer_1.ogg" id="11_rsxav"]
+[ext_resource type="AudioStream" uid="uid://c1eresmb31p2n" path="res://altar/music/layer_2.ogg" id="12_heowm"]
+[ext_resource type="AudioStream" uid="uid://hu66742xida3" path="res://altar/music/sacrafice.ogg" id="13_bpko3"]
 
 [sub_resource type="Shader" id="Shader_bmetb"]
 code = "shader_type canvas_item;
@@ -64,6 +69,7 @@ script = ExtResource("1_a0qxh")
 [node name="BackBackground" type="TextureRect" parent="."]
 auto_translate_mode = 1
 texture_filter = 1
+layout_mode = 0
 offset_right = 1440.0
 offset_bottom = 810.0
 scale = Vector2(1.05, 1.05)
@@ -73,6 +79,7 @@ metadata/_edit_lock_ = true
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_t20x1")
+layout_mode = 0
 offset_right = 1440.0
 offset_bottom = 810.0
 texture = ExtResource("2_olr0h")
@@ -82,6 +89,7 @@ metadata/_edit_lock_ = true
 auto_translate_mode = 1
 texture_filter = 1
 material = SubResource("ShaderMaterial_t20x1")
+layout_mode = 0
 offset_left = -30.0
 offset_top = -20.0
 offset_right = 1410.0
@@ -281,6 +289,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19768, -0.737752)
 shape = SubResource("BoxShape3D_skted")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MusicDrumsLayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_84bn7")
+autoplay = true
+
+[node name="MusicLayer0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_en63m")
+volume_db = -80.0
+autoplay = true
+
+[node name="MusicLayer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_rsxav")
+volume_db = -80.0
+autoplay = true
+
+[node name="MusicLayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_heowm")
+volume_db = -80.0
+autoplay = true
+
+[node name="Sacrafice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_bpko3")
 
 [connection signal="pressed" from="TopPlayer/SacrificeButton" to="." method="_on_sacrifice_button_pressed"]
 [connection signal="pressed" from="TopPlayer/NewCard/ConfirmButton" to="." method="_on_confirm_button_pressed"]
