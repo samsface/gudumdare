@@ -33,6 +33,7 @@ card_name = "Archer"
 art = ExtResource("2_tf5by")
 spawns = ExtResource("2_5rdev")
 mana_cost = 3
+tier = 1
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_sd53v")

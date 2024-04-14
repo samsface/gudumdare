@@ -62,7 +62,7 @@ fill_to = Vector2(0.51, 0.5)
 script = ExtResource("1_c1fk6")
 mini_game = ExtResource("2_yo0dw")
 health = 10000
-attack_range = 500.0
+attack_range = 300.0
 attackable = false
 
 [node name="Explosion" type="GPUParticles2D" parent="."]

@@ -46,7 +46,6 @@ func _mouse_exited() -> void:
 	hovered = false
 	set_render_priority(-5)
 
-
 func _ready() -> void:
 	%CardLoading.material_override.set_shader_parameter("cost", mana_cost)
 
@@ -82,6 +81,6 @@ func _process(delta: float) -> void:
 	if is_instance_valid(Game.battle):
 		%CardLoading.material_override.set_shader_parameter("mana", Game.battle.mana)
 		%Card.modulate = Color.WHITE if Game.battle.mana > mana_cost else Color(1.0, 0.7, 0.8)
-	#else:
-		#%CardLoading.material_override.set_shader_parameter("mana", 10.0)
-		#%Card.modulate = Color.WHITE
+	else:
+		%CardLoading.material_override.set_shader_parameter("mana", 10.0)
+		%Card.modulate = Color.WHITE
