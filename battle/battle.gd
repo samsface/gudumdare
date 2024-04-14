@@ -150,6 +150,7 @@ func _tower_enemy_died() -> void:
 		return
 	
 	won = true
+	Game.game.battle_won = true
 	
 	var reward = load("res://battle/reward.tscn").instantiate()
 	
