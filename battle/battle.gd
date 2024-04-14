@@ -34,6 +34,7 @@ var battle_track_paths := {
 }
 
 func _ready() -> void:
+	Game.battle = self
 	randomize()
 	#Read player cards and put them to deck
 	for card_name in Game.game.player_cards:

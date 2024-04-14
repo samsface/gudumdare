@@ -4,6 +4,7 @@ extends Node2D
 const SCREEN_SIZE = Vector2(1440, 810)
 static var game: Game
 static var dragging_card
+static var battle
 
 var current_scene
 var transition
