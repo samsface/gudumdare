@@ -29,17 +29,11 @@ func _input(event: InputEvent) -> void:
 
 			laughs +=1 
 			
-			%Meter.position.y -= 4
+			%Meter.position.y -= 16
 			%Meter.position.y = clamp(%Meter.position.y, -14, 1000)
 			
 			if laughs == 30:
 				laugh1()
-			
-			if laughs == 60:
-				laugh2()
-				
-			if laughs == 90:
-				laugh3()
 
 func laugh1() -> void:
 	GenericTween.shake($CanvasLayer/Stuff/Laugh)
@@ -52,55 +46,24 @@ func laugh1() -> void:
 	
 	$Laugh1.play()
 	await $Laugh1.finished
-	$CanvasLayer/Stuff/Hm2.visible = true
-	$CanvasLayer/Stuff/Laugh.visible = false
-	
-	$Hm.play()
-	GenericTween.squish($CanvasLayer/Stuff/Hm2)
-	await $Hm.finished
-	
-	counting = true
-	
-func laugh2() -> void:
-	GenericTween.shake($Laugh)
-	
-	counting = false
-	
-	$Idle.visible = false
-	$Hm2.visible = false
-	$Laugh.visible = true
-	
-	$Laugh2.play()
-	await $Laugh2.finished
-	$Hm2.visible = true
-	$Laugh.visible = false
-	
-	$Hm.play()
-	GenericTween.squish($Hm2)
-	await $Hm.finished
-	
-	counting = true
-	
-func laugh3() -> void:
-	GenericTween.shake($Laugh)
-	
-	counting = false
-	
-	$Idle.visible = false
-	$Hm2.visible = false
-	$Laugh.visible = true
-	
-	$Laugh3.play()
-	
 
-	await get_tree().create_timer(0.25).timeout
+	sick()
+
+	counting = true
+	
+func sick() -> void:
+	
+	GenericTween.shake($CanvasLayer/Stuff/Laugh)
+	$Laugh3.play()
+
+	await get_tree().create_timer(0.35).timeout
 	var tween = create_tween()
 	tween.set_parallel()
-	tween.tween_property($Sick, "scale", Vector2.ONE * 3.0, 0.01)
-	tween.tween_property($Sick, "rotation", PI * 0.3, 0.01)
+	tween.tween_property($CanvasLayer/Stuff/Sick, "scale", Vector2.ONE * 3.0, 0.01)
+	tween.tween_property($CanvasLayer/Stuff/Sick, "rotation", PI * 0.3, 0.01)
 
-	$Sick.visible = true
-	$Laugh.visible = false
+	$CanvasLayer/Stuff/Sick.visible = true
+	$CanvasLayer/Stuff/Laugh.visible = false
 
 	counting = true
 	
