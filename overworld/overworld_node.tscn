@@ -7,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="5_rmffj"]
 [ext_resource type="AudioStream" uid="uid://ceff8csgbjnp0" path="res://overworld/activate_unlock.wav" id="6_udq7r"]
 [ext_resource type="AudioStream" uid="uid://dx4257vf13416" path="res://overworld/complete.wav" id="7_ig6rp"]
-[ext_resource type="AudioStream" path="res://overworld/pop.wav" id="8_ks1p1"]
+[ext_resource type="AudioStream" uid="uid://crjv23vsjsc62" path="res://battle/units/pop_small.wav" id="8_u1llw"]
 
 [sub_resource type="Resource" id="Resource_vq7qm"]
 script = ExtResource("2_1df1n")
@@ -92,20 +92,21 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.25, 0.1), Vector2(1, 1.25), Vector2(1.25, 1), Vector2(1, 1.25), Vector2(1, 1)]
 }
-tracks/2/type = "method"
+tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Pop")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_u1llw")
+}],
+"times": PackedFloat32Array(0.4)
 }
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ey2y7"]
 _data = {
@@ -163,7 +164,8 @@ libraries = {
 speed_scale = 1.5
 
 [node name="Pop" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_ks1p1")
+volume_db = 10.0
+pitch_scale = 1.25
 
 [connection signal="mouse_clicked" from="AreaBrush2D" to="." method="_on_area_brush_2d_mouse_clicked"]
 [connection signal="mouse_entered" from="AreaBrush2D" to="." method="_on_area_brush_2d_mouse_entered"]
