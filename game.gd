@@ -23,7 +23,6 @@ func open_overworld():
 
 func open_battle(scene_path):
 	start_scene(scene_path)
-	play_music_battle()
 
 func open_minigame(scene_path):
 	start_scene(scene_path)
@@ -50,10 +49,13 @@ func play_music_overworld():
 	$Music.stream = load("res://music/1226674_Rhythm-Factory.ogg")
 	$Music.play()
 
-func play_music_battle():
-	$Music.stream = load("res://music/Battle Against a Suave Opponent.mp3")
+func play_music_battle(path):
+	$Music.stream = load(path)
 	$Music.play()
 
 func duck_music(value: bool = true):
 	var tween = create_tween()
 	tween.tween_property($Music, "volume_db", linear_to_db(0.01 if value else 0.6), 0.2)
+
+func lowpass_music(value: bool = true):
+	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Music"), 1, value)

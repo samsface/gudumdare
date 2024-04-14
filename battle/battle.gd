@@ -21,6 +21,16 @@ var mana := 0.0
 var max_mana := 10
 var mana_regen_per_sec := 1.5
 
+enum BattleTrack {REGULAR, EGYPT, JAPAN, RUSSIA}
+@export var track: BattleTrack
+
+var battle_track_paths := {
+	BattleTrack.REGULAR: "res://music/Battle Against a Suave Opponent.mp3",
+	BattleTrack.EGYPT: "res://music/761374_Sand-in-my-Stop-Watch.mp3",
+	BattleTrack.JAPAN: "res://music/37040_newgrounds_parago.mp3",
+	BattleTrack.RUSSIA: "res://music/810727_Russian-Hardbass.mp3",
+}
+
 func _ready() -> void:
 	var card_knight = load("res://battle/cards/card_knight.tscn")
 	var card_buff = load("res://battle/cards/card_buff.tscn")
@@ -41,7 +51,7 @@ func _ready() -> void:
 	
 	%Mana.max_value = max_mana
 	%ManaWhole.max_value = max_mana
-	
+	Game.game.play_music_battle(battle_track_paths[track])
 	await get_tree().create_timer(0.5).timeout
 	$AudioLetsGo.play()
 

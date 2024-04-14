@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://fih36mt8tix5" path="res://battle/battles/backgrounds/places2.png" id="2_ls3on"]
 
 [node name="Battle" instance=ExtResource("1_ew424")]
+track = 2
 
 [node name="ColorRect" parent="." index="1"]
 visible = true

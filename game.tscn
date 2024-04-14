@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1iqvvhbjidkb"]
+[gd_scene load_steps=10 format=3 uid="uid://d1iqvvhbjidkb"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_f1tk0"]
 [ext_resource type="Script" path="res://transition.gd" id="2_rowvi"]
 [ext_resource type="AudioStream" uid="uid://biot1nx0dhtkc" path="res://sfx/transition_swish.wav" id="3_35ux2"]
 [ext_resource type="AudioStream" uid="uid://c5c8q2b0ss883" path="res://sfx/transition_woosh.wav" id="4_vrvsu"]
+[ext_resource type="AudioStream" uid="uid://bc4h2wdddtmws" path="res://music/1226674_Rhythm-Factory.ogg" id="5_1hyqf"]
 
 [sub_resource type="Shader" id="Shader_u50t5"]
 code = "shader_type canvas_item;
@@ -87,6 +88,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1hyqf")
 volume_db = -10.0
 pitch_scale = 1.1
-bus = &"Chorus"
+bus = &"Music"
