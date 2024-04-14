@@ -100,3 +100,6 @@ func _process(delta: float) -> void:
 var upgrades := []
 func unlock_upgrade(upgrade):
 	upgrades.push_back(upgrade)
+
+func has_upgrade(upgrade):
+	return upgrades.has(upgrade)

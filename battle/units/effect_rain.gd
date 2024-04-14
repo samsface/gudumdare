@@ -51,7 +51,9 @@ func _ready() -> void:
 	
 
 func effect(grade:float) -> void:
-	for foe in battle.foes:
+	var foes = battle.foes.duplicate()
+	
+	for foe in foes:
 		if not is_instance_valid(foe):
 			continue
 		if global_position.distance_to(foe.global_position) < attack_range:

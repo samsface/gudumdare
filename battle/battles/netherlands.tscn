@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dchn7h40cx3ei"]
+[gd_scene load_steps=4 format=3 uid="uid://dchn7h40cx3ei"]
 
 [ext_resource type="PackedScene" uid="uid://dcnq1dkwqkvny" path="res://battle/battle.tscn" id="1_7rrh4"]
 [ext_resource type="PackedScene" uid="uid://dxaqk6lkr8gyp" path="res://battle/units/foe_tower.tscn" id="2_0cajp"]
 [ext_resource type="Texture2D" uid="uid://d2lxviktw2wqh" path="res://battle/battles/backgrounds/places10.png" id="2_mrb5r"]
-[ext_resource type="PackedScene" uid="uid://dn46itmu16ncm" path="res://minigames/minigame_summon_worms/rock.tscn" id="4_4wlrv"]
-[ext_resource type="PackedScene" uid="uid://4jicxhiwg8vq" path="res://minigames/minigame_summon_worms/poop.tscn" id="5_wnxw1"]
-[ext_resource type="PackedScene" uid="uid://qat7yjbw1y6c" path="res://minigames/minigame_summon_worms/pool.tscn" id="6_20h4w"]
 
 [node name="Battle" instance=ExtResource("1_7rrh4")]
 
@@ -32,31 +29,5 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_mrb5r")
 
-[node name="WormLocationPool" parent="." index="3" instance=ExtResource("6_20h4w")]
-z_index = 0
-position = Vector2(385, 673)
-
-[node name="WormLocationPool2" parent="." index="4" instance=ExtResource("6_20h4w")]
-z_index = 0
-position = Vector2(1014, 222)
-
 [node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_0cajp")]
 position = Vector2(1087, 290)
-
-[node name="WormLocationRock" parent="Fight" index="3" instance=ExtResource("4_4wlrv")]
-position = Vector2(1224, 219)
-
-[node name="WormLocationRock4" parent="Fight" index="4" instance=ExtResource("4_4wlrv")]
-position = Vector2(1135, 685)
-
-[node name="WormLocationRock5" parent="Fight" index="5" instance=ExtResource("4_4wlrv")]
-position = Vector2(1235, 647)
-
-[node name="WormLocationRock7" parent="Fight" index="6" instance=ExtResource("4_4wlrv")]
-position = Vector2(56, 265)
-
-[node name="WormLocationPoop" parent="Fight" index="7" instance=ExtResource("5_wnxw1")]
-position = Vector2(81, 379)
-
-[node name="WormLocationPoop3" parent="Fight" index="8" instance=ExtResource("5_wnxw1")]
-position = Vector2(522, 758)

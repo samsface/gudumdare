@@ -7,7 +7,7 @@ var battle: Battle
 var card
 
 @export var health := 10
-@onready var max_health: float = health
+@onready var max_health: float
 
 @export var is_foe := false
 @export var speed := 300.0
@@ -40,6 +40,7 @@ func _ready() -> void:
 		$AudioSpawn.play()
 	$AudioSpawn2.pitch_scale = randf_range(0.7, 0.8) if is_foe else randf_range(1.1, 1.3) 
 	$AudioSpawn2.play()
+	max_health = health
 
 func _process(delta: float) -> void:
 	process_movement(delta)
@@ -80,6 +81,8 @@ func hit(damage):
 	health -= damage
 	if health <= 0:
 		remove()
+		if is_foe:
+			Game.worms += 1
 		died.emit()
 		
 		$Model/AnimationPlayer.play("RESET")
