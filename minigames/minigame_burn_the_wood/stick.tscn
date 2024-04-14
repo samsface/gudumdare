@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://deg7rv3g3kbu7" path="res://minigames/minigame_burn_the_wood/swoosh_swish.wav" id="6_xftmw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8461n"]
-radius = 151.1
+radius = 175.29
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_njbam"]
 random_pitch = 1.3
@@ -71,14 +71,16 @@ stream = SubResource("AudioStreamRandomizer_njbam")
 scale = Vector2(2, 2)
 
 [node name="Art" type="Node2D" parent="Model"]
-position = Vector2(28.5896, 6.53764)
+position = Vector2(42, 11)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("2_oe8c7")
 strokes = [SubResource("Resource_esl7w")]
 bounds = Rect2(-66.7869, -26.4239, 79.7565, 24.8179)
 lods = [[SubResource("Resource_awp5u")]]
 
 [node name="Brush2D" type="Node2D" parent="Model"]
-position = Vector2(28.5896, 6.53764)
+position = Vector2(42, 11)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("2_oe8c7")
 strokes = [SubResource("Resource_t8neu")]
 bounds = Rect2(-69.3936, -27.3203, 84.2543, 29.279)

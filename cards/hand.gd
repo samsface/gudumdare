@@ -152,7 +152,7 @@ func sort_(delta:float) -> void:
 		else:
 			card.scale = lerp(card.scale, Vector3.ONE, delta * 3.0)
 			card.position.y = lerp(card.position.y, 0.0, delta)
-			card.position.z = lerp(card.position.z + i * 0.02, 0.0, delta)
+			card.position.z = lerp(card.position.z, 0.0, delta)
 			card.rotation = lerp(card.rotation, Vector3.ZERO, delta)
 			
 			inc_recusive(card, "render_priority", i)
