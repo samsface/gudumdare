@@ -11,14 +11,20 @@ var gold := 0
 var souls := 0
 var worms := 0
 
+#Overworld nodes
+@onready var battle_won := false
+@onready var unlocked_nodes: Array = ["Czechia"]
+var current_battle_node_name: String
+
 #CARD CODE
 var player_cards = []
 
 func add_card(card_name: String) -> void: #Add card by name, names are consts in CardDB
 	player_cards.append(card_name)
-#END OF CARD CODE
+
 func remove_card(card_name: String): #Erase card by name, names are consts in CardDB
 	player_cards.erase(card_name)
+#END OF CARD CODE
 
 func _ready() -> void:
 	game = self
@@ -38,7 +44,8 @@ func _ready() -> void:
 func open_overworld():
 	start_scene("res://overworld/overworld.tscn")
 
-func open_battle(scene_path):
+func open_battle(scene_path, node_name):
+	current_battle_node_name = node_name #Read by Overworld on _ready(), we can give it special POP anim or something
 	start_scene(scene_path)
 
 func open_minigame(scene_path):
@@ -46,7 +53,6 @@ func open_minigame(scene_path):
 
 func open_altar():
 	start_scene("res://altar/altar.tscn")
-
 
 func open_shop():
 	start_scene("res://shop/shop.tscn")
@@ -59,8 +65,6 @@ func start_scene(path):
 	current_scene = load(path).instantiate()
 	add_child(current_scene)
 	transition.open()
-
-
 
 func play_music_overworld():
 	$Music.stream = load("res://music/1226674_Rhythm-Factory.ogg")
