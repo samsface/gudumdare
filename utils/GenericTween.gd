@@ -29,6 +29,14 @@ static func attack(node:Node2D, direction_to_target:Vector2) -> Tween:
 	
 	return tween
 
+static func flash(node:Node2D, impact_color:Color, decay_color:Color, final_color:Color = Color.WHITE) -> Tween:
+	var tween = node.create_tween().set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(node, "modulate", impact_color, 0.0)
+	tween.tween_property(node, "modulate", decay_color, 0.1)
+	tween.tween_property(node, "modulate", final_color, 0.3)
+	
+	return tween
+
 static func flash_red(node:Node2D) -> Tween:
 	var tween = node.create_tween().set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(node, "modulate", Color(10.0, 4.0, 4.0), 0.0)
