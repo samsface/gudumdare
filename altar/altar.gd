@@ -19,6 +19,10 @@ func _ready() -> void:
 	new_card.hide()
 	#Funcs
 	_check_sacrifice_button()
+	#Read and add player cards to PlayerHand
+	for card_name in Game.game.player_cards:
+		var card_scene = CardDB.return_card_scene(card_name).duplicate()
+		player_hand.add_child(card_scene)
 	
 func _check_sacrifice_button():
 	print(str(sacrifice_slot.get_card_children().size()))

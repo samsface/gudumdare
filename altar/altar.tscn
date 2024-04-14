@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cf4vd783dyum8"]
+[gd_scene load_steps=18 format=3 uid="uid://cf4vd783dyum8"]
 
 [ext_resource type="Script" path="res://altar/altar.gd" id="1_a0qxh"]
 [ext_resource type="Texture2D" uid="uid://c8t7i4g3eb78u" path="res://altar/bg_back.png" id="2_du5v5"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bvlfs6jvry30u" path="res://altar/bg_front.png" id="3_lski7"]
 [ext_resource type="Texture2D" uid="uid://d2s4h5hax5j1o" path="res://cards/art_placeholder.png" id="4_cubwq"]
 [ext_resource type="PackedScene" uid="uid://cwseclmja5rko" path="res://cards/hand.tscn" id="5_lgg7v"]
-[ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="6_ixx5x"]
 [ext_resource type="AudioStream" uid="uid://dcpjyf5qt2ekp" path="res://altar/music/drum.ogg" id="9_84bn7"]
 [ext_resource type="AudioStream" uid="uid://2cgjynw7ne27" path="res://altar/music/layer_0.ogg" id="10_en63m"]
 [ext_resource type="AudioStream" uid="uid://t1gu8n2ha82w" path="res://altar/music/layer_1.ogg" id="11_rsxav"]
@@ -137,24 +136,6 @@ sort = true
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.126)
 shape = SubResource("BoxShape3D_xvlid")
-
-[node name="MeshInstance3D2" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand" instance=ExtResource("6_ixx5x")]
-
-[node name="MeshInstance3D3" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand" instance=ExtResource("6_ixx5x")]
-
-[node name="MeshInstance3D4" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand" instance=ExtResource("6_ixx5x")]
-
-[node name="MeshInstance3D5" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand" instance=ExtResource("6_ixx5x")]
-
-[node name="MeshInstance3D6" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand" instance=ExtResource("6_ixx5x")]
-
-[node name="MeshInstance3D7" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand" instance=ExtResource("6_ixx5x")]
-
-[node name="MeshInstance3D8" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand" instance=ExtResource("6_ixx5x")]
-
-[node name="MeshInstance3D9" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand" instance=ExtResource("6_ixx5x")]
-
-[node name="MeshInstance3D10" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand" instance=ExtResource("6_ixx5x")]
 
 [node name="SacrificeSlot" parent="CardLayer/SubViewportContainer/SubViewport/HandTest" instance=ExtResource("5_lgg7v")]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, -0.51066)
