@@ -764,7 +764,7 @@ offset_left = 458.0
 offset_top = 382.0
 offset_right = 631.0
 offset_bottom = 544.0
-upgrade = "Hand Size"
+upgrade = "Hand Size 2"
 cost = 100
 
 [node name="Brush2D" type="Node2D" parent="Button7"]
