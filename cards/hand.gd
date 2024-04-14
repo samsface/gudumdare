@@ -146,13 +146,32 @@ func sort_(delta:float) -> void:
 		if card.hovered:
 			card.scale = lerp(card.scale, Vector3.ONE * 1.2, delta * 5.0)
 			card.position.y = lerp(card.position.y, 0.1, delta)
-			card.position.z = lerp(card.position.z, 0.1, delta)
+			card.position.z = lerp(card.position.z, 0.3, delta)
+			inc_recusive(card, "render_priority", 100)
 			#get_child(i).position.z = 0.01
 		else:
 			card.scale = lerp(card.scale, Vector3.ONE, delta * 3.0)
 			card.position.y = lerp(card.position.y, 0.0, delta)
-			card.position.z = lerp(card.position.z, 0.0, delta)
+			card.position.z = lerp(card.position.z + i * 0.02, 0.0, delta)
 			card.rotation = lerp(card.rotation, Vector3.ZERO, delta)
+			
+			inc_recusive(card, "render_priority", i)
+
+# this is because Godot can't fucking render shit that's infront of other shit
+func inc_recusive(node, property_name, value):
+	if not node:
+		return
+
+	var v = node.get(property_name)
+	if v is int:
+		var o_name = "original_" + property_name
+		if not node.has_meta(o_name):
+			node.set_meta(o_name, v)
+		
+		node.set(property_name, node.get_meta(o_name) + value)
+
+	for child in node.get_children():
+		inc_recusive(child, property_name, value)
 
 func can_drop() -> bool:
 	if get_card_children().size() >= max_cards:
