@@ -19,7 +19,7 @@ func _ready() -> void:
 	%Camera2D.zoom = Vector2.ONE * 3.3
 	
 	#Check if battle was won and unlock new nodes
-	var just_unlocked: Array = []
+	var just_unlocked_nodes: Array = []
 	if Game.game.battle_won:
 		
 		
@@ -30,17 +30,17 @@ func _ready() -> void:
 			#var neighbour_name = neighbor.name
 			#neighbour_name = neighbour_name.replace("&","") #Wtf Godot
 			Game.game.unlocked_nodes.append(neighbor.my_name)
-			just_unlocked.append(neighbor.my_name)
+			just_unlocked_nodes.append(neighbor.my_name)
 	
-	print("overworld ready")
-	print(str(Game.game.unlocked_nodes))
 	for node_name in Game.game.unlocked_nodes:
 		var node: OverworldNode = get_node(node_name)
-		var is_just_unlocked := false
-		if just_unlocked.has(node_name):
-			is_just_unlocked = true
-		
-		node.unlock(is_just_unlocked)
+		if not just_unlocked_nodes.has(node_name):
+			node.unlock()
+			
+	for node_name in just_unlocked_nodes:
+		var node: OverworldNode = get_node(node_name)
+		node.unlock(true)
+		await get_tree().create_timer(0.5).timeout
 
 func _on_button_button_down() -> void:
 	Game.game.open_shop()
