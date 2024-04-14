@@ -9,7 +9,7 @@ var birds_max = 0
 var rating: float = 0.0
 
 @onready var death_index := 0
-@onready var death_sounds: Array = [$Death1, $Death2, $Death3, $Death4, $Death5]
+@onready var death_sounds: Array = [$Death1, $Death2, $Death3, $Death4, $Death5, $Death6, $Death7]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
