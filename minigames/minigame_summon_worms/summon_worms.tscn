@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://ea7kp5lgt3ej"]
+
+[ext_resource type="Script" path="res://minigames/minigame_summon_worms/minigame_summon_worms.gd" id="1_3iuy5"]
+[ext_resource type="PackedScene" uid="uid://8jwhfpejnqg7" path="res://minigames/minigame_summon_worms/player.tscn" id="2_2ndop"]
+[ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="3_vnf31"]
+
+[node name="MinigameSummonWorms" type="Node2D"]
+z_index = -10
+script = ExtResource("1_3iuy5")
+
+[node name="Background" type="ColorRect" parent="."]
+auto_translate_mode = 1
+visible = false
+offset_right = 1440.0
+offset_bottom = 810.0
+color = Color(0.373856, 0.232826, 0.124792, 1)
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_2ndop")]
+visible = false
+z_index = 20
+position = Vector2(720, 405)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 500.0
+one_shot = true
+
+[node name="Origin" type="Node2D" parent="."]
+
+[node name="TopCornerRight" type="Node2D" parent="."]
+position = Vector2(1440, 0)
+
+[node name="BotCornerLeft" type="Node2D" parent="."]
+position = Vector2(0, 810)
+
+[node name="ClickToContinue" type="Label" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+visible = false
+z_index = 100
+offset_left = 159.0
+offset_top = 729.0
+offset_right = 969.0
+offset_bottom = 776.0
+scale = Vector2(1.3932, 1.3932)
+theme = ExtResource("3_vnf31")
+text = "click to continue"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

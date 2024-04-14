@@ -111,6 +111,7 @@ text = "QUIT"
 [node name="ColorRect" type="ColorRect" parent="."]
 auto_translate_mode = 1
 visible = false
+z_index = -10
 offset_left = -23.0
 offset_top = -18.0
 offset_right = 1462.0
