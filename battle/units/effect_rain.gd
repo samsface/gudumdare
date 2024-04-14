@@ -39,7 +39,8 @@ func _ready() -> void:
 	
 	$AreaCircle.animate()
 	
-	card.queue_free()
+	if card:
+		card.queue_free()
 	
 	effect(grade)
 	
