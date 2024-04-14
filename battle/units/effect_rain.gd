@@ -23,7 +23,7 @@ func _ready() -> void:
 	add_child(minigame_window_scene)
 	minigame_window_scene.load_minigame(mini_game.resource_path)
 
-	await minigame_window_scene.minigame_ended
+	var grade = await minigame_window_scene.minigame_ended
 	minigame_window_scene.queue_free()
 
 	tween = create_tween()
@@ -37,10 +37,25 @@ func _ready() -> void:
 
 	await tween.finished
 	
+	$AreaCircle.animate()
+	
 	card.queue_free()
+	
+	effect(grade)
 	
 	await $Explosion.finished
 	
-	queue_free()
 	
 	
+	#queue_free()
+	
+
+func effect(grade:float) -> void:
+	for foe in battle.foes:
+		if not is_instance_valid(foe):
+			continue
+		if global_position.distance_to(foe.global_position) < attack_range:
+			foe.hit(grade * 10.0)
+			$HitSound.play()
+		
+		await get_tree().create_timer(0.1).timeout

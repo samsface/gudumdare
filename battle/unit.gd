@@ -29,6 +29,9 @@ var reload_boost_multi := 1.0
 var speed_boost_t := 0.0
 var speed_boost_multi := 1.0
 
+var damage_tween:Tween
+var shake_tween:Tween
+
 func _process(delta: float) -> void:
 	process_movement(delta)
 	%Healthbar2.value = health / max_health
@@ -44,6 +47,9 @@ func _process(delta: float) -> void:
 			reload_boost_multi = 1.0
 
 func process_movement(delta):
+	if health <= 0:
+		return
+
 	get_closest_enemy()
 	if closest_enemy:
 		if distance_to_closest_enemy > attack_range:
@@ -59,13 +65,32 @@ func attack():
 	pass
 
 func hit(damage):
-	GenericTween.flash_red(%Model)
-	GenericTween.shake(%Model, 2, 2.0)
+	if health <= 0:
+		return
 
-	health -= 1
+	health -= damage
 	if health <= 0:
 		remove()
 		died.emit()
+		
+		$Model/AnimationPlayer.play("RESET")
+		$Model/AnimationPlayer.stop()
+		if shake_tween:
+			shake_tween.kill()
+		if damage_tween:
+			damage_tween.kill()
+		damage_tween = GenericTween.flash(%Model, Color(10.0, 4.0, 4.0), Color(2.0, 0.5, 0.5), Color(0.1, 0.1, 0.1, 1.0))
+		damage_tween.set_parallel()
+		damage_tween.tween_property(%Model, "rotation", PI * 0.5, 0.1)
+		damage_tween.tween_property(%Model, "scale", Vector2.ZERO, 0.1).set_delay(0.4)
+	else:
+		if shake_tween:
+			shake_tween.kill()
+		shake_tween = GenericTween.shake(%Model, 2, 2.0)
+		if damage_tween:
+			damage_tween.kill()
+		damage_tween = GenericTween.flash_red(%Model)
+	
 	$AudioHit.play()
 
 func get_closest_enemy():
@@ -84,12 +109,15 @@ func get_closest_enemy():
 	distance_to_closest_enemy = sqrt(closest_distance)
 
 func remove():
-	queue_free()
 	if is_foe:
 		battle.foes.erase(self)
 	else:
 		battle.friends.erase(self)
 	battle.units.erase(self)
+
+	await get_tree().create_timer(0.5).timeout
+	
+	queue_free()
 
 
 func boost_reload(scale: float, duration: float):
