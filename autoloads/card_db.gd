@@ -1,12 +1,18 @@
 extends Node
 
+#TO avoid magical strings
+const CN_KNIGHT = "Knight"
+const CN_ARCHER = "Archer"
+const CN_RAIN = "Rain"
+
 const CARD_PATHS = [
 	"res://cards/cards/archer.tscn",
 	"res://cards/cards/knight.tscn",
 	"res://cards/cards/rain.tscn",
 ]
 
-var cards = {}
+var cards = {} #Key: Card Name, contains instiatated card object
+#Eg: { "Archer": StaticBody3D:<Area3D#37832623368> }
 
 func _ready() -> void:
 	for path in CARD_PATHS:
