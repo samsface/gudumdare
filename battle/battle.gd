@@ -69,6 +69,12 @@ func _ready() -> void:
 	add_child(summon)
 	#summon.load_level(1)
 	
+	mana_regen_per_sec = 0.8
+	if Game.game.has_upgrade("Fast Mana"):
+		mana_regen_per_sec *= 1.3
+	if Game.game.has_upgrade("Fast Mana 2"):
+		mana_regen_per_sec *= 1.3
+	
 	await get_tree().create_timer(0.5).timeout
 	$AudioLetsGo.play()
 
@@ -166,7 +172,9 @@ func _tower_enemy_died() -> void:
 	$AudioWin.play()
 	$AudioApplause.play()
 	
-	#$SubViewports.visible = false
+	#$SubViewports.visible = falseif Game.game:
+	Game.game.lowpass_music(true)
+	
 	$SubViewports/SubViewportContainer.queue_free()
 	$CanvasLayer.visible = false
 

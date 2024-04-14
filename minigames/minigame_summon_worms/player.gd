@@ -42,10 +42,8 @@ func _ready() -> void:
 	
 func place(new_global_pos) -> void:
 	#allow_draw = false
-	printt("AA")
 	global_position = new_global_pos
 	god_song.play()
-	Game.game.duck_music(true)
 	
 	#Restart timer and anim
 	current_sprite.hide()
