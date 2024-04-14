@@ -183,6 +183,13 @@ func _tower_enemy_died() -> void:
 	$SubViewports/SubViewportContainer.queue_free()
 	$CanvasLayer.visible = false
 
+func _tower_player_died() -> void:
+	Game.game.lowpass_music(true)
+	$SubViewports/SubViewportContainer.queue_free()
+	$CanvasLayer.visible = false
+	var loose = load("res://battle/loose.tscn").instantiate()
+	$SubViewports.add_child(loose)
+	loose.done.connect(on_reward_done)
 
 func give_card():
 	var reward = load("res://battle/reward.tscn").instantiate()
@@ -194,3 +201,4 @@ func on_reward_done():
 
 func _add_to_deck(card_name: String):
 	deck.push_back(card_name)
+
