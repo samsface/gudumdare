@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b733hb80mod6a"]
+[gd_scene load_steps=4 format=3 uid="uid://dj2ebg7r37paw"]
 
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_t1di5"]
 [ext_resource type="Texture2D" uid="uid://bdnks4gpk781e" path="res://battle/units/sprites/worm_samurai_card_art.png" id="2_hot8j"]
-[ext_resource type="PackedScene" uid="uid://dth0ombg8dem2" path="res://battle/units/effect_rain.tscn" id="3_kpceh"]
+[ext_resource type="PackedScene" path="res://battle/units/effect_rain.tscn" id="3_kpceh"]
 
 [node name="StaticBody3D" instance=ExtResource("1_t1di5")]
 card_name = "Rain"
@@ -11,11 +11,11 @@ spawns = ExtResource("3_kpceh")
 mana_cost = 5
 sidelay = true
 
-[node name="CardNameLabel" parent="MeshInstance3D" index="0"]
+[node name="CardNameLabel" parent="." index="2"]
 text = "Rain"
 
-[node name="ManaCost" parent="MeshInstance3D/MeshInstance3D3" index="0"]
+[node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "5"
 
-[node name="Art" parent="MeshInstance3D" index="2"]
+[node name="Art" parent="." index="4"]
 texture = ExtResource("2_hot8j")

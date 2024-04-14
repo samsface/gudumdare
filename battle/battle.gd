@@ -41,6 +41,9 @@ func _ready() -> void:
 	
 	%Mana.max_value = max_mana
 	%ManaWhole.max_value = max_mana
+	
+	await get_tree().create_timer(0.5).timeout
+	$AudioLetsGo.play()
 
 
 func add_card(card):
@@ -54,6 +57,13 @@ func _process(delta: float) -> void:
 	mana = move_toward(mana, max_mana, delta * mana_regen_per_sec)
 	%Mana.value = mana
 	%ManaWhole.value = floor(mana)
+	
+	
+	var mouse_off = (get_local_mouse_position() - Game.SCREEN_SIZE * 0.5)
+	var cam_to = mouse_off * 0.05 + Game.SCREEN_SIZE * 0.5
+	var cam_angle_to = mouse_off.x * 0.00005
+	$Camera2D.position = lerp($Camera2D.position, cam_to, delta * 10.0)
+	$Camera2D.rotation = lerp($Camera2D.rotation, cam_angle_to, delta * 5.0)
 
 func _physics_process(delta: float) -> void:
 	for i in units.size():
@@ -143,6 +153,9 @@ func _tower_enemy_died() -> void:
 	won = true
 	
 	var reward = load("res://battle/reward.tscn").instantiate()
+	
+	$AudioWin.play()
+	$AudioApplause.play()
 	
 	$SubViewports.add_child(reward)
 	$SubViewports/SubViewportContainer.queue_free()

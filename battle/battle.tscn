@@ -1,12 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcnq1dkwqkvny"]
+[gd_scene load_steps=17 format=3 uid="uid://dcnq1dkwqkvny"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_flom2"]
 [ext_resource type="PackedScene" uid="uid://b2kvkq1htewf7" path="res://battle/units/tower_enemy.tscn" id="3_8e3ng"]
 [ext_resource type="PackedScene" uid="uid://cwseclmja5rko" path="res://cards/hand.tscn" id="4_fjwei"]
-[ext_resource type="PackedScene" uid="uid://b733hb80mod6a" path="res://cards/cards/rain.tscn" id="5_18a1l"]
+[ext_resource type="PackedScene" uid="uid://dj2ebg7r37paw" path="res://cards/cards/rain.tscn" id="5_18a1l"]
 [ext_resource type="PackedScene" uid="uid://tpek6s1ym3sk" path="res://battle/units/tower_player.tscn" id="5_mk8s6"]
 [ext_resource type="PackedScene" uid="uid://cqjta8uodixn7" path="res://cards/cards/archer.tscn" id="5_uyypr"]
 [ext_resource type="PackedScene" uid="uid://glirm2jvo8nx" path="res://cards/cards/knight.tscn" id="6_8oqba"]
+[ext_resource type="AudioStream" uid="uid://cv02y62fsib0b" path="res://battle/sfx/lesgo_1.wav" id="8_r6yyu"]
+[ext_resource type="AudioStream" uid="uid://rlljb2xw2447" path="res://battle/sfx/lesgo_2.wav" id="9_mdeoy"]
+[ext_resource type="AudioStream" uid="uid://b0jv5sljkrk46" path="res://battle/sfx/lesgo_3.wav" id="10_vqf1s"]
+[ext_resource type="AudioStream" uid="uid://djynsd3l0xs2t" path="res://battle/sfx/win.mp3" id="11_clmya"]
+[ext_resource type="AudioStream" uid="uid://ck08d0au8mjrc" path="res://battle/units/sfx/applause.wav" id="12_liifm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jsvmk"]
 
@@ -15,6 +20,16 @@ size = Vector3(10, 3, 0.01)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4tkx"]
 size = Vector3(19, 5, 0.01)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dfmjq"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("8_r6yyu")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("9_mdeoy")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("10_vqf1s")
+stream_2/weight = 1.0
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_flom2")
@@ -88,6 +103,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -26.0
+offset_right = 73.0
+offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
@@ -96,7 +115,7 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 physics_object_picking = true
-size = Vector2i(1441, 809)
+size = Vector2i(1587, 861)
 render_target_update_mode = 4
 
 [node name="HandTest" type="Node3D" parent="SubViewports/SubViewportContainer/SubViewport"]
@@ -161,10 +180,24 @@ shadow_blur = 0.736
 
 [node name="NewCardSpawn" type="Marker3D" parent="SubViewports/SubViewportContainer/SubViewport/HandTest"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.44739, -0.790689, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00959778, -1.37475, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(720, 405)
+
+[node name="AudioLetsGo" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_dfmjq")
+pitch_scale = 0.8
+bus = &"Echo"
+
+[node name="AudioWin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_clmya")
+pitch_scale = 1.2
+bus = &"Echo"
+
+[node name="AudioApplause" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_liifm")
+bus = &"Chorus"
 
 [connection signal="pressed" from="CanvasLayer/ButtonQuit" to="." method="_on_button_quit_pressed"]
 [connection signal="died" from="Fight/TowerEnemy" to="." method="_tower_enemy_died"]

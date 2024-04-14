@@ -56,8 +56,8 @@ func drag(delta, card) -> void:
 	if not nearest_drop:
 		return
 
-	card.global_position = lerp(card.global_position, nearest_drop[0], delta)
-	card.global_rotation = lerp(card.global_rotation, nearest_drop[1].global_rotation, delta)
+	card.global_position = lerp(card.global_position, nearest_drop[0], delta * 5.0)
+	card.global_rotation = lerp(card.global_rotation, nearest_drop[1].global_rotation, delta * 5.0)
 
 	var drop_area_rotation = nearest_drop[1].global_rotation
 
@@ -139,10 +139,12 @@ func sort_(delta:float) -> void:
 			continue
 
 		if card.hovered:
-			card.scale = lerp(card.scale, Vector3.ONE * 1.1, delta)
+			card.scale = lerp(card.scale, Vector3.ONE * 1.2, delta * 5.0)
+			card.position.y = lerp(card.position.y, 0.1, delta)
+			card.position.z = lerp(card.position.z, 0.1, delta)
 			#get_child(i).position.z = 0.01
 		else:
-			card.scale = lerp(card.scale, Vector3.ONE, delta)
+			card.scale = lerp(card.scale, Vector3.ONE, delta * 3.0)
 			card.position.y = lerp(card.position.y, 0.0, delta)
 			card.position.z = lerp(card.position.z, 0.0, delta)
 			card.rotation = lerp(card.rotation, Vector3.ZERO, delta)

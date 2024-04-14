@@ -188,8 +188,8 @@ func select_node(node):
 			printt("reselect")
 			return
 		if node.animation:
-			node.animation.goto(node.frame_num)
 			Flip.editor.select_animation(node.animation)
+			node.animation.goto(node.frame_num)
 			Flip.editor.select_layer(node.layer)
 			Flip.editor.select_brush(node)
 		else:

@@ -1,4 +1,31 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dm8a2t382rucc"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://3q4vfoekcgpx"]
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_28eu6"]
+resource_name = "Delay"
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_55v0l"]
+resource_name = "Chorus"
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_dj30x"]
+resource_name = "Chorus"
 
 [resource]
-bus/0/volume_db = -80.0
+bus/0/volume_db = -0.337143
+bus/1/name = &"Echo"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectDelay_28eu6")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectChorus_55v0l")
+bus/1/effect/1/enabled = true
+bus/2/name = &"Chorus"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectChorus_dj30x")
+bus/2/effect/0/enabled = true

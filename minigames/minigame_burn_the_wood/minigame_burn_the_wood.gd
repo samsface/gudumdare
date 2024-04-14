@@ -60,14 +60,18 @@ func _on_fire_area_entered(area: Area2D) -> void:
 		return
 
 	hide_flames()
-
+	
+	%BrushAnimation2D.fps += 5
+	
 	var stick_percentage: float = stick_count as float / number_of_sticks as float
-	print(stick_percentage)
-	if stick_percentage >= 0.8:
+	#print(stick_percentage)
+	if stick_count > 4:#stick_percentage >= 0.8:
 		$Fire/FlameLarge.show()
-	elif stick_percentage >= 0.5:
+		%BrushAnimation2D.visible = false
+		%Roasted.visible = true
+	elif stick_count > 2:#stick_percentage >= 0.5:
 		$Fire/FlameMedium.show()
-	elif stick_percentage >= 0.25:
+	elif stick_count > 0:#stick_percentage >= 0.25:
 		$Fire/FlameSmall.show()
 	else:
 		$Fire/FlameStart.show()

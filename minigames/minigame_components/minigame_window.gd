@@ -22,6 +22,7 @@ func load_minigame(minigame: String):
 	minigame_scene = load(minigame).instantiate()
 	minigame_viewport.add_child(minigame_scene)
 	
+	%Prompt.text = "[jiggle amp=2 freq=5][center]%s[/center][/jiggle]" % minigame_scene.prompt.to_upper()
 	# connect signals
 	minigame_timer.minigame_timer_ended.connect(minigame_scene.timer_ended)
 	minigame_timer.start_timer()
@@ -49,3 +50,11 @@ func _on_ok_button_pressed() -> void:
 	await get_tree().create_timer(0.5).timeout
 	minigame_ended.emit(rating)
 	queue_free()
+
+
+var border_color_t := 0.0
+func _process(delta: float) -> void:
+	border_color_t += delta * 2.0
+	%Border.modulate = lerp(Color.MAGENTA, Color.BLUE, pingpong(border_color_t, 1.0))
+	
+	%BackgroundRotator.rotation += sin(border_color_t * 0.5) * delta * 0.2

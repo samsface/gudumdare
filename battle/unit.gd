@@ -51,6 +51,7 @@ func process_movement(delta):
 			reload_t -= delta * reload_boost_multi
 			if reload_t <= 0:
 				attack()
+				$AudioAttack.play()
 				reload_t += reload_duration
 
 func attack():
@@ -63,6 +64,7 @@ func hit(damage):
 	if health <= 0:
 		remove()
 		died.emit()
+	$AudioHit.play()
 
 func get_closest_enemy():
 	var enemies = battle.friends if is_foe else battle.foes

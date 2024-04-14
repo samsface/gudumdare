@@ -2,7 +2,7 @@ extends Control
 
 signal minigame_timer_ended
 
-@export var timer_seconds_value: float = 5
+@export var timer_seconds_value: float = 2.0
 
 @onready var worm_timer_group: Control = $TimerWormArt
 @onready var worm_timer_body: Sprite2D = $TimerWormArt/WormBody
@@ -20,9 +20,16 @@ var timer_ended = false
 # Animation triggers
 var afraid_animation_player = false
 
+var wave_t := 0.0
+var wave_speed := 0.0
+
 func _process(delta: float) -> void:
 	if (!timer_ended && timer_started):
 		run_timer(delta)
+	
+	wave_speed += delta
+	position.y = 655 + sin(wave_t * TAU) * 6.0 * wave_speed / 3.0
+	wave_t += delta * wave_speed * 2.0
 
 func start_timer():
 	worm_timer_start_position = worm_timer_group.position

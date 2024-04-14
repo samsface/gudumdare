@@ -95,7 +95,6 @@ func display_frame(frame: int):
 				and Flip.is_node_editable(animation)
 		):
 			onion_skin_frames = Flip.editor.onion_skin_frames
-		
 		for brush in brushes:
 			if frame >= brush.frame_num and frame <= get_brush_end_frame(brush):
 				brush.visible = true
@@ -104,7 +103,6 @@ func display_frame(frame: int):
 				brush.z_index = 0
 			elif onion_skin_frames > 0:
 				var distance: float
-				
 				distance = min(
 						abs(brush.frame_num - frame),
 						abs(get_brush_end_frame(brush) - frame)
@@ -117,7 +115,6 @@ func display_frame(frame: int):
 							abs(get_brush_end_frame(brush) - animation.length - frame),
 							abs(get_brush_end_frame(brush) + animation.length - frame)
 						)
-				
 				brush.visible = distance <= onion_skin_frames
 				if brush.visible:
 					var alpha = (1.0 - ((distance - 1) / onion_skin_frames)) * 0.4 + 0.1

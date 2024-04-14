@@ -14,7 +14,7 @@ func _process_custom_fx(char_fx: CharFXTransform) -> bool:
 	
 	rand.seed = char_fx.glyph_index + char_fx.glyph_count
 	
-	var elapsed = char_fx.elapsed_time + 0.2
+	var elapsed = char_fx.elapsed_time
 	
 	var angle = sin(elapsed * rand.randf_range(2.0, 16.0) * freq + char_fx.glyph_index)
 	angle *= 0.05 * amp
