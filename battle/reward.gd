@@ -48,9 +48,9 @@ func _confirm_pressed() -> void:
 	$wowworm/Brush2D.hide()
 	$wowworm/Brush2D2.show()
 	GenericTween.squish($wowworm)
-	if Game.game:
-		Game.game.lowpass_music(false)
-	await get_tree().create_timer(2.0).timeout
+	#if Game.game:
+		#Game.game.lowpass_music(false)
+	await get_tree().create_timer(1.5).timeout
 	
 	done.emit()
 

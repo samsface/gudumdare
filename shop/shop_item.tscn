@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq6167ynnoefw"]
+
+[ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="1_06u54"]
+[ext_resource type="Script" path="res://shop/shop_item.gd" id="1_xujye"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jryu"]
+
+[node name="Button" type="Button"]
+auto_translate_mode = 1
+offset_left = 67.0
+offset_top = 159.0
+offset_right = 240.0
+offset_bottom = 321.0
+theme = ExtResource("1_06u54")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5jryu")
+script = ExtResource("1_xujye")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 124.0
+offset_right = 196.0
+offset_bottom = 187.0
+
+[node name="Cost" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

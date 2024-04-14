@@ -1,11 +1,12 @@
 @tool
-extends Node2D
+class_name OverworldNode extends Node2D
 
 @export var neighbors: Array[Node2D] = []
 
 @export var available := false
 
 @export var is_altar := false
+@export var is_shop := false
 
 enum Type{BATTLE, BATTLE_PATH, MINI_1, MINI_2, MINI_3}
 
@@ -17,16 +18,27 @@ var color_hover = Color.ORANGE
 var hovering := false
 var t := 0.0
 
+var my_name: String
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		for neighbor in neighbors:
 			if not neighbor.neighbors.has(self):
 				neighbor.neighbors.push_back(self)
 	%Name.text = name.capitalize()
-	Game.game.play_music_overworld()
+	my_name = name
+
+	if not available:
+		hide()
 
 func _process(delta: float) -> void:
+	if Input.is_key_pressed(KEY_P):
+		unlock()
 	t += delta
+	
+	if not available:
+		return
+	
 	if Engine.is_editor_hint():
 		queue_redraw()
 	if hovering:
@@ -51,16 +63,25 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	for neighbor in neighbors:
-		draw_line(Vector2.ZERO, neighbor.position - position, Color.WHITE, 4.0)
+		if neighbor.available:
+			draw_line(Vector2.ZERO, neighbor.position - position, Color.WHITE, 4.0)
 
 
 func _on_area_brush_2d_mouse_clicked() -> void:
+	if not available:
+		return
+	
 	Game.game.transition.set_circle_position(global_position)
 	$AudioEnter.play()
+	if is_shop:
+		Game.game.open_shop()
+		return
 	if is_altar:
 		Game.game.open_altar()
 		return
-	Game.game.open_battle("res://battle/battles/%s.tscn" % name.to_snake_case())
+	Game.game.open_battle("res://battle/battles/%s.tscn" % name.to_snake_case(), name)
 	get_parent().entering = true
 	
-	
+func unlock():
+	available = true
+	show()

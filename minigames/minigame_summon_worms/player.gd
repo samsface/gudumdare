@@ -32,17 +32,19 @@ enum SpriteAnimations {
 	$CircleSprites/Sprite2,
 ]
 
+var placed := false
 
 
 func _ready() -> void:
 	#sprite.play(ANIM_IDLE)
-	god_song.play()
 	sprite_timer.start()
 	circle_timer.start()
 	
 func place(new_global_pos) -> void:
 	#allow_draw = false
 	global_position = new_global_pos
+	god_song.play()
+	Game.game.duck_music(true)
 	
 	#Restart timer and anim
 	current_sprite.hide()
@@ -51,7 +53,11 @@ func place(new_global_pos) -> void:
 	current_sprite.show()
 	sprite_timer.stop()
 	sprite_timer.start()
-
+	
+	var tween = create_tween()
+	
+	tween.tween_property(%CircleSprites, "modulate", Color.TRANSPARENT, 0.5)
+	placed = true
 	
 func return_reached_areas() -> Array:
 	return trumpet_area.get_overlapping_areas()

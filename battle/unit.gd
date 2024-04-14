@@ -31,6 +31,15 @@ var speed_boost_multi := 1.0
 
 var damage_tween:Tween
 var shake_tween:Tween
+@export var spawn_sound := 0
+
+func _ready() -> void:
+	if spawn_sound != 0:
+		$AudioSpawn.stream = load("res://battle/units/sfx/anime_teleport_%s.wav" % spawn_sound)
+		#$AudioSpawn.pitch_scale = randf_range(0.9, 1.1)
+		$AudioSpawn.play()
+	$AudioSpawn2.pitch_scale = randf_range(0.7, 0.8) if is_foe else randf_range(1.1, 1.3) 
+	$AudioSpawn2.play()
 
 func _process(delta: float) -> void:
 	process_movement(delta)

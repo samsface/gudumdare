@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://djynsd3l0xs2t" path="res://battle/sfx/win.mp3" id="12_ooopl"]
 [ext_resource type="AudioStream" uid="uid://cockhvicwuv1p" path="res://minigames/perfect.wav" id="13_1g4xp"]
 
-[sub_resource type="Shader" id="Shader_mlpm5"]
+[sub_resource type="Shader" id="Shader_utaad"]
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
@@ -34,7 +34,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pf4u7"]
-shader = SubResource("Shader_mlpm5")
+shader = SubResource("Shader_utaad")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tmmp1"]
 atlas = ExtResource("3_eygej")

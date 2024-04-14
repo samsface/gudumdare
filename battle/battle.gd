@@ -13,8 +13,6 @@ var foes := []
 
 var card_add_delay := 0.0
 
-var dragging_card: Card
-
 var won := false
 
 @onready var tower_player = %TowerPlayer
@@ -22,7 +20,7 @@ var won := false
 
 var mana := 0.0
 var max_mana := 10
-var mana_regen_per_sec := 1.5
+var mana_regen_per_sec := 1.0
 
 enum BattleTrack {REGULAR, EGYPT, JAPAN, RUSSIA, SPAIN}
 @export var track: BattleTrack
@@ -34,8 +32,9 @@ var battle_track_paths := {
 	BattleTrack.RUSSIA: "res://music/810727_Russian-Hardbass.mp3",
 	BattleTrack.SPAIN: "res://music/333540_Latinfun.mp3",
 }
-
+var summon
 func _ready() -> void:
+	Game.battle = self
 	randomize()
 	#Read player cards and put them to deck
 	for card_name in Game.game.player_cards:
@@ -60,9 +59,16 @@ func _ready() -> void:
 	foes.push_back(tower_enemy)
 	units.push_back(tower_enemy)
 	
+	%HandArea.battle = self
 	%Mana.max_value = max_mana
+	%ManaText.text = "%s/%s" % [mana, max_mana]
 	%ManaWhole.max_value = max_mana
 	Game.game.play_music_battle(battle_track_paths[track])
+	
+	summon = load("res://minigames/minigame_summon_worms/summon_worms.tscn").instantiate()
+	add_child(summon)
+	summon.load_level(1)
+	
 	await get_tree().create_timer(0.5).timeout
 	$AudioLetsGo.play()
 
@@ -72,12 +78,14 @@ func _process(delta: float) -> void:
 	%Mana.value = mana
 	%ManaWhole.value = floor(mana)
 	
-	
 	var mouse_off = (get_local_mouse_position() - Game.SCREEN_SIZE * 0.5)
 	var cam_to = mouse_off * 0.05 + Game.SCREEN_SIZE * 0.5
 	var cam_angle_to = mouse_off.x * 0.00005
 	%Camera2D.position = lerp(%Camera2D.position, cam_to, delta * 10.0)
 	%Camera2D.rotation = lerp(%Camera2D.rotation, cam_angle_to, delta * 5.0)
+	
+	if Input.is_key_pressed(KEY_P):
+		_tower_enemy_died()
 
 func _physics_process(delta: float) -> void:
 	for i in units.size():
@@ -117,6 +125,9 @@ func add_unit(unit: Unit, position: Vector2, card = null):
 func _on_button_quit_pressed() -> void:
 	Game.game.open_overworld()
 
+func card_rejected():
+	get_global_mouse_position()
+
 #We use this now
 func _battle_field_area_child_entered_tree(node: Node) -> void:
 	if node is CardEx:
@@ -146,17 +157,25 @@ func _tower_enemy_died() -> void:
 		return
 	
 	won = true
+	Game.game.battle_won = true
 	
-	var reward = load("res://battle/reward.tscn").instantiate()
+	summon.player.visible = true
 	
 	$AudioWin.play()
 	$AudioApplause.play()
 	
-	$SubViewports.add_child(reward)
+	#$SubViewports.visible = false
 	$SubViewports/SubViewportContainer.queue_free()
 	$CanvasLayer.visible = false
 
-	reward.done.connect(_on_button_quit_pressed)
+
+func give_card():
+	var reward = load("res://battle/reward.tscn").instantiate()
+	$SubViewports.add_child(reward)
+	reward.done.connect(on_reward_done)
+	
+func on_reward_done():
+	Game.game.open_overworld()
 
 func _add_to_deck(card_name: String):
 	deck.push_back(card_name)

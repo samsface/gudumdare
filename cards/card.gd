@@ -23,6 +23,9 @@ class_name CardEx
 @export var tier := 0
 @export var sidelay := false
 
+enum SpawnRegion {LEFT, ANYWHERE}
+@export var spawn_region = SpawnRegion.LEFT
+
 var dragging := false
 var hovered := false
 var just_dropped := false
@@ -34,14 +37,18 @@ func _mouse_entered() -> void:
 		return
 	%AudioHover.play()
 	hovered = true
-	set_render_priority(2)
+	set_render_priority(-1)
 
 func _mouse_exited() -> void:
 	if dragging:
 		return
 
 	hovered = false
-	set_render_priority(-2)
+	set_render_priority(-5)
+
+
+func _ready() -> void:
+	%CardLoading.material_override.set_shader_parameter("cost", mana_cost)
 
 func set_render_priority(value):
 	%MeshInstance3D3.render_priority = value
@@ -55,6 +62,7 @@ func _input_event(camera: Node, event: InputEvent, position: Vector3, normal: Ve
 		if event.pressed:
 			if not dragging:
 				dragging = true
+				Game.dragging_card = self
 				%AudioDrag.play()
 				hovered = true
 				set_process_input(true)
@@ -64,7 +72,16 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventMouseButton:
 			if not event.pressed:
 				dragging = false
+				Game.dragging_card = null
 				hovered = false
 				set_process_input(false)
 				hover_cooldown = get_tree().create_timer(0.5)
 				just_dropped = true
+
+func _process(delta: float) -> void:
+	if is_instance_valid(Game.battle):
+		%CardLoading.material_override.set_shader_parameter("mana", Game.battle.mana)
+		%Card.modulate = Color.WHITE if Game.battle.mana > mana_cost else Color(1.0, 0.7, 0.8)
+	#else:
+		#%CardLoading.material_override.set_shader_parameter("mana", 10.0)
+		#%Card.modulate = Color.WHITE

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cpljr016pccwd"]
+[gd_scene load_steps=16 format=3 uid="uid://cpljr016pccwd"]
 
 [ext_resource type="Script" path="res://cards/card.gd" id="1_0wbyr"]
 [ext_resource type="Texture2D" uid="uid://b5kke4ccmrcpt" path="res://battle/units/sprites/worm_knight_card_art.png" id="2_27jvq"]
@@ -14,6 +14,29 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iguum"]
 size = Vector3(0.5, 0.65, 0.01)
+
+[sub_resource type="Shader" id="Shader_trstd"]
+code = "shader_type spatial;
+uniform sampler2D texture;
+
+uniform float mana;
+uniform float cost;
+
+void fragment() {
+	ALPHA = texture(texture, UV).a;
+	float pct = mana / cost;
+	ALPHA *= smoothstep(pct, pct, UV.y) * 0.8;
+	ALBEDO = vec3(0.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nan0f"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_trstd")
+shader_parameter/mana = 1.0
+shader_parameter/cost = 6.0
+shader_parameter/texture = ExtResource("3_po2xc")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aus35"]
 random_pitch = 1.2
@@ -43,9 +66,21 @@ shape = SubResource("BoxShape3D_iguum")
 unique_name_in_owner = true
 transform = Transform3D(1.29202, 0, 0, 0, 1.29202, 0, 0, 0, 1, 0, 0.0709851, -0.00968646)
 cast_shadow = 0
+modulate = Color(1, 0.52, 0.52, 1)
 pixel_size = 0.0018
 double_sided = false
 render_priority = -1
+texture = ExtResource("3_po2xc")
+
+[node name="CardLoading" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.29202, 0, 0, 0, 1.29202, 0, 0, 0, 1, 0, 0.0749192, 0)
+material_override = SubResource("ShaderMaterial_nan0f")
+cast_shadow = 0
+modulate = Color(0.531336, 0.00023353, 0.354648, 1)
+pixel_size = 0.0018
+double_sided = false
+render_priority = 10
 texture = ExtResource("3_po2xc")
 
 [node name="CardNameLabel" type="Label3D" parent="."]

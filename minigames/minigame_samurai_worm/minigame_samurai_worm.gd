@@ -8,8 +8,13 @@ var birds_destroyed = 0
 var birds_max = 0
 var rating: float = 0.0
 
+@onready var death_index := 0
+@onready var death_sounds: Array = [$Death1, $Death2, $Death3, $Death4, $Death5, $Death6, $Death7]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	death_sounds.shuffle()
+	
 	sword.samurai_ready.connect(samurai_is_ready)
 	sword.samurai_attacked.connect(samurai_attack)
 	birds_max = birdList.get_child_count()
@@ -31,6 +36,10 @@ func samurai_attack():
 	bird.die()
 	birds_destroyed += 1
 	rating = birds_destroyed / birds_max
+	
+	death_sounds[death_index].play()
+	death_index += 1
+	
 	if (birds_destroyed >= birds_max):
 		win(rating)
 	%AudioSlash.play()
