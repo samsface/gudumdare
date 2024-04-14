@@ -11,6 +11,7 @@ var transition
 
 static var worms := 0
 static var worm_added := 0.0
+@onready var worm_icon = %WormIcon
 
 #Overworld nodes
 @onready var battle_won := false

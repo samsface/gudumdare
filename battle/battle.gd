@@ -1,7 +1,7 @@
 class_name Battle
 extends Node2D
 
-const MIN_HAND_CARDS = 3
+var MIN_HAND_CARDS = 2
 const STARTING_CARD_COUNT = 5
 
 var hand := []
@@ -74,6 +74,11 @@ func _ready() -> void:
 		mana_regen_per_sec *= 1.3
 	if Game.game.has_upgrade("Fast Mana 2"):
 		mana_regen_per_sec *= 1.3
+		
+	if Game.game.has_upgrade("Hand Size"):
+		MIN_HAND_CARDS += 1
+	if Game.game.has_upgrade("Hand Size 2"):
+		MIN_HAND_CARDS += 1
 	
 	await get_tree().create_timer(0.5).timeout
 	$AudioLetsGo.play()
