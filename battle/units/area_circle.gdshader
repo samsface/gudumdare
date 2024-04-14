@@ -1,5 +1,8 @@
 shader_type canvas_item;
 
+uniform float color_r = 1.0;
+uniform float color_g = 0.0;
+uniform float color_b = 0.0;
 uniform float ttl : hint_range(0.0, 1.0) = 0.0;
 uniform sampler2D noise_texture;
 
@@ -10,7 +13,7 @@ void fragment() {
 	float d1 = 1.0 - round(distance(uv, vec2(0.5, 0.5)) + 0.55 - ttl * 0.5);
 	float d2 = 1.0 - round(distance(uv, vec2(0.5, 0.5)) + 0.50 - ttl * 0.5);
 
-	COLOR = vec4(1.0, 0.0, 0.0, d2 - d1);
+	COLOR = vec4(color_r, color_g, color_b, d2 - d1);
 }
 
 //void light() {

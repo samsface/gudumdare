@@ -4,11 +4,13 @@ extends Node
 const CN_KNIGHT = "Knight"
 const CN_ARCHER = "Archer"
 const CN_RAIN = "Rain"
+const CN_PROTECTOR = "Protector"
 
 const CARD_PATHS = [
 	"res://cards/cards/archer.tscn",
 	"res://cards/cards/knight.tscn",
 	"res://cards/cards/rain.tscn",
+	"res://cards/cards/protector.tscn",
 ]
 
 var cards = {} #Key: Card Name, contains instiatated card object

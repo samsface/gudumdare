@@ -1,5 +1,5 @@
-class_name UnitEffect
 extends Unit
+class_name UnitEffect
 
 @export var mini_game:PackedScene
 

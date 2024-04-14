@@ -39,7 +39,7 @@ func _ready() -> void:
 	add_card(CardDB.CN_ARCHER)
 	add_card(CardDB.CN_ARCHER)
 	add_card(CardDB.CN_KNIGHT)
-	add_card(CardDB.CN_KNIGHT)
+	add_card(CardDB.CN_PROTECTOR)
 	add_card(CardDB.CN_RAIN)
 	print("game done adding cards")
 	print(player_cards)

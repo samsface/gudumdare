@@ -143,3 +143,6 @@ func boost_reload(scale: float, duration: float):
 func boost_speed(scale: float, duration: float):
 	speed_boost_t = duration
 	speed_boost_multi = scale
+
+func heal_to_max():
+	health = max_health
