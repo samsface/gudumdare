@@ -68,7 +68,6 @@ func _process(delta: float) -> void:
 	border_color_t += delta * 2.0
 	%Border.modulate = lerp(Color.MAGENTA, Color.BLUE, pingpong(border_color_t, 1.0))
 	
-	%BackgroundRotator.rotation += sin(border_color_t * 0.5) * delta * 0.2
 	process_shake(delta)
 	
 	time += delta / 1.2

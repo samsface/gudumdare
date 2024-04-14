@@ -1,13 +1,38 @@
-[gd_scene load_steps=28 format=3 uid="uid://cjoc3exflggws"]
+[gd_scene load_steps=34 format=3 uid="uid://cjoc3exflggws"]
 
 [ext_resource type="PackedScene" uid="uid://cwseclmja5rko" path="res://cards/hand.tscn" id="1_5tvgx"]
 [ext_resource type="Script" path="res://battle/reward.gd" id="1_yn03t"]
+[ext_resource type="Script" path="res://minigames/minigame_components/background_rotator.gd" id="2_1jq5c"]
 [ext_resource type="PackedScene" uid="uid://cqjta8uodixn7" path="res://cards/cards/archer.tscn" id="2_5ce5m"]
+[ext_resource type="Texture2D" uid="uid://bk4xnliqpem8r" path="res://minigames/checker.png" id="3_77wf2"]
 [ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="3_nl7t0"]
 [ext_resource type="Script" path="res://text_effect_jiggle.gd" id="4_ig78y"]
+[ext_resource type="Texture2D" uid="uid://bsval3aecpees" path="res://minigames/godrays.png" id="4_tik10"]
+[ext_resource type="Script" path="res://battle/godrays.gd" id="5_ekm8t"]
 [ext_resource type="Script" path="res://addons/flipnode/brush2d.gd" id="5_vh647"]
 [ext_resource type="Script" path="res://addons/flipnode/stroke.gd" id="6_3oqvi"]
 [ext_resource type="AudioStream" uid="uid://c44b4luxh02t4" path="res://battle/sfx/anime_wow.wav" id="8_fh2ip"]
+
+[sub_resource type="Shader" id="Shader_857ba"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+varying vec4 modulate;
+
+void vertex() {
+	modulate = COLOR;
+}
+
+void fragment() {
+	vec2 uv = UV;
+	uv += TIME * 0.2;
+	COLOR.rgb = (1.0 - texture(TEXTURE, uv).rgb * 0.5) * modulate.rgb;
+	COLOR.a = modulate.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n8qws"]
+shader = SubResource("Shader_857ba")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i3hku"]
 size = Vector3(10, 3, 0.01)
@@ -138,6 +163,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yn03t")
+
+[node name="BackgroundRotator" type="Control" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_1jq5c")
+
+[node name="Background" type="TextureRect" parent="BackgroundRotator"]
+auto_translate_mode = 1
+modulate = Color(0.116, 0, 0.87, 0.572549)
+material = SubResource("ShaderMaterial_n8qws")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1353.0
+offset_top = -1152.0
+offset_right = 1391.0
+offset_bottom = 1028.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_77wf2")
+stretch_mode = 1
+
+[node name="Godrays" type="Sprite2D" parent="."]
+modulate = Color(1, 0.666667, 0, 0.141176)
+position = Vector2(707, 87)
+scale = Vector2(4.15388, 4.15388)
+texture = ExtResource("4_tik10")
+script = ExtResource("5_ekm8t")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 auto_translate_mode = 1
