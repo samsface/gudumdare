@@ -35,7 +35,7 @@ func _ready() -> void:
 	
 	for card in cards:
 		if card == null: #Crash prevent since we dont have tier 2/3 cards yet
-			return
+			continue
 		
 		var new_card: Node3D = CardDB.return_card_scene(card).duplicate()
 		%NewCardArea.add_child(new_card) 
