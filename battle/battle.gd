@@ -2,7 +2,7 @@ class_name Battle
 extends Node2D
 
 const MIN_HAND_CARDS = 3
-const STARTING_CARD_COUNT = 6
+const STARTING_CARD_COUNT = 5
 
 var hand := []
 var deck := []
@@ -39,19 +39,17 @@ func _ready() -> void:
 	randomize()
 	#Read player cards and put them to deck
 	for card_name in Game.game.player_cards:
-		deck.push_back(card_name) #Store this in our own var, to make life easier :-)
+		_add_to_deck(card_name) 
 		
 	deck.shuffle()
 	print("deck is " + str(deck))
 	
 	#Draw enough cards
-	var draw_cards = true
-	while(draw_cards):
+	while(true):
 		if %HandArea.get_card_children().size() >= STARTING_CARD_COUNT:
-			draw_cards = false
+			break
 		if deck.size() <= 0:
-			draw_cards = false
-			
+			break
 		_draw_from_deck()
 
 	tower_player.battle = self
@@ -122,6 +120,7 @@ func _on_button_quit_pressed() -> void:
 #We use this now
 func _battle_field_area_child_entered_tree(node: Node) -> void:
 	if node is CardEx:
+		_add_to_deck(node.card_name)
 		var mouse_position := get_global_mouse_position()
 		#await get_tree().create_timer(0.25).timeout
 		var unit = node.spawns.instantiate()
@@ -131,12 +130,10 @@ func _battle_field_area_child_entered_tree(node: Node) -> void:
 		if %HandArea.get_card_children().size() < MIN_HAND_CARDS:
 			_draw_from_deck()
 			
-func _draw_from_deck():
-	print("_draw_from_deck")
+func _draw_from_deck() -> void:
 	if deck.size() > 0:
-		print("size > 0")
-		var card_name = deck[0]
-		var new_card = CardDB.return_card_scene(card_name).duplicate()
+		var card_name: String = deck[0]
+		var new_card: Node3D = CardDB.return_card_scene(card_name).duplicate()
 		%HandArea.add_child(new_card)
 		new_card.global_position = %NewCardSpawn.global_position
 		#Remove drawn card
@@ -160,3 +157,6 @@ func _tower_enemy_died() -> void:
 	$CanvasLayer.visible = false
 
 	reward.done.connect(_on_button_quit_pressed)
+
+func _add_to_deck(card_name: String):
+	deck.push_back(card_name)

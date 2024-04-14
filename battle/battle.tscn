@@ -72,6 +72,11 @@ offset_right = 1462.0
 offset_bottom = 827.0
 mouse_filter = 2
 
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Deck" type="Node2D" parent="."]
 visible = false
 position = Vector2(706, 741)
