@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dcnq1dkwqkvny"]
+[gd_scene load_steps=17 format=3 uid="uid://dcnq1dkwqkvny"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_flom2"]
+[ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="2_cd3wk"]
 [ext_resource type="PackedScene" uid="uid://b2kvkq1htewf7" path="res://battle/units/tower_enemy.tscn" id="3_8e3ng"]
 [ext_resource type="PackedScene" uid="uid://cwseclmja5rko" path="res://cards/hand.tscn" id="4_fjwei"]
 [ext_resource type="PackedScene" uid="uid://tpek6s1ym3sk" path="res://battle/units/tower_player.tscn" id="5_mk8s6"]
@@ -9,6 +10,29 @@
 [ext_resource type="AudioStream" uid="uid://b0jv5sljkrk46" path="res://battle/sfx/lesgo_3.wav" id="10_vqf1s"]
 [ext_resource type="AudioStream" uid="uid://djynsd3l0xs2t" path="res://battle/sfx/win.mp3" id="11_clmya"]
 [ext_resource type="AudioStream" uid="uid://ck08d0au8mjrc" path="res://battle/units/sfx/applause.wav" id="12_liifm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fl4yx"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vclsb"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jsvmk"]
 
@@ -35,26 +59,47 @@ script = ExtResource("1_flom2")
 
 [node name="Mana" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
-modulate = Color(1, 0.345098, 1, 1)
-offset_left = 24.0
-offset_top = 758.0
-offset_right = 1428.0
-offset_bottom = 803.0
+self_modulate = Color(1, 0.345098, 1, 1)
+offset_left = 7.0
+offset_top = 768.0
+offset_right = 1435.0
+offset_bottom = 805.0
 mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_fl4yx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vclsb")
 max_value = 10.0
+value = 5.0
 show_percentage = false
 
-[node name="ManaWhole" type="ProgressBar" parent="CanvasLayer"]
+[node name="ManaWhole" type="ProgressBar" parent="CanvasLayer/Mana"]
 unique_name_in_owner = true
 auto_translate_mode = 1
-offset_left = 24.0
-offset_top = 758.0
-offset_right = 1428.0
-offset_bottom = 803.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_jsvmk")
 max_value = 10.0
 show_percentage = false
+
+[node name="ManaText" type="Label" parent="CanvasLayer/Mana"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_cd3wk")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 4
+text = "3/5"
+horizontal_alignment = 1
 
 [node name="ButtonQuit" type="Button" parent="CanvasLayer"]
 offset_left = 33.0
@@ -134,6 +179,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.126)
 shape = SubResource("BoxShape3D_xvlid")
 
 [node name="BattleFieldArea" parent="SubViewports/SubViewportContainer/SubViewport/HandTest" instance=ExtResource("4_fjwei")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -1.32559, 1.43344, -0.51066)
 collision_layer = 2
 collision_mask = 0

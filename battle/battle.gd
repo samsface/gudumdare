@@ -13,8 +13,6 @@ var foes := []
 
 var card_add_delay := 0.0
 
-var dragging_card: Card
-
 var won := false
 
 @onready var tower_player = %TowerPlayer
@@ -22,7 +20,7 @@ var won := false
 
 var mana := 0.0
 var max_mana := 10
-var mana_regen_per_sec := 1.5
+var mana_regen_per_sec := 1.0
 
 enum BattleTrack {REGULAR, EGYPT, JAPAN, RUSSIA, SPAIN}
 @export var track: BattleTrack
@@ -60,18 +58,20 @@ func _ready() -> void:
 	foes.push_back(tower_enemy)
 	units.push_back(tower_enemy)
 	
+	%HandArea.battle = self
 	%Mana.max_value = max_mana
+	%ManaText.text = "%s/%s" % [mana, max_mana]
 	%ManaWhole.max_value = max_mana
 	Game.game.play_music_battle(battle_track_paths[track])
 	await get_tree().create_timer(0.5).timeout
 	$AudioLetsGo.play()
+	
 
 
 func _process(delta: float) -> void:
 	mana = move_toward(mana, max_mana, delta * mana_regen_per_sec)
 	%Mana.value = mana
 	%ManaWhole.value = floor(mana)
-	
 	
 	var mouse_off = (get_local_mouse_position() - Game.SCREEN_SIZE * 0.5)
 	var cam_to = mouse_off * 0.05 + Game.SCREEN_SIZE * 0.5
@@ -116,6 +116,9 @@ func add_unit(unit: Unit, position: Vector2, card = null):
 
 func _on_button_quit_pressed() -> void:
 	Game.game.open_overworld()
+
+func card_rejected():
+	get_global_mouse_position()
 
 #We use this now
 func _battle_field_area_child_entered_tree(node: Node) -> void:

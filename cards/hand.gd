@@ -8,19 +8,20 @@ signal card_dropped
 var invert = true
 @export var spread := 0.5
 
+var battle
+
 func get_card_children() -> Array:
 	var res := []
 	for child in get_children():
 		if child is CardEx:
 			res.push_back(child)
-
+	
 	return res
 
 func _ready() -> void:
 	input_ray_pickable = false
 
 func _process(delta) -> void:
-
 	for child in get_card_children():
 		if child.just_dropped:
 			drop(child)
@@ -29,7 +30,7 @@ func _process(delta) -> void:
 	for child in get_card_children():
 		if child.dragging:
 			drag(delta, child)
-
+	
 	if sort:
 		sort_(delta)
 
@@ -74,6 +75,10 @@ func drop(card):
 	if nearest_drop[1] == self:
 		return
 	
+	if battle:
+		if battle.mana < card.mana_cost:
+			battle.card_rejected()
+			return
 	if not nearest_drop[1].can_drop():
 		return
 
