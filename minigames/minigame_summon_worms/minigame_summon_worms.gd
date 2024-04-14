@@ -1,6 +1,6 @@
 extends Minigame
 
-const MAX_LEVEL = 1
+const MAX_LEVEL = 5
 const WORM_OFFSET = 64
 const LEVEL_PATH = "res://minigames/minigame_summon_worms/level"
 const TSCN = ".tscn"
@@ -16,7 +16,7 @@ var min_y: int
 var max_y: int
 
 func _load_random_level():
-	var random_level = RNG.random_int(1, MAX_LEVEL)
+	var random_level = 5#RNG.random_int(1, MAX_LEVEL)
 	var level_path = LEVEL_PATH + str(random_level) + TSCN
 	var level = load(level_path).instantiate()
 	add_child(level)

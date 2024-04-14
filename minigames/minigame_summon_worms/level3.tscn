@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckmlolawrgplv"]
+
+[ext_resource type="PackedScene" uid="uid://4jicxhiwg8vq" path="res://minigames/minigame_summon_worms/poop.tscn" id="1_le52t"]
+
+[node name="Level" type="Node2D"]
+position = Vector2(360, 176)
+
+[node name="WormLocationPoop" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(830, -64)
+
+[node name="WormLocationPoop2" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(958, 23)
+
+[node name="WormLocationPoop3" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(813, 58)
+
+[node name="WormLocationPoop4" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(-184, -38)
+
+[node name="WormLocationPoop5" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(-295, 93)
+
+[node name="WormLocationPoop6" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(928, 424)
+
+[node name="WormLocationPoop7" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(662, 550)
+
+[node name="WormLocationPoop8" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(1008, 558)
+
+[node name="WormLocationPoop9" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(-21, 427)
+
+[node name="WormLocationPoop10" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(-150, 550)
+
+[node name="WormLocationPoop11" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(-266, 345)
+
+[node name="WormLocationPoop12" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(412, 575)
+
+[node name="WormLocationPoop13" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(212, 509)
+
+[node name="WormLocationPoop14" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(51, -80)
+
+[node name="WormLocationPoop15" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(-21, 208)
+
+[node name="WormLocationPoop16" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(268, -113)
+
+[node name="WormLocationPoop17" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(662, 116)
+
+[node name="WormLocationPoop18" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(539, -87)
+
+[node name="WormLocationPoop19" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(304, 64)
+
+[node name="WormLocationPoop20" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(546, 310)
+
+[node name="WormLocationPoop25" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(-88, 85)
+
+[node name="WormLocationPoop21" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(189, 349)
+
+[node name="WormLocationPoop22" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(179, 176)
+
+[node name="WormLocationPoop23" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(742, 355)
+
+[node name="WormLocationPoop24" parent="." instance=ExtResource("1_le52t")]
+position = Vector2(956, 255)
