@@ -15,6 +15,7 @@ func _ready() -> void:
 	game = self
 	transition = %Transition
 	open_overworld()
+	duck_music(false)
 
 
 func open_overworld():
@@ -55,4 +56,4 @@ func play_music_battle():
 
 func duck_music(value: bool = true):
 	var tween = create_tween()
-	tween.tween_property($Music, "volume_db", linear_to_db(0.01 if value else 0.7), 0.2)
+	tween.tween_property($Music, "volume_db", linear_to_db(0.01 if value else 0.6), 0.2)

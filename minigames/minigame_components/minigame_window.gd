@@ -49,9 +49,12 @@ func complete():
 	Game.game.duck_music(false)
 	$MusicBonus.stop()
 	$AudioWin.play()
+	if rating == 1.0:
+		$AudioPerfect.play()
 
 func _on_ok_button_pressed() -> void:
 	$Score.visible = true
+	await get_tree().create_timer(0.1).timeout
 	# hack way to pause the mini game
 	%SubViewport.render_target_update_mode = 0
 	await get_tree().create_timer(0.5).timeout
