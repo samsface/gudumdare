@@ -30,8 +30,8 @@ func _on_sprite_timer_timeout() -> void:
 	if index > MAX_SPRITE:
 		index = PRE_LAST_SPRITE 
 
-	print("old sprite: " + current_sprite.name)
+	#print("old sprite: " + current_sprite.name)
 	current_sprite.hide() #Hide old
 	current_sprite = sprites[index] #set new sprite
 	current_sprite.show() #Show new
-	print("new sprite: " + current_sprite.name)
+	#print("new sprite: " + current_sprite.name)

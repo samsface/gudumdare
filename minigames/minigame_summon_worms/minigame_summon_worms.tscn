@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgvtqs51x35y2"]
+[gd_scene load_steps=4 format=3 uid="uid://dgvtqs51x35y2"]
 
 [ext_resource type="PackedScene" uid="uid://csteqwo8thlu4" path="res://minigames/minigame.tscn" id="1_r4x0q"]
 [ext_resource type="Script" path="res://minigames/minigame_summon_worms/minigame_summon_worms.gd" id="1_v7445"]
 [ext_resource type="PackedScene" uid="uid://8jwhfpejnqg7" path="res://minigames/minigame_summon_worms/player.tscn" id="2_37vpd"]
-[ext_resource type="PackedScene" uid="uid://7ko2o7or1h72" path="res://minigames/minigame_summon_worms/level1.tscn" id="4_p40gv"]
 
 [node name="Minigame" instance=ExtResource("1_r4x0q")]
+metadata/_edit_lock_ = true
 
 [node name="MinigameSummonWorms" type="Node2D" parent="." index="1"]
 script = ExtResource("1_v7445")
@@ -32,7 +32,5 @@ position = Vector2(1440, 0)
 
 [node name="BotCornerLeft" type="Node2D" parent="MinigameSummonWorms" index="5"]
 position = Vector2(0, 810)
-
-[node name="Level" parent="." index="2" instance=ExtResource("4_p40gv")]
 
 [connection signal="timeout" from="MinigameSummonWorms/Timer" to="MinigameSummonWorms" method="_on_timer_timeout"]

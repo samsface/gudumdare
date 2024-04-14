@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://2ntvicdhergq"]
+
+[ext_resource type="PackedScene" uid="uid://dn46itmu16ncm" path="res://minigames/minigame_summon_worms/rock.tscn" id="1_pu1ft"]
+[ext_resource type="PackedScene" uid="uid://qat7yjbw1y6c" path="res://minigames/minigame_summon_worms/pool.tscn" id="2_2jt4j"]
+[ext_resource type="PackedScene" uid="uid://feswwgcri5rp" path="res://minigames/minigame_summon_worms/grass.tscn" id="3_fl5es"]
+
+[node name="Level" type="Node2D"]
+position = Vector2(360, 176)
+
+[node name="WormLocationRock2" parent="." instance=ExtResource("1_pu1ft")]
+position = Vector2(-275, 276)
+
+[node name="WormLocationRock" parent="." instance=ExtResource("1_pu1ft")]
+position = Vector2(302, -123)
+
+[node name="WormLocationRock4" parent="." instance=ExtResource("1_pu1ft")]
+position = Vector2(777, 405)
+
+[node name="WormLocationRock3" parent="." instance=ExtResource("1_pu1ft")]
+position = Vector2(218, 581)
+
+[node name="WormLocationRock5" parent="." instance=ExtResource("1_pu1ft")]
+position = Vector2(197, 259)
+
+[node name="WormLocationPool" parent="." instance=ExtResource("2_2jt4j")]
+position = Vector2(623, 292)
+
+[node name="WormLocationPool2" parent="." instance=ExtResource("2_2jt4j")]
+position = Vector2(965, 345)
+
+[node name="WormLocationPool9" parent="." instance=ExtResource("2_2jt4j")]
+position = Vector2(-202, 526)
+
+[node name="WormLocationPool10" parent="." instance=ExtResource("2_2jt4j")]
+position = Vector2(-60, 295)
+
+[node name="WormLocationPool11" parent="." instance=ExtResource("2_2jt4j")]
+position = Vector2(-221, 92)
+
+[node name="WormLocationPool3" parent="." instance=ExtResource("2_2jt4j")]
+position = Vector2(887, 536)
+
+[node name="WormLocationGrass" parent="." instance=ExtResource("3_fl5es")]
+position = Vector2(192, -75)
+
+[node name="WormLocationGrass2" parent="." instance=ExtResource("3_fl5es")]
+position = Vector2(929, -39)
+
+[node name="WormLocationGrass3" parent="." instance=ExtResource("3_fl5es")]
+position = Vector2(435, -111)
+
+[node name="WormLocationGrass4" parent="." instance=ExtResource("3_fl5es")]
+position = Vector2(662, 449)
+
+[node name="WormLocationGrass7" parent="." instance=ExtResource("3_fl5es")]
+position = Vector2(872, 214)
+
+[node name="WormLocationGrass5" parent="." instance=ExtResource("3_fl5es")]
+position = Vector2(634, 78)
+
+[node name="WormLocationGrass6" parent="." instance=ExtResource("3_fl5es")]
+position = Vector2(283, 76)
