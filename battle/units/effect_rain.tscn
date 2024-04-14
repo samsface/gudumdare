@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0gai6a7radmv"]
+[gd_scene load_steps=17 format=3 uid="uid://d0gai6a7radmv"]
 
 [ext_resource type="Script" path="res://battle/units/effect_rain.gd" id="1_c1fk6"]
 [ext_resource type="PackedScene" uid="uid://bw1u7600nmpdv" path="res://minigames/minigame_samurai_worm/minigame_worm_samurai.tscn" id="2_yo0dw"]
 [ext_resource type="AudioStream" uid="uid://c3glj4ugx1wcv" path="res://minigames/ninja.wav" id="3_rd8fs"]
+[ext_resource type="AudioStream" uid="uid://biot1nx0dhtkc" path="res://sfx/transition_swish.wav" id="3_yfbtp"]
+[ext_resource type="Shader" path="res://battle/units/area_circle.gdshader" id="4_id6wj"]
+[ext_resource type="Script" path="res://battle/units/area_circle.gd" id="4_l6x16"]
+[ext_resource type="AudioStream" uid="uid://cqxjaj0tuha0m" path="res://minigames/minigame_samurai_worm/sword_slash_visceral_2.wav" id="7_wpeyu"]
 
 [sub_resource type="Curve" id="Curve_uuy1w"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.511111, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -25,13 +29,44 @@ scale_curve = SubResource("CurveTexture_3ubtb")
 color = Color(0.808998, 0.808998, 0.808998, 1)
 turbulence_enabled = true
 
+[sub_resource type="Gradient" id="Gradient_5aron"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wlk8r"]
+frequency = 0.0038
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jnwd5"]
+seamless = true
+color_ramp = SubResource("Gradient_5aron")
+noise = SubResource("FastNoiseLite_wlk8r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ctv60"]
+resource_local_to_scene = true
+shader = ExtResource("4_id6wj")
+shader_parameter/ttl = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jnwd5")
+
+[sub_resource type="Gradient" id="Gradient_vmrtn"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4gt1m"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_vmrtn")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.51, 0.5)
+
 [node name="EffectRain" type="Node2D"]
 script = ExtResource("1_c1fk6")
 mini_game = ExtResource("2_yo0dw")
 health = 10000
+attack_range = 500.0
 attackable = false
 
 [node name="Explosion" type="GPUParticles2D" parent="."]
+visible = false
 emitting = false
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_uma1o")
@@ -42,3 +77,21 @@ explosiveness = 0.81
 unique_name_in_owner = true
 stream = ExtResource("3_rd8fs")
 autoplay = true
+
+[node name="AreaCircle" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ctv60")
+rotation = 0.631809
+skew = 0.296706
+texture = SubResource("GradientTexture2D_4gt1m")
+script = ExtResource("4_l6x16")
+
+[node name="SweepSound" type="AudioStreamPlayer2D" parent="AreaCircle"]
+rotation = -0.778322
+scale = Vector2(0.879653, 1.18876)
+skew = -0.0032016
+stream = ExtResource("3_yfbtp")
+pitch_scale = 1.21
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_wpeyu")
