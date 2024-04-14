@@ -5,6 +5,8 @@ extends Node2D
 var spawn_t := 3.0
 
 func _process(delta: float) -> void:
+	if battle.won:
+		return
 	spawn_t -= delta
 	if spawn_t <= 0.0:
 		var unit = load("res://battle/units/unit_foe_cop.tscn").instantiate()

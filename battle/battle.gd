@@ -67,7 +67,7 @@ func _ready() -> void:
 	
 	summon = load("res://minigames/minigame_summon_worms/summon_worms.tscn").instantiate()
 	add_child(summon)
-	summon.load_level(1)
+	#summon.load_level(1)
 	
 	await get_tree().create_timer(0.5).timeout
 	$AudioLetsGo.play()
@@ -160,6 +160,8 @@ func _tower_enemy_died() -> void:
 	Game.game.battle_won = true
 	
 	summon.player.visible = true
+	
+	summon.place(tower_player.position)
 	
 	$AudioWin.play()
 	$AudioApplause.play()
