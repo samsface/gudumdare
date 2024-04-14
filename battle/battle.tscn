@@ -231,5 +231,6 @@ stream = ExtResource("12_liifm")
 bus = &"Chorus"
 
 [connection signal="pressed" from="CanvasLayer/ButtonQuit" to="." method="_on_button_quit_pressed"]
+[connection signal="died" from="Fight/TowerPlayer" to="." method="_tower_player_died"]
 [connection signal="died" from="Fight/TowerEnemy" to="." method="_tower_enemy_died"]
 [connection signal="child_entered_tree" from="SubViewports/SubViewportContainer/SubViewport/HandTest/BattleFieldArea" to="." method="_battle_field_area_child_entered_tree"]
