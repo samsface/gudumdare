@@ -13,10 +13,10 @@ func _on_loose_mouse_pressed() -> void:
 
 func _mouse_entered() -> void:
 	if laughs == 0:
-		GenericTween.squish($Hm2)
+		GenericTween.squish($CanvasLayer/Stuff/Hm2)
 		$Hm.play()
-		$Idle.visible = false
-		$Hm2.visible = true
+		$CanvasLayer/Stuff/Idle.visible = false
+		$CanvasLayer/Stuff/Hm2.visible = true
 
 func _input(event: InputEvent) -> void:
 	if not counting:
@@ -42,21 +42,21 @@ func _input(event: InputEvent) -> void:
 				laugh3()
 
 func laugh1() -> void:
-	GenericTween.shake($Laugh)
+	GenericTween.shake($CanvasLayer/Stuff/Laugh)
 	
 	counting = false
 	
-	$Idle.visible = false
-	$Hm2.visible = false
-	$Laugh.visible = true
+	$CanvasLayer/Stuff/Idle.visible = false
+	$CanvasLayer/Stuff/Hm2.visible = false
+	$CanvasLayer/Stuff/Laugh.visible = true
 	
 	$Laugh1.play()
 	await $Laugh1.finished
-	$Hm2.visible = true
-	$Laugh.visible = false
+	$CanvasLayer/Stuff/Hm2.visible = true
+	$CanvasLayer/Stuff/Laugh.visible = false
 	
 	$Hm.play()
-	GenericTween.squish($Hm2)
+	GenericTween.squish($CanvasLayer/Stuff/Hm2)
 	await $Hm.finished
 	
 	counting = true

@@ -6,6 +6,7 @@ const REQUIRED_SACRIFICE_COUNT = 3
 @onready var sacrifice_button := $TopPlayer/SacrificeButton
 @onready var new_card := $TopPlayer/NewCard
 @onready var new_card_label := $TopPlayer/NewCard/Label
+@onready var new_card_image := $TopPlayer/NewCard/Image
 @onready var sacrifice_slot := $SubViewportContainer/SubViewport/HandTest/SacrificeSlot
 
 var filled := 0.0
@@ -43,10 +44,14 @@ func _on_sacrifice_button_pressed() -> void:
 	
 	new_card.show()
 	sacrifice_button.hide()
-	new_card_label.text = "YOU GOT " + new_card_name + "!"
+	new_card_label.text = "YOU GOT " + new_card_name.to_upper() + "!"
+	new_card_image.texture = CardDB.return_card_texture(new_card_name)
+	player_hand.add_child(CardDB.return_card_scene(new_card_name)) #add to hand
 	#Delete cards from scene TODO delete from player too
 	for card in sacrifice_slot.get_card_children():
 		card.queue_free()
+
+	$Sacrafice.play()
 
 func _on_confirm_button_pressed() -> void:
 	
@@ -64,3 +69,7 @@ func _process(delta: float) -> void:
 	#$Background.position = -mouse_off * 0.02 + Vector2(-30, -20)
 	$Foreground.position = -mouse_off * 0.02 + Vector2(-35, -20)
 	$Camera2D.position = mouse_off * 0.02 + Game.SCREEN_SIZE * 0.5
+	
+	$MusicLayer0.volume_db = 0.0 if filled_to > 0 else -80.0
+	$MusicLayer1.volume_db = 0.0 if filled_to > 1 else -80.0
+	$MusicLayer2.volume_db = 0.0 if filled_to > 2 else -80.0
