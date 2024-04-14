@@ -1,8 +1,11 @@
 class_name Battle
 extends Node2D
 
-var deck := []
+const MIN_HAND_CARDS = 3
+const STARTING_CARD_COUNT = 6
+
 var hand := []
+var deck := []
 
 var units := []
 var friends := []
@@ -33,15 +36,24 @@ var battle_track_paths := {
 }
 
 func _ready() -> void:
-	var card_knight = load("res://battle/cards/card_knight.tscn")
-	var card_buff = load("res://battle/cards/card_buff.tscn")
-	var card_archer = load("res://battle/cards/card_archer.tscn")
-	var card_rain = load("res://battle/cards/card_rain.tscn")
-	add_card(card_knight.instantiate())
-	add_card(card_buff.instantiate())
-	add_card(card_archer.instantiate())
-	add_card(card_rain.instantiate())
+	randomize()
+	#Read player cards and put them to deck
+	for card_name in Game.game.player_cards:
+		deck.push_back(card_name) #Store this in our own var, to make life easier :-)
+		
+	deck.shuffle()
+	print("deck is " + str(deck))
 	
+	#Draw enough cards
+	var draw_cards = true
+	while(draw_cards):
+		if %HandArea.get_card_children().size() >= STARTING_CARD_COUNT:
+			draw_cards = false
+		if deck.size() <= 0:
+			draw_cards = false
+			
+		_draw_from_deck()
+
 	tower_player.battle = self
 	friends.push_back(tower_player)
 	units.push_back(tower_player)
@@ -57,14 +69,7 @@ func _ready() -> void:
 	$AudioLetsGo.play()
 
 
-func add_card(card):
-	card.init(self)
-	deck.push_back(card)
-	%Deck.add_child(card)
-
-
 func _process(delta: float) -> void:
-	process_add_to_hand(delta)
 	mana = move_toward(mana, max_mana, delta * mana_regen_per_sec)
 	%Mana.value = mana
 	%ManaWhole.value = floor(mana)
@@ -73,8 +78,8 @@ func _process(delta: float) -> void:
 	var mouse_off = (get_local_mouse_position() - Game.SCREEN_SIZE * 0.5)
 	var cam_to = mouse_off * 0.05 + Game.SCREEN_SIZE * 0.5
 	var cam_angle_to = mouse_off.x * 0.00005
-	$Camera2D.position = lerp($Camera2D.position, cam_to, delta * 10.0)
-	$Camera2D.rotation = lerp($Camera2D.rotation, cam_angle_to, delta * 5.0)
+	%Camera2D.position = lerp(%Camera2D.position, cam_to, delta * 10.0)
+	%Camera2D.rotation = lerp(%Camera2D.rotation, cam_angle_to, delta * 5.0)
 
 func _physics_process(delta: float) -> void:
 	for i in units.size():
@@ -92,34 +97,6 @@ func _physics_process(delta: float) -> void:
 				var direction = unit_a.position.direction_to(unit_b.position)
 				unit_a.position -= direction * push * ratio * delta
 				unit_b.position += direction * push * (1.0 - ratio) * delta
-
-func process_add_to_hand(delta):
-	if deck.size() <= 0:
-		return
-	
-	if card_add_delay > 0.0:
-		card_add_delay -= delta
-		return
-	
-	var hand_size := 3
-	if hand.size() < hand_size:
-		take_card()
-		card_add_delay = 0.1
-
-
-func take_card():
-	if deck.size() > 0:
-		var card: Card = deck.pick_random()
-		deck.erase(card)
-		hand.push_back(card)
-		card.visible = true
-
-
-func put_card(card):
-	hand.erase(card)
-	deck.push_back(card)
-	card.visible = false
-	card_add_delay = 0.1
 
 func get_card_position(card):
 	if not hand.has(card):
@@ -142,6 +119,7 @@ func add_unit(unit: Unit, position: Vector2, card = null):
 func _on_button_quit_pressed() -> void:
 	Game.game.open_overworld()
 
+#We use this now
 func _battle_field_area_child_entered_tree(node: Node) -> void:
 	if node is CardEx:
 		var mouse_position := get_global_mouse_position()
@@ -150,11 +128,20 @@ func _battle_field_area_child_entered_tree(node: Node) -> void:
 		add_unit(unit, mouse_position, node)
 		mana -= node.mana_cost
 
-		var new_card = load("res://cards/cards/archer.tscn").instantiate()
-		
-		if %HandArea.get_card_children().size() < 3:
-			%HandArea.add_child(new_card)
-			new_card.global_position = %NewCardSpawn.global_position
+		if %HandArea.get_card_children().size() < MIN_HAND_CARDS:
+			_draw_from_deck()
+			
+func _draw_from_deck():
+	print("_draw_from_deck")
+	if deck.size() > 0:
+		print("size > 0")
+		var card_name = deck[0]
+		var new_card = CardDB.return_card_scene(card_name).duplicate()
+		%HandArea.add_child(new_card)
+		new_card.global_position = %NewCardSpawn.global_position
+		#Remove drawn card
+		deck.remove_at(0)
+
 
 func _tower_enemy_died() -> void:
 	# win signal is getting called twice sometimes, don't know why

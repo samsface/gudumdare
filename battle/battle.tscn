@@ -1,12 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcnq1dkwqkvny"]
+[gd_scene load_steps=14 format=3 uid="uid://dcnq1dkwqkvny"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_flom2"]
 [ext_resource type="PackedScene" uid="uid://b2kvkq1htewf7" path="res://battle/units/tower_enemy.tscn" id="3_8e3ng"]
 [ext_resource type="PackedScene" uid="uid://cwseclmja5rko" path="res://cards/hand.tscn" id="4_fjwei"]
-[ext_resource type="PackedScene" uid="uid://dj2ebg7r37paw" path="res://cards/cards/rain.tscn" id="5_18a1l"]
 [ext_resource type="PackedScene" uid="uid://tpek6s1ym3sk" path="res://battle/units/tower_player.tscn" id="5_mk8s6"]
-[ext_resource type="PackedScene" uid="uid://cqjta8uodixn7" path="res://cards/cards/archer.tscn" id="5_uyypr"]
-[ext_resource type="PackedScene" uid="uid://glirm2jvo8nx" path="res://cards/cards/knight.tscn" id="6_8oqba"]
 [ext_resource type="AudioStream" uid="uid://cv02y62fsib0b" path="res://battle/sfx/lesgo_1.wav" id="8_r6yyu"]
 [ext_resource type="AudioStream" uid="uid://rlljb2xw2447" path="res://battle/sfx/lesgo_2.wav" id="9_mdeoy"]
 [ext_resource type="AudioStream" uid="uid://b0jv5sljkrk46" path="res://battle/sfx/lesgo_3.wav" id="10_vqf1s"]
@@ -76,7 +73,6 @@ offset_bottom = 827.0
 mouse_filter = 2
 
 [node name="Deck" type="Node2D" parent="."]
-unique_name_in_owner = true
 visible = false
 position = Vector2(706, 741)
 
@@ -128,24 +124,6 @@ collision_mask = 0
 input_ray_pickable = false
 sort = true
 
-[node name="StaticBody3D9" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_18a1l")]
-
-[node name="StaticBody3D" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
-
-[node name="StaticBody3D2" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("6_8oqba")]
-
-[node name="StaticBody3D3" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
-
-[node name="StaticBody3D4" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("6_8oqba")]
-
-[node name="StaticBody3D5" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
-
-[node name="StaticBody3D6" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("6_8oqba")]
-
-[node name="StaticBody3D7" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
-
-[node name="StaticBody3D8" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("6_8oqba")]
-
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.126)
 shape = SubResource("BoxShape3D_xvlid")
@@ -183,6 +161,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00959778, -1.37475, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(720, 405)
 
 [node name="AudioLetsGo" type="AudioStreamPlayer" parent="."]
