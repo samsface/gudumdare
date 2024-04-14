@@ -29,7 +29,7 @@ func _ready() -> void:
 	my_name = name
 
 	if not available:
-		hide()
+		%Sprite.modulate = Color.DIM_GRAY
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_P):
@@ -42,9 +42,9 @@ func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		queue_redraw()
 	if hovering:
-		$Sprite.modulate = color_hover if fmod(t / 0.1, 1.0) < 0.5 else color_normal
+		%Sprite.modulate = color_hover if fmod(t / 0.1, 1.0) < 0.5 else color_normal
 	else:
-		$Sprite.modulate = color_normal
+		%Sprite.modulate = color_normal
 	
 	
 
@@ -63,8 +63,11 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	for neighbor in neighbors:
-		if neighbor.available:
-			draw_line(Vector2.ZERO, neighbor.position - position, Color.WHITE, 4.0)
+		var color = Color.WHITE
+		if not neighbor.available or not available:
+			color = Color.DIM_GRAY
+			
+		draw_line(Vector2.ZERO, neighbor.position - position, color, 4.0)
 
 
 func _on_area_brush_2d_mouse_clicked() -> void:
@@ -82,6 +85,8 @@ func _on_area_brush_2d_mouse_clicked() -> void:
 	Game.game.open_battle("res://battle/battles/%s.tscn" % name.to_snake_case(), name)
 	get_parent().entering = true
 	
-func unlock():
+func unlock(play_animation := false):
 	available = true
-	show()
+
+	if play_animation:
+		%AnimationPlayer.play("unlock") 

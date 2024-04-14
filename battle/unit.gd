@@ -82,7 +82,11 @@ func hit(damage):
 	if health <= 0:
 		remove()
 		if is_foe:
-			Game.worms += 1
+			for i in randi_range(1, 3):
+				var worm_pickup = load("res://battle/pickup_worm.tscn").instantiate()
+				get_parent().add_child(worm_pickup)
+				worm_pickup.global_position = global_position
+				worm_pickup.velocity = Vector2.from_angle(randf() * TAU) * randf_range(0.2, 1.0) * 800.0
 		died.emit()
 		
 		$Model/AnimationPlayer.play("RESET")

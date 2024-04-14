@@ -11,6 +11,7 @@ var window: MinigameWindow
 # Override those if you want a custom behaviour.
 func win(rating: float = 1.0):
 	minigame_gameover_won.emit(rating)
+	Game.worms += ceil(rating * 3.0)
 
 func loose():
 	minigame_gameover_lost.emit()
