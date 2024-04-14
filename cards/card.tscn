@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpljr016pccwd"]
+[gd_scene load_steps=6 format=3 uid="uid://cpljr016pccwd"]
 
 [ext_resource type="Script" path="res://cards/card.gd" id="1_0wbyr"]
 [ext_resource type="Texture2D" uid="uid://b5kke4ccmrcpt" path="res://battle/units/sprites/worm_knight_card_art.png" id="2_27jvq"]
+[ext_resource type="Texture2D" uid="uid://dqooanq3p2h7v" path="res://cards/mana_circle.png" id="3_q3enn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iguum"]
 size = Vector3(0.5, 1, 0.01)
@@ -14,6 +15,7 @@ orientation = 2
 script = ExtResource("1_0wbyr")
 card_name = "Knight"
 art = ExtResource("2_27jvq")
+mana_cost = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_iguum")
@@ -33,6 +35,22 @@ double_sided = false
 texture_filter = 1
 text = "Knight"
 font_size = 128
+outline_size = 0
+
+[node name="MeshInstance3D3" type="Sprite3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.234991, 0.488731, 0.00435013)
+modulate = Color(1, 0.137255, 1, 1)
+pixel_size = 0.001
+texture = ExtResource("3_q3enn")
+
+[node name="ManaCost" type="Label3D" parent="MeshInstance3D/MeshInstance3D3"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.011213)
+pixel_size = 0.001
+double_sided = false
+texture_filter = 1
+text = "1"
+font_size = 72
 outline_size = 0
 
 [node name="Art" type="Sprite3D" parent="MeshInstance3D"]

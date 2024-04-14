@@ -5,3 +5,4 @@
 
 [node name="StaticBody3D" instance=ExtResource("1_xtdbm")]
 spawns = ExtResource("2_qjtq5")
+mana_cost = 2

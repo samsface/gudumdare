@@ -8,9 +8,14 @@
 card_name = "Rain"
 art = ExtResource("2_hot8j")
 spawns = ExtResource("3_kpceh")
+mana_cost = 5
+sidelay = true
 
 [node name="CardNameLabel" parent="MeshInstance3D" index="0"]
 text = "Rain"
 
-[node name="Art" parent="MeshInstance3D" index="1"]
+[node name="ManaCost" parent="MeshInstance3D/MeshInstance3D3" index="0"]
+text = "5"
+
+[node name="Art" parent="MeshInstance3D" index="2"]
 texture = ExtResource("2_hot8j")

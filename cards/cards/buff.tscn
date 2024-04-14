@@ -6,6 +6,7 @@
 [node name="StaticBody3D" instance=ExtResource("1_wubgd")]
 card_name = "Rain"
 spawns = ExtResource("2_uepi3")
+mana_cost = 2
 
 [node name="CardNameLabel" parent="MeshInstance3D" index="0"]
 text = "Rain"

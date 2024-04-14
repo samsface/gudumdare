@@ -15,7 +15,11 @@ class_name CardEx
 			%Art.texture = art
 		
 @export var spawns:PackedScene
-@export var mana_cost := 2
+@export var mana_cost:int :
+	set(value):
+		mana_cost = value
+		if has_node("%ManaCost"):
+			%ManaCost.text = str(mana_cost)
 @export var tier := 0
 @export var sidelay := false
 

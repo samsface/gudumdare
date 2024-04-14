@@ -12,6 +12,7 @@ var card_add_delay := 0.0
 
 var dragging_card: Card
 
+var won := false
 
 @onready var tower_player = %TowerPlayer
 @onready var tower_enemy = %TowerEnemy
@@ -135,6 +136,12 @@ func _battle_field_area_child_entered_tree(node: Node) -> void:
 			new_card.global_position = %NewCardSpawn.global_position
 
 func _tower_enemy_died() -> void:
+	# win signal is getting called twice sometimes, don't know why
+	if won:
+		return
+	
+	won = true
+	
 	var reward = load("res://battle/reward.tscn").instantiate()
 	
 	$SubViewports.add_child(reward)
