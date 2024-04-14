@@ -4,6 +4,7 @@ extends Node2D
 const SCREEN_SIZE = Vector2(1440, 810)
 static var game: Game
 static var dragging_card
+static var battle
 
 var current_scene
 var transition
@@ -81,3 +82,12 @@ func duck_music(value: bool = true):
 
 func lowpass_music(value: bool = true):
 	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Music"), 1, value)
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("fullscreen"):
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	if Input.is_action_just_pressed("mute"):
+		AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))

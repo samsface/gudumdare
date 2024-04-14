@@ -37,14 +37,18 @@ func _mouse_entered() -> void:
 		return
 	%AudioHover.play()
 	hovered = true
-	set_render_priority(2)
+	set_render_priority(-1)
 
 func _mouse_exited() -> void:
 	if dragging:
 		return
 
 	hovered = false
-	set_render_priority(-2)
+	set_render_priority(-5)
+
+
+func _ready() -> void:
+	%CardLoading.material_override.set_shader_parameter("cost", mana_cost)
 
 func set_render_priority(value):
 	%MeshInstance3D3.render_priority = value
@@ -73,3 +77,11 @@ func _input(event: InputEvent) -> void:
 				set_process_input(false)
 				hover_cooldown = get_tree().create_timer(0.5)
 				just_dropped = true
+
+func _process(delta: float) -> void:
+	if is_instance_valid(Game.battle):
+		%CardLoading.material_override.set_shader_parameter("mana", Game.battle.mana)
+		%Card.modulate = Color.WHITE if Game.battle.mana > mana_cost else Color(1.0, 0.7, 0.8)
+	#else:
+		#%CardLoading.material_override.set_shader_parameter("mana", 10.0)
+		#%Card.modulate = Color.WHITE

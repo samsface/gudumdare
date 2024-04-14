@@ -1,19 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqjta8uodixn7"]
+[gd_scene load_steps=7 format=3 uid="uid://cqjta8uodixn7"]
 
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_uamwq"]
 [ext_resource type="PackedScene" uid="uid://tivqdbwul3u2" path="res://battle/units/unit_archer.tscn" id="2_5rdev"]
 [ext_resource type="Texture2D" uid="uid://cwh77y4vvcaw4" path="res://battle/units/sprites/worm_archer_card_art.png" id="2_tf5by"]
+[ext_resource type="Texture2D" uid="uid://dgr7ggakdl3b4" path="res://cards/card.png" id="4_0uv2o"]
+
+[sub_resource type="Shader" id="Shader_trstd"]
+code = "shader_type spatial;
+uniform sampler2D texture;
+
+uniform float mana;
+uniform float cost;
+
+void fragment() {
+	ALPHA = texture(texture, UV).a;
+	float pct = mana / cost;
+	ALPHA *= smoothstep(pct, pct, UV.y) * 0.8;
+	ALBEDO = vec3(0.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sd53v"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_trstd")
+shader_parameter/mana = 1.0
+shader_parameter/cost = null
+shader_parameter/texture = ExtResource("4_0uv2o")
 
 [node name="StaticBody3D" instance=ExtResource("1_uamwq")]
 card_name = "Archer"
 art = ExtResource("2_tf5by")
 spawns = ExtResource("2_5rdev")
+mana_cost = 3
 
-[node name="CardNameLabel" parent="." index="2"]
+[node name="CardLoading" parent="." index="2"]
+material_override = SubResource("ShaderMaterial_sd53v")
+
+[node name="CardNameLabel" parent="." index="3"]
 text = "Archer"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
-text = "2"
+text = "3"
 
-[node name="Art" parent="." index="4"]
+[node name="Art" parent="." index="5"]
 texture = ExtResource("2_tf5by")
