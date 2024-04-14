@@ -8,6 +8,7 @@ func _ready() -> void:
 	if card:
 		card.queue_free()
 	projectile_scene = load("res://battle/projectiles/projectile_%s.tscn" % projectile_type)
+	super()
 
 func attack():
 	GenericTween.attack($Model, global_position.direction_to(closest_enemy.position))
