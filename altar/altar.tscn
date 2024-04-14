@@ -1,11 +1,46 @@
-[gd_scene load_steps=10 format=3 uid="uid://cf4vd783dyum8"]
+[gd_scene load_steps=14 format=3 uid="uid://cf4vd783dyum8"]
 
 [ext_resource type="Script" path="res://altar/altar.gd" id="1_a0qxh"]
+[ext_resource type="Texture2D" uid="uid://c8t7i4g3eb78u" path="res://altar/bg_back.png" id="2_du5v5"]
 [ext_resource type="Texture2D" uid="uid://bc0ig6xojvwm3" path="res://altar/bg.png" id="2_olr0h"]
 [ext_resource type="FontFile" uid="uid://da7xd0ojorof3" path="res://Mario-Party-Hudson-Font.ttf" id="3_84gwk"]
+[ext_resource type="Texture2D" uid="uid://bvlfs6jvry30u" path="res://altar/bg_front.png" id="3_lski7"]
 [ext_resource type="Texture2D" uid="uid://d2s4h5hax5j1o" path="res://cards/art_placeholder.png" id="4_cubwq"]
 [ext_resource type="PackedScene" uid="uid://cwseclmja5rko" path="res://cards/hand.tscn" id="5_lgg7v"]
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="6_ixx5x"]
+
+[sub_resource type="Shader" id="Shader_bmetb"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform vec4 color_off : source_color;
+uniform vec4 color_on : source_color;
+uniform vec4 color1 : source_color;
+uniform vec4 color2 : source_color;
+uniform vec4 color3 : source_color;
+uniform float filled = 0.0;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	if (dot(COLOR.rgb, color1.rgb) > 0.95) {
+		COLOR.rgb = mix(color_off.rgb, color_on.rgb, clamp(filled - 0.0, 0.0, 1.0));
+	}
+	else if (dot(COLOR.rgb, color2.rgb) > 0.95) {
+		COLOR.rgb = mix(color_off.rgb, color_on.rgb, clamp(filled - 1.0, 0.0, 1.0));
+	}
+	else if (dot(COLOR.rgb, color3.rgb) > 0.95) {
+		COLOR.rgb = mix(color_off.rgb, color_on.rgb, clamp(filled - 2.0, 0.0, 1.0));
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t20x1"]
+shader = SubResource("Shader_bmetb")
+shader_parameter/color_off = Color(0.431373, 0.321569, 0.415686, 1)
+shader_parameter/color_on = Color(0.992825, 0.840471, 0, 1)
+shader_parameter/color1 = Color(0.937255, 1, 0.0117647, 1)
+shader_parameter/color2 = Color(0.0117647, 0.439216, 1, 1)
+shader_parameter/color3 = Color(1, 0.00784314, 0.172549, 1)
+shader_parameter/filled = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvlid"]
 size = Vector3(10, 3, 0.01)
@@ -26,13 +61,33 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_a0qxh")
 
-[node name="BottomLayer" type="CanvasLayer" parent="."]
-layer = -1
+[node name="BackBackground" type="TextureRect" parent="."]
+auto_translate_mode = 1
+texture_filter = 1
+offset_right = 1440.0
+offset_bottom = 810.0
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("2_du5v5")
+metadata/_edit_lock_ = true
 
-[node name="Background" type="TextureRect" parent="BottomLayer"]
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_t20x1")
 offset_right = 1440.0
 offset_bottom = 810.0
 texture = ExtResource("2_olr0h")
+metadata/_edit_lock_ = true
+
+[node name="Foreground" type="TextureRect" parent="."]
+auto_translate_mode = 1
+texture_filter = 1
+material = SubResource("ShaderMaterial_t20x1")
+offset_left = -30.0
+offset_top = -20.0
+offset_right = 1410.0
+offset_bottom = 790.0
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("3_lski7")
 metadata/_edit_lock_ = true
 
 [node name="TopPlayer" type="CanvasLayer" parent="."]
@@ -222,6 +277,8 @@ max_cards = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/HandTest/BackgroundHand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19768, -0.737752)
 shape = SubResource("BoxShape3D_skted")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="pressed" from="TopPlayer/SacrificeButton" to="." method="_on_sacrifice_button_pressed"]
 [connection signal="pressed" from="TopPlayer/NewCard/ConfirmButton" to="." method="_on_confirm_button_pressed"]
