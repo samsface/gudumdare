@@ -33,6 +33,21 @@ func _process(delta: float) -> void:
 		$Sprite.modulate = color_hover if fmod(t / 0.1, 1.0) < 0.5 else color_normal
 	else:
 		$Sprite.modulate = color_normal
+	
+	
+
+	if not hovering and get_local_mouse_position().length() < 40.0:
+		get_parent().set_title(name.capitalize())
+		hovering = true
+		$AudioHover.play()
+		get_parent().hovering = true
+
+
+	if hovering and get_local_mouse_position().length() > 60.0:
+		get_parent().set_title()
+		hovering = false
+		get_parent().hovering = false
+
 
 func _draw() -> void:
 	for neighbor in neighbors:
@@ -48,14 +63,4 @@ func _on_area_brush_2d_mouse_clicked() -> void:
 	Game.game.open_battle("res://battle/battles/%s.tscn" % name.to_snake_case())
 	get_parent().entering = true
 	
-
-
-func _on_area_brush_2d_mouse_entered() -> void:
-	get_parent().set_title(name.capitalize())
-	hovering = true
-	$AudioHover.play()
-
-
-func _on_area_brush_2d_mouse_exited() -> void:
-	get_parent().set_title()
-	hovering = false
+	

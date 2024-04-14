@@ -21,7 +21,7 @@ var mana := 0.0
 var max_mana := 10
 var mana_regen_per_sec := 1.5
 
-enum BattleTrack {REGULAR, EGYPT, JAPAN, RUSSIA}
+enum BattleTrack {REGULAR, EGYPT, JAPAN, RUSSIA, SPAIN}
 @export var track: BattleTrack
 
 var battle_track_paths := {
@@ -29,6 +29,7 @@ var battle_track_paths := {
 	BattleTrack.EGYPT: "res://music/761374_Sand-in-my-Stop-Watch.mp3",
 	BattleTrack.JAPAN: "res://music/37040_newgrounds_parago.mp3",
 	BattleTrack.RUSSIA: "res://music/810727_Russian-Hardbass.mp3",
+	BattleTrack.SPAIN: "res://music/333540_Latinfun.mp3",
 }
 
 func _ready() -> void:
