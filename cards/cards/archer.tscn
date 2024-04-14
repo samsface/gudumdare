@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqjta8uodixn7"]
+[gd_scene load_steps=4 format=3 uid="uid://cqjta8uodixn7"]
 
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_uamwq"]
 [ext_resource type="PackedScene" uid="uid://tivqdbwul3u2" path="res://battle/units/unit_archer.tscn" id="2_5rdev"]
+[ext_resource type="Texture2D" uid="uid://cwh77y4vvcaw4" path="res://battle/units/sprites/worm_archer_card_art.png" id="2_tf5by"]
 
 [node name="StaticBody3D" instance=ExtResource("1_uamwq")]
 card_name = "Archer"
+art = ExtResource("2_tf5by")
 spawns = ExtResource("2_5rdev")
-sidelay = false
 
 [node name="CardNameLabel" parent="MeshInstance3D" index="0"]
 text = "Archer"
+
+[node name="Art" parent="MeshInstance3D" index="1"]
+texture = ExtResource("2_tf5by")

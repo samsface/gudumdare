@@ -57,6 +57,8 @@ func attack():
 	pass
 
 func hit(damage):
+	GenericTween.flash_red(self)
+
 	health -= 1
 	if health <= 0:
 		remove()

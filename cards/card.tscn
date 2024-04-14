@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpljr016pccwd"]
 
 [ext_resource type="Script" path="res://cards/card.gd" id="1_0wbyr"]
-[ext_resource type="Texture2D" uid="uid://d2s4h5hax5j1o" path="res://cards/art_placeholder.png" id="2_v5dg7"]
+[ext_resource type="Texture2D" uid="uid://b5kke4ccmrcpt" path="res://battle/units/sprites/worm_knight_card_art.png" id="2_27jvq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iguum"]
 size = Vector3(0.5, 1, 0.01)
@@ -12,8 +12,8 @@ orientation = 2
 
 [node name="StaticBody3D" type="Area3D"]
 script = ExtResource("1_0wbyr")
-card_name = "SaM"
-art = ExtResource("2_v5dg7")
+card_name = "Knight"
+art = ExtResource("2_27jvq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_iguum")
@@ -31,7 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.417906, 0.00258192)
 pixel_size = 0.001
 double_sided = false
 texture_filter = 1
-text = "SaM"
+text = "Knight"
 font_size = 128
 outline_size = 0
 
@@ -41,7 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00153491)
 cast_shadow = 0
 pixel_size = 0.0018
 double_sided = false
-texture = ExtResource("2_v5dg7")
+texture = ExtResource("2_27jvq")
 
 [connection signal="input_event" from="." to="." method="_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_mouse_entered"]

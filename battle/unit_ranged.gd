@@ -10,6 +10,8 @@ func _ready() -> void:
 	projectile_scene = load("res://battle/projectiles/projectile_%s.tscn" % projectile_type)
 
 func attack():
+	GenericTween.attack($Model, global_position.direction_to(closest_enemy.position))
+	
 	var projectile: Projectile = projectile_scene.instantiate()
 	get_parent().add_child(projectile)
 	projectile.position = position

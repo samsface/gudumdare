@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xr6j6jxy81fs"
-path.s3tc="res://.godot/imported/archerworm.png-ab78daa9e8fb947f167aa37817cfa6b9.s3tc.ctex"
+uid="uid://b5kke4ccmrcpt"
+path.s3tc="res://.godot/imported/worm_knight_card_art.png-da27e5f1dfefa6a62cdc82e5e9e92f3d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://battle/units/sprites/archerworm.png"
-dest_files=["res://.godot/imported/archerworm.png-ab78daa9e8fb947f167aa37817cfa6b9.s3tc.ctex"]
+source_file="res://battle/units/sprites/worm_knight_card_art.png"
+dest_files=["res://.godot/imported/worm_knight_card_art.png-da27e5f1dfefa6a62cdc82e5e9e92f3d.s3tc.ctex"]
 
 [params]
 

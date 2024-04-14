@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_flom2"]
 [ext_resource type="PackedScene" uid="uid://b2kvkq1htewf7" path="res://battle/units/tower_enemy.tscn" id="3_8e3ng"]
 [ext_resource type="PackedScene" uid="uid://cwseclmja5rko" path="res://cards/hand.tscn" id="4_fjwei"]
+[ext_resource type="PackedScene" uid="uid://b733hb80mod6a" path="res://cards/cards/rain.tscn" id="5_18a1l"]
 [ext_resource type="PackedScene" uid="uid://tpek6s1ym3sk" path="res://battle/units/tower_player.tscn" id="5_mk8s6"]
 [ext_resource type="PackedScene" uid="uid://cqjta8uodixn7" path="res://cards/cards/archer.tscn" id="5_uyypr"]
 [ext_resource type="PackedScene" uid="uid://glirm2jvo8nx" path="res://cards/cards/knight.tscn" id="6_8oqba"]
-[ext_resource type="PackedScene" uid="uid://dth0ombg8dem2" path="res://battle/units/effect_rain.tscn" id="6_r0ysa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jsvmk"]
 
@@ -109,12 +109,9 @@ collision_mask = 0
 input_ray_pickable = false
 sort = true
 
-[node name="StaticBody3D" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
+[node name="StaticBody3D9" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_18a1l")]
 
-[node name="StaticBody3D9" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
-card_name = "Rain"
-spawns = ExtResource("6_r0ysa")
-sidelay = true
+[node name="StaticBody3D" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("5_uyypr")]
 
 [node name="StaticBody3D2" parent="SubViewports/SubViewportContainer/SubViewport/HandTest/HandArea" instance=ExtResource("6_8oqba")]
 
