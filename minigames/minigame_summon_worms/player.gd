@@ -19,7 +19,6 @@ enum SpriteAnimations {
 @onready var current_sprite = idle_sprites[0]
 #END OF -- CUSTOM ANIAMTIONS
 
-@onready var sprite := $AnimatedSprite2D
 @onready var trumpet_area := $TrumpetArea
 #@onready var allow_draw := true
 @onready var god_song := $GodSong
