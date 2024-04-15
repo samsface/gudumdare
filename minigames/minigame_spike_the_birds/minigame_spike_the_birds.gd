@@ -57,6 +57,8 @@ func _on_worm_area_entered(area: Area2D) -> void:
 		missed_label.text = str(birds_missed)
 		area.queue_free()
 		check_if_minigame_over()
+		$Worm/wormAudio.play()
+		$Worm/WormAnimationPlayer.play("damage")
 
 
 func _on_bird_timer_timeout() -> void:
@@ -74,5 +76,7 @@ func _on_shield_area_entered(area: Area2D) -> void:
 		area.is_dead = true
 		birds_spiked += 1
 		spiked_label.text = str(birds_spiked)
-		area.queue_free()
+		$Shield/ShieldAudio.play()
+		area.play_particles()
 		check_if_minigame_over()
+		
