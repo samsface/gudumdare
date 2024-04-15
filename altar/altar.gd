@@ -19,7 +19,7 @@ var tier3_chance: int
 var filled := 0.0
 
 func _ready() -> void:
-	AudioServer.set_bus_mute(3, true)
+	AudioServer.set_bus_mute(AudioControls.BUS_MUSIC, true)
 	#Signals
 	sacrifice_slot.card_dropped.connect(_check_sacrifice_button)
 	player_hand.card_dropped.connect(_check_sacrifice_button)
@@ -107,15 +107,15 @@ func _on_sacrifice_button_pressed() -> void:
 
 	var card_path = CardDB.return_cards_by_tier(tier).pick_random()
 	var obtained_card = load(card_path).instantiate()
+	Game.game.add_card(card_path)
 	new_card.show()
 	
 	new_card_label.text = "YOU GOT " + obtained_card.card_name.to_upper() + "!"
 	new_card_image.texture = obtained_card.art
-	Game.game.add_card(card_path)
 	
 	# Removing
 	for card in sacrifice_slot.get_card_children():
-		Game.game.remove_card(card.card_name)
+		Game.game.remove_card(card.scene_file_path)
 		card.queue_free()
 	
 	%wowworm.show()
@@ -152,4 +152,4 @@ func _process(delta: float) -> void:
 
 
 func _on_button_quit_pressed():
-	AudioServer.set_bus_mute(3, false)
+	AudioServer.set_bus_mute(AudioControls.BUS_MUSIC, false)

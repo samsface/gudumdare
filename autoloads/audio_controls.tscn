@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2dba6e2y0hea"]
+
+[ext_resource type="Script" path="res://autoloads/audio_controls.gd" id="1_gyfsv"]
+[ext_resource type="Texture2D" uid="uid://csbkh63vfycty" path="res://autoloads/arrow.png" id="2_wg8cc"]
+[ext_resource type="FontFile" uid="uid://da7xd0ojorof3" path="res://Mario-Party-Hudson-Font.ttf" id="3_508la"]
+
+[node name="AudioControls" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_gyfsv")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 24.0
+offset_top = 768.0
+offset_right = 84.0
+offset_bottom = 822.0
+scale = Vector2(0.5, 0.5)
+flat = true
+
+[node name="Arrow" type="Sprite2D" parent="Button"]
+self_modulate = Color(1, 1, 1, 0.5)
+texture_filter = 1
+position = Vector2(30, 10)
+texture = ExtResource("2_wg8cc")
+
+[node name="Controls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="SoundLabel" type="Label" parent="Controls"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 80.0
+offset_top = 752.0
+offset_right = 121.0
+offset_bottom = 769.0
+theme_override_fonts/font = ExtResource("3_508la")
+text = "Sound"
+
+[node name="SoundSlider" type="HSlider" parent="Controls"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 753.0
+offset_right = 228.0
+offset_bottom = 769.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicLabel" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 776.0
+offset_right = 120.0
+offset_bottom = 793.0
+theme_override_fonts/font = ExtResource("3_508la")
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="Controls"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 128.0
+offset_top = 777.0
+offset_right = 228.0
+offset_bottom = 793.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="Controls/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="value_changed" from="Controls/MusicSlider" to="." method="_on_music_slider_value_changed"]

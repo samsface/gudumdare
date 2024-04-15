@@ -160,11 +160,6 @@ func unlock_upgrade(upgrade):
 func has_upgrade(upgrade):
 	return upgrades.has(upgrade)
 
-
-func _on_button_pressed() -> void:
-	var bus = AudioServer.get_bus_index("Music")
-	AudioServer.set_bus_mute(bus, not AudioServer.is_bus_mute(bus))
-
 static func give_worm(global_position):
 	var worm_pickup = load("res://battle/pickup_worm.tscn").instantiate()
 	game.get_node("CanvasLayer2").add_child(worm_pickup)
