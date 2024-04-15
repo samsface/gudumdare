@@ -18,6 +18,16 @@ func _ready() -> void:
 	Game.game.duck_music(false)
 	%Camera2D.zoom = Vector2.ONE * 3.3
 	
+	#Check victory
+	var total_nodes = get_tree().get_node_count_in_group("overworld_nodes")
+	var beaten_nodes = 0
+	for node in get_tree().get_nodes_in_group("overworld_nodes"):
+		if node.available:
+			beaten_nodes += 1
+	if beaten_nodes >= total_nodes:
+		$CanvasLayer/WinScreen.show()
+		return
+	
 	#Check if battle was won and unlock new nodes
 	var just_unlocked_nodes: Array = []
 	if Game.game.battle_won:
