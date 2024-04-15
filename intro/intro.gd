@@ -9,7 +9,7 @@ func _ready() -> void:
 	do_step()
 
 func do_step():
-	step_wait = 0.5
+	step_wait = 0.1
 	match step:
 		-1:
 			b1.set_frame(0)
