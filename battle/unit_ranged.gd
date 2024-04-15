@@ -11,6 +11,9 @@ func _ready() -> void:
 	super()
 
 func attack():
+	$Model/AnimationPlayer.stop()
+	$Model/AnimationPlayer.play("attack")
+	$Model/AnimationPlayer.queue("walk")
 	for i in burst:
 		if not is_instance_valid(closest_enemy):
 			return
