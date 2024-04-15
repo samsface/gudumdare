@@ -1,14 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cq6167ynnoefw"]
+[gd_scene load_steps=9 format=3 uid="uid://cq6167ynnoefw"]
 
 [ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="1_06u54"]
 [ext_resource type="Script" path="res://shop/shop_item.gd" id="1_xujye"]
 [ext_resource type="AudioStream" uid="uid://bwqp48jfkt476" path="res://shop/buy.wav" id="3_qprk6"]
 [ext_resource type="AudioStream" uid="uid://bkqm4evoc6n6p" path="res://shop/no_do.wav" id="4_dqtv6"]
+[ext_resource type="AudioStream" uid="uid://b24hd13qb226w" path="res://cards/glass_dink.wav" id="5_c58rx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jryu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6vum"]
-bg_color = Color(0.125, 0.125, 0.125, 0.478431)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6tbo"]
 bg_color = Color(0.407843, 0.219608, 0.423529, 1)
@@ -23,6 +21,13 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6vum"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [node name="Button" type="Button"]
 auto_translate_mode = 1
 offset_left = 67.0
@@ -34,23 +39,6 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5jryu")
 autowrap_mode = 2
 script = ExtResource("1_xujye")
-
-[node name="Cost" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 94.0
-offset_top = 118.0
-offset_right = 24.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_l6vum")
-text = "10"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="ItemName" type="Label" parent="."]
 unique_name_in_owner = true
@@ -78,4 +66,32 @@ stream = ExtResource("3_qprk6")
 [node name="AudioNot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_dqtv6")
 
+[node name="AudioHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_c58rx")
+pitch_scale = 1.5
+
+[node name="CostContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Cost" type="Label" parent="CostContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 102.0
+offset_top = 118.0
+offset_right = 147.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_l6vum")
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
