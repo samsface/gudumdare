@@ -39,14 +39,11 @@ func _ready() -> void:
 			node.unlock()
 	
 	#Check victory AFTER we unlock other nodes
-	var total_nodes = get_tree().get_node_count_in_group("overworld_nodes")
-	var beaten_nodes = 0
-	print("total nodes" + str(total_nodes))
-	for node in get_tree().get_nodes_in_group("overworld_nodes"):
-		if node.available:
-			beaten_nodes += 1
-	print("beaten nodes " + str(beaten_nodes))
-	if beaten_nodes >= total_nodes:
+	var total_nodes = get_tree().get_node_count_in_group("overworld_nodes") - 2 #For shop and altar
+	print("total nodes without shop and altar" + str(total_nodes - 2))
+	print("conquered nodes" + str(Game.game.conquered_nodes))
+	print("conquered nodes size" + str(Game.game.conquered_nodes.size()))
+	if Game.game.conquered_nodes.size() >= total_nodes:
 		Game.game.lowpass_music()
 		%AnimationPlayerCredits.play("finish")
 		return
