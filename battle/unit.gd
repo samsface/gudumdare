@@ -128,7 +128,8 @@ func hit(damage):
 			damage_tween.kill()
 		damage_tween = GenericTween.flash_red(%Model)
 	
-	$AudioHit.play()
+	if has_node("AudioHit"):
+		$AudioHit.play()
 
 func heal():
 	health += 2
