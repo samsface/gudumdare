@@ -6,7 +6,6 @@ extends Minigame
 
 var birds_destroyed = 0
 var birds_max = 0
-var rating: float = 0.0
 
 @onready var death_index := 0
 @onready var death_sounds: Array = [$Death1, $Death2, $Death3, $Death4, $Death5, $Death6, $Death7]
@@ -31,17 +30,17 @@ func samurai_attack():
 	hero.play("Idle")
 	var bird = find_next_available_bird()
 	if (bird == null):
-		win(rating)
+		_finished()
 		return
 	bird.die()
 	birds_destroyed += 1
-	rating = birds_destroyed / birds_max
+	score = birds_destroyed as float / birds_max as float
 	
 	death_sounds[death_index].play()
 	death_index += 1
 	
 	if (birds_destroyed >= birds_max):
-		win(rating)
+		_finished()
 	%AudioSlash.play()
 	shake()
 

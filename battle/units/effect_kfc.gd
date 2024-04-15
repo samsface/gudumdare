@@ -12,6 +12,7 @@ func effect(grade:float) -> void:
 			foe.hit(16.0)
 			$HitSound.play()
 			%Slash.global_position = foe.global_position
+			%Slash.rotation = randf() * PI
 			GenericTween.squish(%Slash)
 			await get_tree().create_timer(0.1).timeout
 	remove()

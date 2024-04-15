@@ -63,6 +63,8 @@ func _on_fire_area_entered(area: Area2D) -> void:
 	%BrushAnimation2D.fps += 5
 	
 	var stick_percentage: float = stick_count as float / number_of_sticks as float
+	score = stick_percentage
+
 	#print(stick_percentage)
 	if stick_count == number_of_sticks:#stick_percentage >= 0.8:
 		$Fire/Flames/FlameLarge.show()
@@ -72,7 +74,8 @@ func _on_fire_area_entered(area: Area2D) -> void:
 		$AudioMicrowave.play()
 		$AudioHot.stop()
 		
-		win(1.0)
+		await $AudioMicrowave.finished
+		_finished()
 	elif stick_count == 4:#stick_percentage >= 0.5:
 		$Fire/Flames/FlameMedium.show()
 	elif stick_count == 3:#stick_percentage >= 0.5:

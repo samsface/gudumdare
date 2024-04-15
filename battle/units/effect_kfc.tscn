@@ -1,0 +1,82 @@
+[gd_scene load_steps=15 format=3 uid="uid://u5utr8mxkn35"]
+
+[ext_resource type="Script" path="res://battle/units/effect_kfc.gd" id="1_qjkey"]
+[ext_resource type="PackedScene" uid="uid://cpu4mq0byeh4o" path="res://minigames/minigame_burn_the_wood/minigame_burn_the_wood.tscn" id="2_tc38n"]
+[ext_resource type="AudioStream" uid="uid://gw0eomuo2xgn" path="res://battle/units/sfx/want_chicken.wav" id="3_lpw5r"]
+[ext_resource type="Shader" path="res://battle/units/area_circle.gdshader" id="4_mo41n"]
+[ext_resource type="Script" path="res://battle/units/area_circle.gd" id="5_4db3q"]
+[ext_resource type="AudioStream" uid="uid://biot1nx0dhtkc" path="res://sfx/transition_swish.wav" id="6_xljhf"]
+[ext_resource type="AudioStream" uid="uid://dcwi2jux48iqm" path="res://battle/units/sfx/flame.wav" id="7_10hu8"]
+[ext_resource type="Texture2D" uid="uid://d2wb0ur1xy4et" path="res://battle/units/sprites/kfc_card_art.png" id="7_xgoo6"]
+
+[sub_resource type="Gradient" id="Gradient_5aron"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wlk8r"]
+frequency = 0.0038
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jnwd5"]
+seamless = true
+color_ramp = SubResource("Gradient_5aron")
+noise = SubResource("FastNoiseLite_wlk8r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ctv60"]
+resource_local_to_scene = true
+shader = ExtResource("4_mo41n")
+shader_parameter/color_r = 1.0
+shader_parameter/color_g = 0.0
+shader_parameter/color_b = 0.0
+shader_parameter/ttl = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jnwd5")
+
+[sub_resource type="Gradient" id="Gradient_vmrtn"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4gt1m"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_vmrtn")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.51, 0.5)
+
+[node name="EffectRain" type="Node2D"]
+script = ExtResource("1_qjkey")
+mini_game = ExtResource("2_tc38n")
+health = 10000
+attack_range = 400.0
+attackable = false
+
+[node name="AudioPlay" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_lpw5r")
+volume_db = -9.019
+pitch_scale = 1.35
+autoplay = true
+
+[node name="AreaCircle" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ctv60")
+rotation = 0.631809
+skew = 0.296706
+texture = SubResource("GradientTexture2D_4gt1m")
+script = ExtResource("5_4db3q")
+
+[node name="SweepSound" type="AudioStreamPlayer2D" parent="AreaCircle"]
+rotation = -0.778322
+scale = Vector2(0.879653, 1.18876)
+skew = -0.0032016
+stream = ExtResource("6_xljhf")
+pitch_scale = 1.21
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_10hu8")
+volume_db = 8.0
+
+[node name="Slash" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="KfcCardArt" type="Sprite2D" parent="Slash"]
+scale = Vector2(0.314941, 0.314941)
+texture = ExtResource("7_xgoo6")

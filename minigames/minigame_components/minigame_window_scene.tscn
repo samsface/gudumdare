@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cdwjkjxuwje8l"]
+[gd_scene load_steps=30 format=3 uid="uid://cdwjkjxuwje8l"]
 
 [ext_resource type="Script" path="res://minigames/minigame_components/minigame_window.gd" id="1_g0em6"]
 [ext_resource type="Texture2D" uid="uid://bk4xnliqpem8r" path="res://minigames/checker.png" id="2_1fvgc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cb1d34g7c3us5" path="res://minigames/minigame_components/art/wormbody.png" id="4_h3ybh"]
 [ext_resource type="Texture2D" uid="uid://dgjt431rsabh8" path="res://minigames/minigame_components/art/birdSheet.png" id="5_x5p64"]
 [ext_resource type="FontFile" uid="uid://da7xd0ojorof3" path="res://Mario-Party-Hudson-Font.ttf" id="8_mcpcr"]
+[ext_resource type="PackedScene" uid="uid://dw5bvfssjruty" path="res://minigames/minigame_components/power.tscn" id="9_88r5o"]
 [ext_resource type="Script" path="res://text_effect_jiggle.gd" id="9_ishqi"]
 [ext_resource type="AudioStream" uid="uid://d3d73oeiipn1q" path="res://music/1200185_Bonus-Stage.mp3" id="11_rnlgl"]
 [ext_resource type="AudioStream" uid="uid://djynsd3l0xs2t" path="res://battle/sfx/win.mp3" id="12_ooopl"]
@@ -203,6 +204,13 @@ texture_filter = 1
 position = Vector2(1325, 80.0201)
 sprite_frames = SubResource("SpriteFrames_655wo")
 animation = &"Idle"
+
+[node name="LeftArm" parent="." instance=ExtResource("9_88r5o")]
+position = Vector2(38, 83)
+scale = Vector2(1, 1)
+
+[node name="RightArm" parent="." instance=ExtResource("9_88r5o")]
+position = Vector2(1409, 70)
 
 [node name="MiniGameControl" type="Control" parent="."]
 unique_name_in_owner = true
