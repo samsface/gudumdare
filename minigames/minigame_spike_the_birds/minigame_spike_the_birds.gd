@@ -83,6 +83,8 @@ func _on_shield_area_entered(area: Area2D) -> void:
 		area.is_dead = true
 		birds_spiked += 1
 		spiked_label.text = str(birds_spiked)
+		
+		Game.give_worm(area.global_position)
 		$Shield/ShieldSplat.play()
 		area.play_particles()
 		check_if_minigame_over()

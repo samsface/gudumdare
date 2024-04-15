@@ -23,10 +23,13 @@ func _process(delta: float) -> void:
 		if get_parent().get_parent() is Battle:
 			game_won = get_parent().get_parent().won
 		if life > 0.2 and get_local_mouse_position().length() < 100.0 or game_won:
-			added = true
-			GenericTween.squish(self)
-			$AudioAdd.play()
-			z_index += 10
-			visible = true
+			pick()
 		position += velocity * delta
 		velocity -= velocity * delta * 5.0
+
+func pick():
+	added = true
+	GenericTween.squish(self)
+	$AudioAdd.play()
+	z_index += 10
+	visible = true

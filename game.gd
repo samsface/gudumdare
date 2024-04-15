@@ -43,8 +43,8 @@ func _ready() -> void:
 	#add_card(CardDB.CN_ARCHER)
 	add_card(CardDB.CN_KNIGHT)
 	#add_card(CardDB.CN_SHOTGUN)
-	#add_card(CardDB.CN_RAIN)
-	#add_card(CardDB.CN_PROTECTOR)
+	add_card(CardDB.CN_RAIN)
+	add_card(CardDB.CN_PROTECTOR)
 	
 	#upgrades.push_back("More Health 1")
 	#upgrades.push_back("More Health 2")
@@ -151,3 +151,9 @@ func has_upgrade(upgrade):
 func _on_button_pressed() -> void:
 	var bus = AudioServer.get_bus_index("Music")
 	AudioServer.set_bus_mute(bus, not AudioServer.is_bus_mute(bus))
+
+static func give_worm(global_position):
+	var worm_pickup = load("res://battle/pickup_worm.tscn").instantiate()
+	game.get_node("CanvasLayer2").add_child(worm_pickup)
+	worm_pickup.global_position = global_position
+	worm_pickup.pick()
