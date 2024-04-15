@@ -12,7 +12,8 @@ func _ready() -> void:
 
 func attack():
 	for i in burst:
-		GenericTween.attack($Model, global_position.direction_to(closest_enemy.position))
+		if has_node("Model"): #Attempt to fix crash at reward screen 
+			GenericTween.attack($Model, global_position.direction_to(closest_enemy.position))
 		
 		var projectile: Projectile = projectile_scene.instantiate()
 		get_parent().add_child(projectile)
