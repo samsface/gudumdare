@@ -22,7 +22,7 @@ var mana := 0.0
 var max_mana := 10
 var mana_regen_per_sec := 1.0
 
-enum BattleTrack {REGULAR, EGYPT, JAPAN, RUSSIA, SPAIN}
+enum BattleTrack {REGULAR, EGYPT, JAPAN, RUSSIA, SPAIN, BRAZIL}
 @export var track: BattleTrack
 
 @export var levels: Array[Node2D]
@@ -35,6 +35,7 @@ var battle_track_paths := {
 	BattleTrack.JAPAN: "res://music/37040_newgrounds_parago.mp3",
 	BattleTrack.RUSSIA: "res://music/810727_Russian-Hardbass.mp3",
 	BattleTrack.SPAIN: "res://music/333540_Latinfun.mp3",
+	BattleTrack.BRAZIL: "res://music/vitaminaDeLua-By-Ausk.mp3",
 }
 var summon
 func _ready() -> void:
