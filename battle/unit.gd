@@ -50,6 +50,7 @@ func _ready() -> void:
 		health = ceil(health * 1.3)
 	
 	max_health = health
+	%Healthbar.visible = false
 
 func _process(delta: float) -> void:
 	delta *= Game.game_speed
@@ -95,6 +96,7 @@ func hit(damage):
 	if health <= 0:
 		return
 	
+	
 	if shield_hits > 0:
 		shield_hits -= 1
 		return
@@ -109,17 +111,9 @@ func hit(damage):
 				worm_pickup.global_position = global_position
 				worm_pickup.velocity = Vector2.from_angle(randf() * TAU) * randf_range(0.2, 1.0) * 800.0
 		died.emit()
+		die_animation()
 		
-		$Model/AnimationPlayer.play("RESET")
-		$Model/AnimationPlayer.stop()
-		if shake_tween:
-			shake_tween.kill()
-		if damage_tween:
-			damage_tween.kill()
-		damage_tween = GenericTween.flash(%Model, Color(10.0, 4.0, 4.0), Color(2.0, 0.5, 0.5), Color(0.1, 0.1, 0.1, 1.0))
-		damage_tween.set_parallel()
-		damage_tween.tween_property(%Model, "rotation", PI * 0.5, 0.1)
-		damage_tween.tween_property(%Model, "scale", Vector2.ZERO, 0.1).set_delay(0.4)
+		%Healthbar.visible = false
 	else:
 		if shake_tween:
 			shake_tween.kill()
@@ -127,9 +121,22 @@ func hit(damage):
 		if damage_tween:
 			damage_tween.kill()
 		damage_tween = GenericTween.flash_red(%Model)
+		%Healthbar.visible = true
 	
 	if has_node("AudioHit"):
 		$AudioHit.play()
+
+func die_animation():
+	$Model/AnimationPlayer.play("RESET")
+	$Model/AnimationPlayer.stop()
+	if shake_tween:
+		shake_tween.kill()
+	if damage_tween:
+		damage_tween.kill()
+	damage_tween = GenericTween.flash(%Model, Color(10.0, 4.0, 4.0), Color(2.0, 0.5, 0.5), Color(0.1, 0.1, 0.1, 1.0))
+	damage_tween.set_parallel()
+	damage_tween.tween_property(%Model, "rotation", PI * 0.5, 0.1)
+	damage_tween.tween_property(%Model, "scale", Vector2.ZERO, 0.1).set_delay(0.4)
 
 func heal():
 	health += 2

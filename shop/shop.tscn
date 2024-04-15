@@ -778,10 +778,10 @@ anchor_left = 29.846
 anchor_top = 13.459
 anchor_right = 29.846
 anchor_bottom = 13.459
-offset_left = -1370.84
-offset_top = -650.36
-offset_right = 229.16
-offset_bottom = 319.64
+offset_left = -177.0
+offset_top = -112.0
+offset_right = 1423.0
+offset_bottom = 858.0
 pivot_offset = Vector2(1200, 600)
 texture = ExtResource("7_bf1l7")
 

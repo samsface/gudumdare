@@ -31,6 +31,7 @@ func add_card(card_name: String) -> void: #Add card by name, names are consts in
 
 func remove_card(card_name: String): #Erase card by name, names are consts in CardDB
 	player_cards.erase(card_name)
+	
 #END OF CARD CODE
 
 func _ready() -> void:
