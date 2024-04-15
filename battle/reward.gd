@@ -34,7 +34,7 @@ func _ready() -> void:
 	print("CARDS TO OFFER ARE:\n" + str(cards))
 	
 	for card in cards:
-		if card == null: #Crash prevent since we dont have tier 2/3 cards yet
+		if card == null: #Crash prevent if card is null
 			continue
 		
 		var new_card: Node3D = load(card).instantiate()
