@@ -41,11 +41,13 @@ func do_step():
 			GenericTween.squish(b2)
 		5:
 			%Music.stop()
+			%Drum.play()
 			focus(1)
 			speak("im so glad because i have to show u something", 1)
 			%AudioChirp1.play()
 			b1.set_frame(2)
 		6:
+			%Drum.play()
 			speak("...", 1)
 			b2.visible = false
 			b1.position = Vector2(600, 816)
