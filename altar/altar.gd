@@ -17,6 +17,7 @@ var tier3_chance: int
 var filled := 0.0
 
 func _ready() -> void:
+	AudioServer.set_bus_mute(3, true)
 	#Signals
 	sacrifice_slot.card_dropped.connect(_check_sacrifice_button)
 	player_hand.card_dropped.connect(_check_sacrifice_button)
@@ -87,7 +88,6 @@ func _on_sacrifice_button_pressed() -> void:
 	tier_odds.hide()
 	
 	var tier = -1
-	
 	if tier3_chance > 0:
 		if RNG.random_int(1, 100) <= tier3_chance:
 			tier = 3
@@ -110,10 +110,19 @@ func _on_sacrifice_button_pressed() -> void:
 		Game.game.remove_card(card.card_name)
 		card.queue_free()
 	
+	%wowworm.show()
+	%AudioPicked.play()
+	GenericTween.squish(%wowworm)
+	if Game.game:
+		Game.game.lowpass_music(false)
+	await get_tree().create_timer(1.5).timeout
+	
 	await %ConfirmButton.pressed
 	player_hand.add_child(obtained_card)
+	
 
 func _on_confirm_button_pressed() -> void:
+	%wowworm.hide()
 	new_card.hide()
 	sacrifice_button.show()
 	%Hint.show()
@@ -132,3 +141,7 @@ func _process(delta: float) -> void:
 	%MusicLayer0.volume_db = 0.0 if filled_to > 0 else -80.0
 	%MusicLayer1.volume_db = 0.0 if filled_to > 1 else -80.0
 	%MusicLayer2.volume_db = 0.0 if filled_to > 2 else -80.0
+
+
+func _on_button_quit_pressed():
+	AudioServer.set_bus_mute(3, false)
