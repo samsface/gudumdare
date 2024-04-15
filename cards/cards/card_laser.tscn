@@ -30,6 +30,8 @@ shader_parameter/texture = ExtResource("3_rx1g3")
 [node name="StaticBody3D" instance=ExtResource("1_88akg")]
 card_name = "zappo"
 spawns = ExtResource("2_yvfj6")
+mana_cost = 3
+tier = 2
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_nvamb")
@@ -38,4 +40,4 @@ material_override = SubResource("ShaderMaterial_nvamb")
 text = "zappo"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
-text = "2"
+text = "3"

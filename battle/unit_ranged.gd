@@ -12,6 +12,8 @@ func _ready() -> void:
 
 func attack():
 	for i in burst:
+		if not is_instance_valid(closest_enemy):
+			return
 		GenericTween.attack($Model, global_position.direction_to(closest_enemy.position))
 		
 		var projectile: Projectile = projectile_scene.instantiate()

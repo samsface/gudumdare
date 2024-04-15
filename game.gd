@@ -40,10 +40,20 @@ func _ready() -> void:
 	duck_music(false)
 	
 	#add_card(CardDB.CN_ARCHER)
-	#add_card(CardDB.CN_KNIGHT)
+	add_card(CardDB.CN_KNIGHT)
 	#add_card(CardDB.CN_SHOTGUN)
 	#add_card(CardDB.CN_RAIN)
 	#add_card(CardDB.CN_PROTECTOR)
+	
+	#upgrades.push_back("More Health 1")
+	#upgrades.push_back("More Health 2")
+	#upgrades.push_back("More Health 3")
+	#upgrades.push_back("Fast Mana 1")
+	#upgrades.push_back("Fast Mana 2")
+	#upgrades.push_back("Fast Mana 3")
+	#upgrades.push_back("Hand Size 1")
+	#upgrades.push_back("Hand Size 2")
+	
 	add_card(CardDB.CN_ARM)
 	add_card(CardDB.CN_DRAGON)
 	add_card(CardDB.CN_WIZARD)
@@ -135,3 +145,8 @@ func unlock_upgrade(upgrade):
 
 func has_upgrade(upgrade):
 	return upgrades.has(upgrade)
+
+
+func _on_button_pressed() -> void:
+	var bus = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_mute(bus, not AudioServer.is_bus_mute(bus))

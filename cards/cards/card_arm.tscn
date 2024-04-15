@@ -30,12 +30,20 @@ shader_parameter/texture = ExtResource("3_6tv73")
 [node name="StaticBody3D" instance=ExtResource("1_jx6tx")]
 card_name = "rukker"
 spawns = ExtResource("2_iwujc")
+tier = 2
+
+[node name="Card" parent="." index="1"]
+modulate = Color(1, 0.388235, 0.278431, 1)
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_nvamb")
 
 [node name="CardNameLabel" parent="." index="3"]
 text = "rukker"
+
+[node name="TierLabel" parent="." index="4"]
+modulate = Color(0.5, 0.194118, 0.139216, 0.5)
+text = "BEAST"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "2"

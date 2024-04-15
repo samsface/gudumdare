@@ -57,9 +57,9 @@ func _ready() -> void:
 	if Game.game.has_upgrade("Fast Mana 1"):
 		mana_regen_per_sec *= 1.3
 	if Game.game.has_upgrade("Fast Mana 2"):
-		mana_regen_per_sec *= 1.3
-	if Game.game.has_upgrade("Fast Mana 3"):
 		mana_regen_per_sec *= 1.4
+	if Game.game.has_upgrade("Fast Mana 3"):
+		mana_regen_per_sec *= 1.5
 		
 	if Game.game.has_upgrade("Hand Size 1"):
 		MIN_HAND_CARDS += 1
