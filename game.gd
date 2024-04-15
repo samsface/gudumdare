@@ -6,12 +6,16 @@ static var game: Game
 static var dragging_card
 static var battle
 
+static var game_speed := 1.0
+
 var current_scene
 var transition
 
 static var worms := 0
 static var worm_added := 0.0
 @onready var worm_icon = %WormIcon
+var worms_shown := 0
+var worms_wait_add := 0.0
 
 #Overworld nodes
 @onready var battle_won := false
@@ -35,14 +39,18 @@ func _ready() -> void:
 	#open_worm_summon()
 	duck_music(false)
 	
-	add_card(CardDB.CN_ARCHER)
-	add_card(CardDB.CN_ARCHER)
-	add_card(CardDB.CN_ARCHER)
+	#add_card(CardDB.CN_ARCHER)
+	#add_card(CardDB.CN_ARCHER)
+	#add_card(CardDB.CN_ARCHER)
 	add_card(CardDB.CN_KNIGHT)
-	add_card(CardDB.CN_PROTECTOR)
-	add_card(CardDB.CN_RAIN)
-	print("game done adding cards")
-	print(player_cards)
+	add_card(CardDB.CN_SHOTGUN)
+	add_card(CardDB.CN_SHOTGUN)
+	add_card(CardDB.CN_SHOTGUN)
+	add_card(CardDB.CN_SHOTGUN)
+	add_card(CardDB.CN_SHOTGUN)
+	#add_card(CardDB.CN_PROTECTOR)
+	#add_card(CardDB.CN_RAIN)
+	%WormCount.text = str(0)
 
 func open_overworld():
 	start_scene("res://overworld/overworld.tscn")
@@ -95,8 +103,31 @@ func _process(delta: float) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	if Input.is_action_just_pressed("mute"):
 		AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
+	
 	worm_added += delta
-	%WormCount.text = str(worms)
+	
+	
+	var difference = worms - worms_shown
+	if difference > 0:
+		%WormCountAdd.text = "+%s" % difference
+		%WormCountAdd.modulate = Color("86ba17")
+	elif difference < 0:
+		%WormCountAdd.text = "%s" % difference
+		%WormCountAdd.modulate = Color("ea0050")
+	else:
+		%WormCountAdd.text = ""
+	
+	if difference != 0:
+		if worms_wait_add > 0:
+			worms_wait_add -= delta
+		else:
+			worms_shown = move_toward(worms_shown, worms, 1)
+			%WormCount.text = str(worms_shown)
+	
+
+static func add_worm(value := 1):
+	worms += value
+	game.worms_wait_add = 2.0
 
 var upgrades := []
 func unlock_upgrade(upgrade):

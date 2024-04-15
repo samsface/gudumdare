@@ -84,7 +84,7 @@ texture = ExtResource("3_po2xc")
 
 [node name="CardNameLabel" type="Label3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28, 0)
+transform = Transform3D(0.865399, 0, 0, 0, 0.865399, 0, 0, 0, 1, 0, 0.319551, 0)
 pixel_size = 0.001
 double_sided = false
 texture_filter = 1
@@ -114,7 +114,7 @@ outline_size = 0
 
 [node name="Art" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0734264, 0.01)
 cast_shadow = 0
 pixel_size = 0.0018
 double_sided = false

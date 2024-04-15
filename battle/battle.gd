@@ -25,6 +25,9 @@ var mana_regen_per_sec := 1.0
 enum BattleTrack {REGULAR, EGYPT, JAPAN, RUSSIA, SPAIN}
 @export var track: BattleTrack
 
+@export var levels: Array[Node2D]
+
+
 var battle_track_paths := {
 	BattleTrack.REGULAR: "res://music/Battle Against a Suave Opponent.mp3",
 	BattleTrack.EGYPT: "res://music/761374_Sand-in-my-Stop-Watch.mp3",
@@ -35,21 +38,42 @@ var battle_track_paths := {
 var summon
 func _ready() -> void:
 	Game.battle = self
-	randomize()
+	
+	if levels.size() > 0:
+		var keep_level = levels.pick_random()
+		keep_level.visible = true
+		for level in levels:
+			if level != keep_level:
+				level.queue_free()
+		for child in keep_level.get_children():
+			keep_level.remove_child(child)
+			$Fight.add_child(child)
+	
+	mana_regen_per_sec = 0.8
+	if Game.game.has_upgrade("Fast Mana"):
+		mana_regen_per_sec *= 1.3
+	if Game.game.has_upgrade("Fast Mana 2"):
+		mana_regen_per_sec *= 1.3
+		
+	if Game.game.has_upgrade("Hand Size"):
+		MIN_HAND_CARDS += 1
+	if Game.game.has_upgrade("Hand Size 2"):
+		MIN_HAND_CARDS += 1
+	
 	#Read player cards and put them to deck
-	for card_name in Game.game.player_cards:
-		_add_to_deck(card_name) 
+	for card in Game.game.player_cards:
+		deck.push_back(load(card).instantiate())
 		
 	deck.shuffle()
 	print("deck is " + str(deck))
 	
 	#Draw enough cards
-	while(true):
-		if %HandArea.get_card_children().size() >= STARTING_CARD_COUNT:
-			break
-		if deck.size() <= 0:
-			break
-		_draw_from_deck()
+	#while(true):
+		#if %HandArea.get_card_children().size() >= STARTING_CARD_COUNT:
+			#break
+		#if deck.size() <= 0:
+			#break
+		#_draw_from_deck()
 
 	tower_player.battle = self
 	friends.push_back(tower_player)
@@ -68,17 +92,6 @@ func _ready() -> void:
 	summon = load("res://minigames/minigame_summon_worms/summon_worms.tscn").instantiate()
 	add_child(summon)
 	#summon.load_level(1)
-	
-	mana_regen_per_sec = 0.8
-	if Game.game.has_upgrade("Fast Mana"):
-		mana_regen_per_sec *= 1.3
-	if Game.game.has_upgrade("Fast Mana 2"):
-		mana_regen_per_sec *= 1.3
-		
-	if Game.game.has_upgrade("Hand Size"):
-		MIN_HAND_CARDS += 1
-	if Game.game.has_upgrade("Hand Size 2"):
-		MIN_HAND_CARDS += 1
 	
 	await get_tree().create_timer(0.5).timeout
 	$AudioLetsGo.play()
@@ -114,6 +127,12 @@ func _physics_process(delta: float) -> void:
 				var direction = unit_a.position.direction_to(unit_b.position)
 				unit_a.position -= direction * push * ratio * delta
 				unit_b.position += direction * push * (1.0 - ratio) * delta
+	
+	if card_add_delay <= 0:
+		if is_instance_valid(%HandArea) and %HandArea.get_card_children().size() < MIN_HAND_CARDS:
+			_draw_from_deck()
+	else:
+		card_add_delay -= delta
 
 func get_card_position(card):
 	if not hand.has(card):
@@ -142,24 +161,24 @@ func card_rejected():
 #We use this now
 func _battle_field_area_child_entered_tree(node: Node) -> void:
 	if node is CardEx:
-		_add_to_deck(node.card_name)
 		var mouse_position := get_global_mouse_position()
 		#await get_tree().create_timer(0.25).timeout
 		var unit = node.spawns.instantiate()
 		add_unit(unit, mouse_position, node)
 		mana -= node.mana_cost
+		await get_tree().process_frame
+		node.get_parent().remove_child(node)
+		_add_to_deck(node)
 
-		if %HandArea.get_card_children().size() < MIN_HAND_CARDS:
-			_draw_from_deck()
-			
+
 func _draw_from_deck() -> void:
 	if deck.size() > 0:
-		var card_name: String = deck[0]
-		var new_card: Node3D = CardDB.return_card_scene(card_name).duplicate()
-		%HandArea.add_child(new_card)
-		new_card.global_position = %NewCardSpawn.global_position
+		var card = deck[0]
+		%HandArea.add_child(card)
+		card.global_position = %NewCardSpawn.global_position
 		#Remove drawn card
 		deck.remove_at(0)
+		card_add_delay = 0.2
 
 
 func _tower_enemy_died() -> void:
@@ -170,9 +189,10 @@ func _tower_enemy_died() -> void:
 	won = true
 	Game.game.battle_won = true
 	
-	summon.player.visible = true
-	
-	summon.place(tower_player.position)
+	if levels.size() > 0:
+		summon.player.visible = true
+	else:
+		give_card()
 	
 	$AudioWin.play()
 	$AudioApplause.play()
@@ -199,6 +219,5 @@ func give_card():
 func on_reward_done():
 	Game.game.open_overworld()
 
-func _add_to_deck(card_name: String):
-	deck.push_back(card_name)
-
+func _add_to_deck(card):
+	deck.push_back(card)

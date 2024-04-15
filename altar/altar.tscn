@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cf4vd783dyum8"]
+[gd_scene load_steps=19 format=3 uid="uid://cf4vd783dyum8"]
 
 [ext_resource type="Script" path="res://altar/altar.gd" id="1_a0qxh"]
 [ext_resource type="Texture2D" uid="uid://c8t7i4g3eb78u" path="res://altar/bg_back.png" id="2_du5v5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvlfs6jvry30u" path="res://altar/bg_front.png" id="3_lski7"]
 [ext_resource type="Texture2D" uid="uid://d2s4h5hax5j1o" path="res://cards/art_placeholder.png" id="4_cubwq"]
 [ext_resource type="PackedScene" uid="uid://cwseclmja5rko" path="res://cards/hand.tscn" id="5_lgg7v"]
+[ext_resource type="PackedScene" uid="uid://b4qsvwn6ivxh3" path="res://button_quit.tscn" id="7_30lwx"]
 [ext_resource type="AudioStream" uid="uid://dcpjyf5qt2ekp" path="res://altar/music/drum.ogg" id="9_84bn7"]
 [ext_resource type="AudioStream" uid="uid://2cgjynw7ne27" path="res://altar/music/layer_0.ogg" id="10_en63m"]
 [ext_resource type="AudioStream" uid="uid://t1gu8n2ha82w" path="res://altar/music/layer_1.ogg" id="11_rsxav"]
@@ -181,39 +182,44 @@ shape = SubResource("BoxShape3D_skted")
 
 [node name="TopPlayer" type="CanvasLayer" parent="."]
 
+[node name="Hint" type="Label" parent="TopPlayer"]
+unique_name_in_owner = true
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -231.0
+offset_right = 5.0
+offset_bottom = -207.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_84gwk")
+theme_override_font_sizes/font_size = 40
+text = "Drop 3 worms for a dark gift!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonQuit" parent="TopPlayer/Hint" instance=ExtResource("7_30lwx")]
+offset_top = -133.5
+offset_bottom = -73.5
+
 [node name="SacrificeButton" type="Button" parent="TopPlayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -81.5
-offset_top = -228.0
-offset_right = 81.5
-offset_bottom = -188.0
+offset_left = -176.0
+offset_top = 126.0
+offset_right = -13.0
+offset_bottom = 166.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2.29759, 2.29759)
 theme_override_fonts/font = ExtResource("3_84gwk")
 theme_override_font_sizes/font_size = 32
 text = "SACRIFICE"
-
-[node name="Label" type="Label" parent="TopPlayer/SacrificeButton"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -638.0
-offset_top = 28.0
-offset_right = 638.0
-offset_bottom = 52.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_84gwk")
-theme_override_font_sizes/font_size = 24
-text = "Drop 3 worms for a dark gift!"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="NewCard" type="ColorRect" parent="TopPlayer"]
 visible = false
@@ -259,6 +265,7 @@ grow_vertical = 2
 texture = ExtResource("4_cubwq")
 
 [node name="ConfirmButton" type="Button" parent="TopPlayer/NewCard"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

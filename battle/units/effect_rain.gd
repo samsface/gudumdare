@@ -39,9 +39,6 @@ func _ready() -> void:
 	
 	$AreaCircle.animate()
 	
-	if card:
-		card.queue_free()
-	
 	effect(grade)
 	
 	await $Explosion.finished

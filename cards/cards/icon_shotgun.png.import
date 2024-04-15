@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqt7bmvfcpani"
-path.s3tc="res://.godot/imported/buffworm.png-13907a9a4771928e0a248c6760a71bc2.s3tc.ctex"
+uid="uid://dqw6o0nugpe2q"
+path.s3tc="res://.godot/imported/icon_shotgun.png-e51ffd8282bf3033f4e2933f38fc224e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://battle/units/sprites/buffworm.png"
-dest_files=["res://.godot/imported/buffworm.png-13907a9a4771928e0a248c6760a71bc2.s3tc.ctex"]
+source_file="res://cards/cards/icon_shotgun.png"
+dest_files=["res://.godot/imported/icon_shotgun.png-e51ffd8282bf3033f4e2933f38fc224e.s3tc.ctex"]
 
 [params]
 

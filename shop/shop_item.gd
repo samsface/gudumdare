@@ -13,7 +13,7 @@ func _on_pressed() -> void:
 	if Game.worms < cost:
 		return
 	
-	Game.worms -= cost
+	Game.add_worm(-cost)
 	Game.game.unlock_upgrade(upgrade)
 	set_bought()
 

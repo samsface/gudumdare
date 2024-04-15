@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4qsvwn6ivxh3"]
+
+[ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="1_gwfxw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6rpiy"]
+
+[node name="ButtonQuit" type="Button"]
+auto_translate_mode = 1
+offset_left = 33.0
+offset_top = 23.0
+offset_right = 111.0
+offset_bottom = 83.0
+theme = ExtResource("1_gwfxw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6rpiy")
+text = "BACK"

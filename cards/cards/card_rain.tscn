@@ -24,7 +24,7 @@ void fragment() {
 resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_trstd")
-shader_parameter/mana = 1.0
+shader_parameter/mana = 10.0
 shader_parameter/cost = null
 shader_parameter/texture = ExtResource("4_vob44")
 
@@ -32,7 +32,7 @@ shader_parameter/texture = ExtResource("4_vob44")
 card_name = "Rain"
 art = ExtResource("2_hot8j")
 spawns = ExtResource("3_kpceh")
-mana_cost = 5
+mana_cost = 3
 tier = 1
 sidelay = true
 
@@ -43,7 +43,7 @@ material_override = SubResource("ShaderMaterial_6k0xl")
 text = "Rain"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
-text = "5"
+text = "3"
 
 [node name="Art" parent="." index="5"]
 texture = ExtResource("2_hot8j")

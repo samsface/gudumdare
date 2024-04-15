@@ -23,17 +23,20 @@ void fragment() {
 resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_trstd")
-shader_parameter/mana = 1.0
+shader_parameter/mana = 10.0
 shader_parameter/cost = null
 shader_parameter/texture = ExtResource("3_7fb56")
 
 [node name="StaticBody3D" instance=ExtResource("1_xtdbm")]
+card_name = "squire"
 spawns = ExtResource("2_qjtq5")
-tier = 1
 spawn_region = null
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_nvamb")
+
+[node name="CardNameLabel" parent="." index="3"]
+text = "squire"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "2"

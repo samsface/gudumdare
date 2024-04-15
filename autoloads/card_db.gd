@@ -1,16 +1,20 @@
 extends Node
 
 #TO avoid magical strings
-const CN_KNIGHT = "Knight"
-const CN_ARCHER = "Archer"
-const CN_RAIN = "Rain"
-const CN_PROTECTOR = "Protector"
+const CN_KNIGHT = "res://cards/cards/card_knight.tscn"
+const CN_ARCHER = "res://cards/cards/card_archer.tscn"
+const CN_RAIN = "res://cards/cards/card_rain.tscn"
+const CN_SHOTGUN = "res://cards/cards/card_shotgun.tscn"
+const CN_PROTECTOR = "res://cards/cards/card_protector.tscn"
+const CN_BUFF = "res://cards/cards/card_buff.tscn"
 
 const CARD_PATHS = [
-	"res://cards/cards/archer.tscn",
-	"res://cards/cards/knight.tscn",
-	"res://cards/cards/rain.tscn",
-	"res://cards/cards/protector.tscn",
+	CN_KNIGHT,
+	CN_ARCHER,
+	CN_RAIN,
+	CN_PROTECTOR,
+	CN_SHOTGUN,
+	CN_BUFF,
 ]
 
 var cards = {} #Key: Card Name, contains instiatated card object
@@ -18,22 +22,13 @@ var cards = {} #Key: Card Name, contains instiatated card object
 
 func _ready() -> void:
 	for path in CARD_PATHS:
-		print(path)
 		var card = load(path).instantiate()
-
-		cards[card.card_name] = card
-		print(str(cards))
-
-func return_card_scene(card_name: String) -> Node3D:
-	return cards[card_name]
-
-func return_card_texture(card_name: String) -> Texture:
-	return cards[card_name].art
+		
+		cards[path] = card
 
 func return_cards_by_tier(tier: int) -> Array:
 	var array: Array
 	for card in cards:
 		if cards[card].tier == tier:
 			array.append(card)
-			
 	return array

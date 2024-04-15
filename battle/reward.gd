@@ -2,7 +2,7 @@ extends Control
 
 signal done
 
-const CARDS_TO_OFFER = 5
+const CARDS_TO_OFFER = 3
 
 @export var reward_count := 2
 
@@ -37,8 +37,8 @@ func _ready() -> void:
 		if card == null: #Crash prevent since we dont have tier 2/3 cards yet
 			continue
 		
-		var new_card: Node3D = CardDB.return_card_scene(card).duplicate()
-		%NewCardArea.add_child(new_card) 
+		var new_card: Node3D = load(card).instantiate()
+		%NewCardArea.add_child(new_card)
 
 func _hand_area_child_entered_tree(node: Node) -> void:
 	if %HandArea.get_card_children().size() == reward_count:
@@ -70,6 +70,8 @@ func _confirm_pressed() -> void:
 	%ArrowInstruction.visible = false
 	%AudioPicked.play()
 	
+	for card in %HandArea.get_card_children():
+		Game.game.add_card(card.scene_file_path)
 	picked = true
 	$wowworm/Brush2D.hide()
 	$wowworm/Brush2D2.show()

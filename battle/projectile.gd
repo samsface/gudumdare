@@ -2,10 +2,13 @@ class_name Projectile
 extends Node2D
 
 @export var damage := 1
+@export var life_time := 1.0
 
 var battle: Battle
 var velocity := Vector2()
 var is_foe := false
+
+var t := 0.0
 
 func init(battle: Battle, target: Unit, is_foe: bool):
 	self.battle = battle
@@ -25,3 +28,6 @@ func _process(delta: float) -> void:
 		if distance < range_squared:
 			queue_free()
 			enemy.hit(damage)
+	t += delta
+	if t > life_time:
+		queue_free()

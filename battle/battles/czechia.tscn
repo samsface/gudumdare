@@ -30,4 +30,4 @@ grow_vertical = 2
 texture = ExtResource("2_3w6kb")
 
 [node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_2tjw3")]
-position = Vector2(1087, 290)
+position = Vector2(1032, 325)

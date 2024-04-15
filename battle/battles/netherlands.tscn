@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dchn7h40cx3ei"]
+[gd_scene load_steps=8 format=3 uid="uid://dchn7h40cx3ei"]
 
 [ext_resource type="PackedScene" uid="uid://dcnq1dkwqkvny" path="res://battle/battle.tscn" id="1_7rrh4"]
 [ext_resource type="PackedScene" uid="uid://dxaqk6lkr8gyp" path="res://battle/units/foe_tower.tscn" id="2_0cajp"]
 [ext_resource type="Texture2D" uid="uid://d2lxviktw2wqh" path="res://battle/battles/backgrounds/places10.png" id="2_mrb5r"]
+[ext_resource type="PackedScene" uid="uid://4jicxhiwg8vq" path="res://minigames/minigame_summon_worms/poop.tscn" id="3_fjp08"]
+[ext_resource type="PackedScene" uid="uid://feswwgcri5rp" path="res://minigames/minigame_summon_worms/grass.tscn" id="4_ysqud"]
+[ext_resource type="PackedScene" uid="uid://dn46itmu16ncm" path="res://minigames/minigame_summon_worms/rock.tscn" id="5_1vtk6"]
+[ext_resource type="PackedScene" uid="uid://qat7yjbw1y6c" path="res://minigames/minigame_summon_worms/pool.tscn" id="6_rmuvu"]
 
-[node name="Battle" instance=ExtResource("1_7rrh4")]
+[node name="Battle" node_paths=PackedStringArray("levels") instance=ExtResource("1_7rrh4")]
+levels = [NodePath("Fight/level1"), NodePath("Fight/level2"), NodePath("Fight/level3"), NodePath("Fight/level4"), NodePath("Fight/level5"), NodePath("Fight/level6")]
 
 [node name="ColorRect" parent="." index="1"]
 visible = true
@@ -29,5 +34,170 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_mrb5r")
 
-[node name="FoeTower" parent="Fight" index="0" instance=ExtResource("2_0cajp")]
-position = Vector2(1087, 290)
+[node name="level1" type="Node2D" parent="Fight" index="0"]
+visible = false
+
+[node name="WormLocationPoop" parent="Fight/level1" index="0" instance=ExtResource("3_fjp08")]
+position = Vector2(1252, 647)
+
+[node name="WormLocationPoop2" parent="Fight/level1" index="1" instance=ExtResource("3_fjp08")]
+position = Vector2(368, 684)
+
+[node name="WormLocationPoop3" parent="Fight/level1" index="2" instance=ExtResource("3_fjp08")]
+position = Vector2(100, 536)
+
+[node name="WormLocationPoop4" parent="Fight/level1" index="3" instance=ExtResource("3_fjp08")]
+position = Vector2(239, 194)
+
+[node name="WormLocationPoop5" parent="Fight/level1" index="4" instance=ExtResource("3_fjp08")]
+position = Vector2(1309, 188)
+
+[node name="WormLocationPoop6" parent="Fight/level1" index="5" instance=ExtResource("3_fjp08")]
+position = Vector2(1397, 348)
+
+[node name="WormLocationPoop7" parent="Fight/level1" index="6" instance=ExtResource("3_fjp08")]
+position = Vector2(558, 266)
+
+[node name="WormLocationPoop8" parent="Fight/level1" index="7" instance=ExtResource("3_fjp08")]
+position = Vector2(846, 591)
+
+[node name="WormLocationGrass2" parent="Fight/level1" index="8" instance=ExtResource("4_ysqud")]
+position = Vector2(1053, 740)
+
+[node name="level2" type="Node2D" parent="Fight" index="1"]
+visible = false
+
+[node name="WormLocationRock" parent="Fight/level2" index="0" instance=ExtResource("5_1vtk6")]
+position = Vector2(1334, 565)
+
+[node name="WormLocationPool" parent="Fight/level2" index="1" instance=ExtResource("6_rmuvu")]
+position = Vector2(252, 617)
+
+[node name="WormLocationPool2" parent="Fight/level2" index="2" instance=ExtResource("6_rmuvu")]
+position = Vector2(697, 106)
+
+[node name="WormLocationGrass" parent="Fight/level2" index="3" instance=ExtResource("4_ysqud")]
+position = Vector2(943, 658)
+
+[node name="WormLocationGrass2" parent="Fight/level2" index="4" instance=ExtResource("4_ysqud")]
+position = Vector2(80, 271)
+
+[node name="WormLocationGrass3" parent="Fight/level2" index="5" instance=ExtResource("4_ysqud")]
+position = Vector2(535, 505)
+
+[node name="WormLocationGrass4" parent="Fight/level2" index="6" instance=ExtResource("4_ysqud")]
+position = Vector2(913, 304)
+
+[node name="level3" type="Node2D" parent="Fight" index="2"]
+visible = false
+
+[node name="WormLocationPoop9" parent="Fight/level3" index="0" instance=ExtResource("3_fjp08")]
+position = Vector2(961, 618)
+
+[node name="WormLocationPoop10" parent="Fight/level3" index="1" instance=ExtResource("3_fjp08")]
+position = Vector2(164, 521)
+
+[node name="WormLocationPool" parent="Fight/level3" index="2" instance=ExtResource("6_rmuvu")]
+position = Vector2(152, 254)
+
+[node name="WormLocationGrass" parent="Fight/level3" index="3" instance=ExtResource("4_ysqud")]
+position = Vector2(524, 223)
+
+[node name="WormLocationGrass2" parent="Fight/level3" index="4" instance=ExtResource("4_ysqud")]
+position = Vector2(428, 668)
+
+[node name="WormLocationGrass3" parent="Fight/level3" index="5" instance=ExtResource("4_ysqud")]
+position = Vector2(1254, 238)
+
+[node name="level4" type="Node2D" parent="Fight" index="3"]
+visible = false
+
+[node name="WormLocationPoop9" parent="Fight/level4" index="0" instance=ExtResource("3_fjp08")]
+position = Vector2(997, 654)
+
+[node name="WormLocationPoop10" parent="Fight/level4" index="1" instance=ExtResource("3_fjp08")]
+position = Vector2(194, 594)
+
+[node name="WormLocationPoop11" parent="Fight/level4" index="2" instance=ExtResource("3_fjp08")]
+position = Vector2(402, 191)
+
+[node name="WormLocationRock" parent="Fight/level4" index="3" instance=ExtResource("5_1vtk6")]
+position = Vector2(1303, 501)
+
+[node name="WormLocationRock2" parent="Fight/level4" index="4" instance=ExtResource("5_1vtk6")]
+position = Vector2(80, 306)
+
+[node name="WormLocationRock3" parent="Fight/level4" index="5" instance=ExtResource("5_1vtk6")]
+position = Vector2(239, 433)
+
+[node name="WormLocationGrass" parent="Fight/level4" index="6" instance=ExtResource("4_ysqud")]
+position = Vector2(517, 436)
+
+[node name="WormLocationGrass2" parent="Fight/level4" index="7" instance=ExtResource("4_ysqud")]
+position = Vector2(910, 496)
+
+[node name="level5" type="Node2D" parent="Fight" index="4"]
+visible = false
+
+[node name="WormLocationGrass" parent="Fight/level5" index="0" instance=ExtResource("4_ysqud")]
+position = Vector2(517, 436)
+
+[node name="WormLocationGrass2" parent="Fight/level5" index="1" instance=ExtResource("4_ysqud")]
+position = Vector2(354, 583)
+
+[node name="WormLocationGrass3" parent="Fight/level5" index="2" instance=ExtResource("4_ysqud")]
+position = Vector2(723, 673)
+
+[node name="WormLocationGrass4" parent="Fight/level5" index="3" instance=ExtResource("4_ysqud")]
+position = Vector2(1026, 534)
+
+[node name="WormLocationGrass5" parent="Fight/level5" index="4" instance=ExtResource("4_ysqud")]
+position = Vector2(777, 273)
+
+[node name="WormLocationGrass6" parent="Fight/level5" index="5" instance=ExtResource("4_ysqud")]
+position = Vector2(486, 201)
+
+[node name="WormLocationGrass7" parent="Fight/level5" index="6" instance=ExtResource("4_ysqud")]
+position = Vector2(600, 162)
+
+[node name="WormLocationGrass8" parent="Fight/level5" index="7" instance=ExtResource("4_ysqud")]
+position = Vector2(387, 156)
+
+[node name="WormLocationGrass9" parent="Fight/level5" index="8" instance=ExtResource("4_ysqud")]
+position = Vector2(105, 471)
+
+[node name="WormLocationGrass10" parent="Fight/level5" index="9" instance=ExtResource("4_ysqud")]
+position = Vector2(1293, 167)
+
+[node name="WormLocationGrass11" parent="Fight/level5" index="10" instance=ExtResource("4_ysqud")]
+position = Vector2(1309, 625)
+
+[node name="level6" type="Node2D" parent="Fight" index="5"]
+visible = false
+
+[node name="WormLocationPoop9" parent="Fight/level6" index="0" instance=ExtResource("3_fjp08")]
+position = Vector2(62, 284)
+
+[node name="WormLocationRock" parent="Fight/level6" index="1" instance=ExtResource("5_1vtk6")]
+position = Vector2(1303, 501)
+
+[node name="WormLocationRock2" parent="Fight/level6" index="2" instance=ExtResource("5_1vtk6")]
+position = Vector2(1248, 171)
+
+[node name="WormLocationRock3" parent="Fight/level6" index="3" instance=ExtResource("5_1vtk6")]
+position = Vector2(538, 158)
+
+[node name="WormLocationPool" parent="Fight/level6" index="4" instance=ExtResource("6_rmuvu")]
+position = Vector2(427, 581)
+
+[node name="WormLocationPool2" parent="Fight/level6" index="5" instance=ExtResource("6_rmuvu")]
+position = Vector2(220, 466)
+
+[node name="WormLocationPool3" parent="Fight/level6" index="6" instance=ExtResource("6_rmuvu")]
+position = Vector2(156, 611)
+
+[node name="FoeTower" parent="Fight" index="6" instance=ExtResource("2_0cajp")]
+position = Vector2(1053, 196)
+
+[node name="FoeTower2" parent="Fight" index="7" instance=ExtResource("2_0cajp")]
+position = Vector2(1047, 698)

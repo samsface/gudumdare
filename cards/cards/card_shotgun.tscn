@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://4pygd0ck5w4g"]
+
+[ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_x7gkk"]
+[ext_resource type="Texture2D" uid="uid://dqw6o0nugpe2q" path="res://cards/cards/icon_shotgun.png" id="2_hmdb5"]
+[ext_resource type="PackedScene" uid="uid://cxl05bvstcs5r" path="res://battle/units/unit_shotgun.tscn" id="3_fwtxm"]
+[ext_resource type="Texture2D" uid="uid://dgr7ggakdl3b4" path="res://cards/card.png" id="3_vmiy2"]
+
+[sub_resource type="Shader" id="Shader_trstd"]
+code = "shader_type spatial;
+uniform sampler2D texture;
+
+uniform float mana;
+uniform float cost;
+
+void fragment() {
+	ALPHA = texture(texture, UV).a;
+	float pct = mana / cost;
+	ALPHA *= smoothstep(pct, pct, UV.y) * 0.8;
+	ALBEDO = vec3(0.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvamb"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_trstd")
+shader_parameter/mana = 10.0
+shader_parameter/cost = null
+shader_parameter/texture = ExtResource("3_vmiy2")
+
+[node name="StaticBody3D" instance=ExtResource("1_x7gkk")]
+card_name = "buckshot"
+art = ExtResource("2_hmdb5")
+spawns = ExtResource("3_fwtxm")
+spawn_region = null
+
+[node name="CardLoading" parent="." index="2"]
+material_override = SubResource("ShaderMaterial_nvamb")
+
+[node name="CardNameLabel" parent="." index="3"]
+text = "buckshot"
+
+[node name="ManaCost" parent="MeshInstance3D3" index="0"]
+text = "2"
+
+[node name="Art" parent="." index="5"]
+transform = Transform3D(0.540038, 0, 0, 0, 0.540038, 0, 0, 0, 1, 0, 0.0715648, 0.01)
+texture = ExtResource("2_hmdb5")

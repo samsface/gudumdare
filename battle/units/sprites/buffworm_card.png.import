@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqt7bmvfcpani"
-path.s3tc="res://.godot/imported/buffworm.png-13907a9a4771928e0a248c6760a71bc2.s3tc.ctex"
+uid="uid://bteiopkhbwn4o"
+path.s3tc="res://.godot/imported/buffworm_card.png-b422eab1f1ef1dd7dfc50732029b67e9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://battle/units/sprites/buffworm.png"
-dest_files=["res://.godot/imported/buffworm.png-13907a9a4771928e0a248c6760a71bc2.s3tc.ctex"]
+source_file="res://battle/units/sprites/buffworm_card.png"
+dest_files=["res://.godot/imported/buffworm_card.png-b422eab1f1ef1dd7dfc50732029b67e9.s3tc.ctex"]
 
 [params]
 

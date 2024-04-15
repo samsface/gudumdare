@@ -1,4 +1,4 @@
-extends UnitRanged
+extends Unit
 
 @export var damage := 1
 

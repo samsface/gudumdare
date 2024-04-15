@@ -10,7 +10,7 @@ var card
 @onready var max_health: float
 
 @export var is_foe := false
-@export var speed := 300.0
+@export var speed := 200.0
 @export var attack_range := 100.0
 @export var reload_duration := 0.5
 @export var attackable := true
@@ -33,6 +33,8 @@ var damage_tween:Tween
 var shake_tween:Tween
 @export var spawn_sound := 0
 
+@export var max_reward := 3
+
 func _ready() -> void:
 	if spawn_sound != 0:
 		$AudioSpawn.stream = load("res://battle/units/sfx/anime_teleport_%s.wav" % spawn_sound)
@@ -43,6 +45,7 @@ func _ready() -> void:
 	max_health = health
 
 func _process(delta: float) -> void:
+	delta *= Game.game_speed
 	process_movement(delta)
 	%Healthbar2.value = health / max_health
 	%Healthbar.value = move_toward(%Healthbar.value, %Healthbar2.value, delta / 1.0)
@@ -57,6 +60,7 @@ func _process(delta: float) -> void:
 			reload_boost_multi = 1.0
 
 func process_movement(delta):
+	delta *= Game.game_speed
 	if health <= 0:
 		return
 
@@ -82,7 +86,7 @@ func hit(damage):
 	if health <= 0:
 		remove()
 		if is_foe:
-			for i in randi_range(1, 3):
+			for i in randi_range(1, max_reward):
 				var worm_pickup = load("res://battle/pickup_worm.tscn").instantiate()
 				get_parent().add_child(worm_pickup)
 				worm_pickup.global_position = global_position

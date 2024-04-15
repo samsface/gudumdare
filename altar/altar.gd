@@ -20,8 +20,8 @@ func _ready() -> void:
 	#Funcs
 	_check_sacrifice_button()
 	#Read and add player cards to PlayerHand
-	for card_name in Game.game.player_cards:
-		var card_scene = CardDB.return_card_scene(card_name).duplicate()
+	for card_path in Game.game.player_cards:
+		var card_scene = load(card_path).instantiate()
 		player_hand.add_child(card_scene)
 	
 func _check_sacrifice_button():
@@ -33,36 +33,35 @@ func _check_sacrifice_button():
 		sacrifice_button.disabled = true
 			
 func _on_sacrifice_button_pressed() -> void:
-	#REMOVE CARDS FROM DECK
+	sacrifice_button.hide()
+	%Hint.hide()
+	$Sacrafice.play()
 	
-	#GET NEW CARD
+	# GET NEW CARD
 	var lowest_tier = 666 #Should replace with actual highest tier :-)
 	for card in sacrifice_slot.get_card_children():
-		if card.tier < lowest_tier:
-			lowest_tier = card.tier
-	#print("lowest tier is now " + str(lowest_tier))
+		lowest_tier = min(lowest_tier, card.tier)
 	
-	var cards = CardDB.return_cards_by_tier(lowest_tier)
-	var random_index = RNG.random_int(0, cards.size() - 1) 
-	var new_card_name = cards[random_index]
-	
+	var card_path = CardDB.return_cards_by_tier(lowest_tier + 1).pick_random()
+	var obtained_card = load(card_path).instantiate()
 	new_card.show()
-	sacrifice_button.hide()
-	new_card_label.text = "YOU GOT " + new_card_name.to_upper() + "!"
-	new_card_image.texture = CardDB.return_card_texture(new_card_name)
-	#Adding
-	player_hand.add_child(CardDB.return_card_scene(new_card_name)) #add to hand
-	Game.game.add_card(new_card_name) #add to player cards
-	#Removing
+	
+	new_card_label.text = "YOU GOT " + obtained_card.card_name.to_upper() + "!"
+	new_card_image.texture = obtained_card.art
+	Game.game.add_card(card_path)
+	
+	# Removing
 	for card in sacrifice_slot.get_card_children():
-		Game.game.remove_card(card.card_name) #Remove forom player cards
-		card.queue_free() #Remove from sacrifical hand
-
-	$Sacrafice.play()
+		Game.game.remove_card(card.card_name)
+		card.queue_free()
+	
+	await %ConfirmButton.pressed
+	player_hand.add_child(obtained_card)
 
 func _on_confirm_button_pressed() -> void:
 	new_card.hide()
 	sacrifice_button.show()
+	%Hint.show()
 
 
 func _process(delta: float) -> void:

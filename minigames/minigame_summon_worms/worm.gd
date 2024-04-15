@@ -49,9 +49,10 @@ func _process(delta: float) -> void:
 				modulate = Color(0.7, 0.7, 0.7)
 				Game.worm_added = 0.0
 				dancing = false
-				Game.worms += 1
 				%AudioAdd.play()
-				%Point.visible = true
-				await get_tree().create_timer(0.3).timeout
-				%Point.visible = false
+				for i in randi_range(3, 6):
+					var worm_pickup = load("res://battle/pickup_worm.tscn").instantiate()
+					get_parent().add_child(worm_pickup)
+					worm_pickup.global_position = global_position
+					worm_pickup.velocity = Vector2.from_angle(randf() * TAU) * randf_range(0.2, 1.0) * 800.0
 				

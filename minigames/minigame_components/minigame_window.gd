@@ -15,7 +15,7 @@ var rating: float = 0
 
 # if you want to test, uncomment the following lines
 func _ready():
-	pass
+	Game.game_speed = 0.3
 	#load_minigame("res://minigames/minigame_burn_the_wood/minigame_burn_the_wood.tscn")
 
 # call this function to start the minigame.
@@ -59,6 +59,8 @@ func _on_ok_button_pressed() -> void:
 	%SubViewport.render_target_update_mode = 0
 	await get_tree().create_timer(0.5).timeout
 	minigame_ended.emit(rating)
+	
+	Game.game_speed = 1.0
 	queue_free()
 
 

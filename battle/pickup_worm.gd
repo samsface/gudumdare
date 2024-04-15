@@ -12,14 +12,17 @@ func _process(delta: float) -> void:
 		global_position = global_position.move_toward(Game.game.worm_icon.global_position, delta * 100.0 * speed)
 		if global_position.distance_to(Game.game.worm_icon.global_position) < 50.0:
 			queue_free()
-			Game.worms += 1
+			Game.add_worm()
 	else:
 		life += delta
 		if life > 8.0:
 			visible = fmod(life/ 0.1, 1.0) > 0.5
 		if life > 10.0:
 			queue_free()
-		if life > 0.2 and get_local_mouse_position().length() < 100.0 or get_parent().get_parent().won:
+		var game_won := false
+		if get_parent().get_parent() is Battle:
+			game_won = get_parent().get_parent().won
+		if life > 0.2 and get_local_mouse_position().length() < 100.0 or game_won:
 			added = true
 			GenericTween.squish(self)
 			$AudioAdd.play()
