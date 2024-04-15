@@ -127,8 +127,8 @@ func hit(damage):
 		$AudioHit.play()
 
 func die_animation():
-	$Model/AnimationPlayer.play("RESET")
-	$Model/AnimationPlayer.stop()
+	#$Model/AnimationPlayer.play("RESET") ANIM DOESNT EIXT
+	#$Model/AnimationPlayer.stop() ANIM DOESNT EIXT
 	if shake_tween:
 		shake_tween.kill()
 	if damage_tween:
