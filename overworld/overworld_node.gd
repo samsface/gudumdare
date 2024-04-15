@@ -34,8 +34,16 @@ func _ready() -> void:
 	if not available:
 		%Sprite.modulate = Color("466856")
 	
-	if Game.game.conquered_nodes.has(name):
+	var conquered = Game.game.conquered_nodes.has(name)
+	if conquered:
 		$Flag.visible = true
+
+func pop_flag():
+	$Flag.visible = false
+	await get_tree().create_timer(1.0).timeout
+	$AudioWin.play()
+	$Flag.visible = true
+	GenericTween.squish($Flag)
 
 func _process(delta: float) -> void:
 	if not Engine.is_editor_hint() and Input.is_key_pressed(KEY_P):

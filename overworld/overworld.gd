@@ -24,17 +24,20 @@ func _ready() -> void:
 		Game.game.battle_won = false
 		
 		var conquered_node: OverworldNode = get_node(Game.game.current_battle_node_name)
-		Game.game.conquered_nodes.append(conquered_node)
-		for neighbor in conquered_node.neighbors:
-			if not neighbor.available:
-				Game.game.unlocked_nodes.append(neighbor.my_name)
-				just_unlocked_nodes.append(neighbor.my_name)
+		if not Game.game.conquered_nodes.has(conquered_node.name):
+			Game.game.conquered_nodes.append(conquered_node.name)
+			conquered_node.pop_flag()
+			for neighbor in conquered_node.neighbors:
+				if not neighbor.available:
+					Game.game.unlocked_nodes.append(neighbor.my_name)
+					just_unlocked_nodes.append(neighbor.my_name)
 	
 	for node_name in Game.game.unlocked_nodes:
 		var node: OverworldNode = get_node(node_name)
 		if not just_unlocked_nodes.has(node_name):
 			node.unlock()
-			
+	
+	await get_tree().create_timer(1.5).timeout
 	for node_name in just_unlocked_nodes:
 		var node: OverworldNode = get_node(node_name)
 		node.unlock(true)
