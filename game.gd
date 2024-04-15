@@ -86,6 +86,9 @@ func open_worm_summon():
 
 func open_intro():
 	start_scene("res://intro/intro.tscn")
+
+func open_credits():
+	start_scene("res://credits.tscn")
 	
 
 func start_scene(path):

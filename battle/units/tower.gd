@@ -3,14 +3,26 @@ extends UnitRanged
 @export var shooting := true
 
 var messages = [
-	"don't step on me!",
 	"worm dominance!",
+	"the early bird gets the BURN",
+	"birds? more like... NERDS!",
 	"prepare for your demise!",
 	"get wormed!",
 	"down with the gestapo!",
 	"birds suck!!",
 	"Wormdemic is here!!",
 	"I'll DUNE you!!",
+	"wiggle or be wiggled!",
+	"don't step on me!",
+	"spread your wings and DIE!",
+	"we'll put you in the ground!!",
+	"taste dirt suckers!",
+	"they call us the reign worms!",
+	"Tweeting is for losers!",
+	"bird is no longer the word",
+	"spread your wings and learn to die",
+	"who's on top of the food chain now?",
+	"Twitter is dead anyways",
 ]
 
 func _ready() -> void:
