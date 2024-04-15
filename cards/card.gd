@@ -48,8 +48,8 @@ func _mouse_exited() -> void:
 
 func _ready() -> void:
 	color = [Color.YELLOW, Color.DODGER_BLUE, Color.TOMATO][tier-1]
-	%Card.set_instance_shader_parameter("modulate", color)
-	%Card.set_instance_shader_parameter("rand", randf())
+	%Card.mesh.material.set_shader_parameter("modulate", color)
+	%Card.mesh.material.set_shader_parameter("rand", randf())
 	%TierLabel.modulate = color * 0.5
 	%TierLabel.text = ["GRUB", "STRONG", "BEAST"][tier-1]
 
@@ -76,6 +76,6 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	if is_instance_valid(Game.battle):
-		%Card.set_instance_shader_parameter("mana", Game.battle.mana / mana_cost)
+		%Card.mesh.material.set_shader_parameter("mana", Game.battle.mana / mana_cost)
 	else:
-		%Card.set_instance_shader_parameter("mana", 1.0)
+		%Card.mesh.material.set_shader_parameter("mana", 1.0)
