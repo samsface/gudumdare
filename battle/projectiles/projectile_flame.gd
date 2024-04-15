@@ -6,6 +6,7 @@ var rotation_speed = randf_range(-1, 1)
 
 func init(battle: Battle, target: Unit, is_foe: bool):
 	self.battle = battle
+	self.is_foe = is_foe
 	velocity = position.direction_to(target.position).rotated(randf_range(-1, 1) * 0.2) * 200.0
 	%Model.rotation = randf() * TAU
 

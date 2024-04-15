@@ -77,8 +77,8 @@ func process_movement(delta):
 		else:
 			reload_t -= delta * reload_boost_multi
 			if reload_t <= 0:
-				attack()
 				$AudioAttack.play()
+				attack()
 				reload_t += reload_duration
 
 func attack():
@@ -122,6 +122,10 @@ func hit(damage):
 		damage_tween = GenericTween.flash_red(%Model)
 	
 	$AudioHit.play()
+
+func heal():
+	health += 2
+	$AudioHeal.play()
 
 func get_closest_enemy():
 	var enemies = battle.friends if is_foe else battle.foes

@@ -32,6 +32,8 @@ var just_dropped := false
 var hover_cooldown:SceneTreeTimer
 var spin_tween:Tween
 
+var color: Color
+
 func _mouse_entered() -> void:
 	if hover_cooldown and hover_cooldown.time_left > 0.0:
 		return
@@ -48,6 +50,10 @@ func _mouse_exited() -> void:
 
 func _ready() -> void:
 	%CardLoading.material_override.set_shader_parameter("cost", mana_cost)
+	
+	color = [Color.YELLOW, Color.DODGER_BLUE, Color.TOMATO][tier]
+	%TierLabel.modulate = color * 0.5
+	%TierLabel.text = ["GRUB", "STRONG", "BEAST"][tier]
 
 func set_render_priority(value):
 	%MeshInstance3D3.render_priority = value
@@ -80,7 +86,7 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if is_instance_valid(Game.battle):
 		%CardLoading.material_override.set_shader_parameter("mana", Game.battle.mana)
-		%Card.modulate = Color.WHITE if Game.battle.mana > mana_cost else Color(1.0, 0.7, 0.8)
+		%Card.modulate = color if Game.battle.mana > mana_cost else color * Color(1.0, 0.7, 0.8)
 	else:
 		%CardLoading.material_override.set_shader_parameter("mana", 10.0)
-		%Card.modulate = Color.WHITE
+		%Card.modulate = color

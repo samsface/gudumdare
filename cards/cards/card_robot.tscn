@@ -30,6 +30,11 @@ shader_parameter/texture = ExtResource("3_jnomg")
 [node name="StaticBody3D" instance=ExtResource("1_cdhj3")]
 card_name = "robot"
 spawns = ExtResource("2_m5ty0")
+mana_cost = 1
+tier = 1
+
+[node name="Card" parent="." index="1"]
+modulate = Color(0.117647, 0.564706, 1, 1)
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_nvamb")
@@ -37,5 +42,6 @@ material_override = SubResource("ShaderMaterial_nvamb")
 [node name="CardNameLabel" parent="." index="3"]
 text = "robot"
 
-[node name="ManaCost" parent="MeshInstance3D3" index="0"]
-text = "2"
+[node name="TierLabel" parent="." index="4"]
+modulate = Color(0.0588235, 0.282353, 0.5, 0.5)
+text = "STRONG"
