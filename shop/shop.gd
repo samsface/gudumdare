@@ -1,5 +1,10 @@
 extends Node2D
 
+func _ready() -> void:
+	#Game.game.play_music_shop()
+	Game.game.lowpass_music()
+	Game.game.duck_music(true, 0.1)
+
 func _process(delta: float) -> void:
 	var mouse_off = (get_local_mouse_position() - Game.SCREEN_SIZE * 0.5)
 	%Background.position = mouse_off * 0.01 + Vector2(-30, -20)

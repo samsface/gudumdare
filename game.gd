@@ -96,17 +96,25 @@ func start_scene(path):
 	add_child(current_scene)
 	transition.open()
 
+@onready var stream_overworld = preload("res://music/1226674_Rhythm-Factory.ogg")
 func play_music_overworld():
-	$Music.stream = load("res://music/1226674_Rhythm-Factory.ogg")
+	if $Music.stream == stream_overworld:
+		return
+	$Music.stream = stream_overworld
 	$Music.play()
 
 func play_music_battle(path):
 	$Music.stream = load(path)
 	$Music.play()
 
-func duck_music(value: bool = true):
+#func play_music_shop():
+	#$Music.stream = load("res://music/1059464_In-Da-House-Eggtopia-OST.mp3")
+	#$Music.play()
+	
+
+func duck_music(value: bool = true, volume = 0.01):
 	var tween = create_tween()
-	tween.tween_property($Music, "volume_db", linear_to_db(0.01 if value else 0.6), 0.2)
+	tween.tween_property($Music, "volume_db", linear_to_db(volume if value else 0.5), 0.2)
 
 func lowpass_music(value: bool = true):
 	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Music"), 1, value)

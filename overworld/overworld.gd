@@ -16,6 +16,7 @@ var current_battle_node: Node2D
 func _ready() -> void:
 	Game.game.play_music_overworld()
 	Game.game.duck_music(false)
+	Game.game.lowpass_music(false)
 	%Camera2D.zoom = Vector2.ONE * 0.1
 	
 	#Check if battle was won and unlock new nodes
