@@ -11,6 +11,7 @@ func init(battle: Battle, target: Unit, is_foe: bool):
 	%Model.rotation = randf() * TAU
 
 func _process(delta: float) -> void:
+	delta *= Game.game_speed
 	hit_t -= delta
 	position += velocity * delta
 	%Model.rotation += rotation_speed * delta
