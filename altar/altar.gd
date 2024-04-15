@@ -1,6 +1,6 @@
 extends Control
 
-const REQUIRED_SACRIFICE_COUNT = 3
+const REQUIRED_SACRIFICE_COUNT = 2
 
 @onready var player_hand = $CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand
 @onready var sacrifice_button := $TopPlayer/SacrificeButton
@@ -8,6 +8,11 @@ const REQUIRED_SACRIFICE_COUNT = 3
 @onready var new_card_label := $TopPlayer/NewCard/Label
 @onready var new_card_image := $TopPlayer/NewCard/Image
 @onready var sacrifice_slot := $CardLayer/SubViewportContainer/SubViewport/HandTest/SacrificeSlot
+@onready var tier_odds := %TierOdds
+
+var tier1_chance: int
+var tier2_chance: int
+var tier3_chance: int
 
 var filled := 0.0
 
@@ -17,6 +22,7 @@ func _ready() -> void:
 	player_hand.card_dropped.connect(_check_sacrifice_button)
 	#Hide stuff
 	new_card.hide()
+	tier_odds.hide()
 	#Funcs
 	_check_sacrifice_button()
 	#Read and add player cards to PlayerHand
@@ -29,20 +35,69 @@ func _check_sacrifice_button():
 	
 	if sacrifice_slot.get_card_children().size() == REQUIRED_SACRIFICE_COUNT:
 		sacrifice_button.disabled = false
+		_calculate_tier_odds()
+		tier_odds.show()
 	else:
 		sacrifice_button.disabled = true
+		tier_odds.hide()
+		
+func _calculate_tier_odds() -> void:
+	var lowest_tier := 999 
+	var highest_tier := 1
+	var tiers: Array = []
+	
+	#Reset tier chances
+	tier1_chance = 0
+	tier2_chance = 0
+	tier3_chance = 0
+	
+	for card in sacrifice_slot.get_card_children():
+		tiers.append(card.tier)
+		if card.tier < lowest_tier:
+			lowest_tier = card.tier
+		elif card.tier > highest_tier:
+			highest_tier = card.tier
+	
+	if lowest_tier == highest_tier: #Same tiers
+		match lowest_tier:
+			1: tier1_chance = 100
+			2: tier2_chance = 100
+			3: tier3_chance = 100
+	else:
+		if lowest_tier == 1:
+			if highest_tier == 2:
+				tier1_chance = 90
+				tier2_chance = 10
+			elif highest_tier == 3:
+				tier1_chance = 95
+				tier3_chance = 5
+		elif lowest_tier == 2: #only other tie can be tier 3
+			tier2_chance = 75
+			tier3_chance = 25
+			
+		tier_odds.text = "Tier 1 chance " + str(tier1_chance) + "%"
+		tier_odds.text += "\nTier 2 chance " + str(tier2_chance) + "%"
+		tier_odds.text += "\nTier 3 chance " + str(tier3_chance) + "%"
+			
 			
 func _on_sacrifice_button_pressed() -> void:
 	sacrifice_button.hide()
 	%Hint.hide()
 	$Sacrafice.play()
+	tier_odds.hide()
 	
-	# GET NEW CARD
-	var lowest_tier = 666 #Should replace with actual highest tier :-)
-	for card in sacrifice_slot.get_card_children():
-		lowest_tier = min(lowest_tier, card.tier)
+	var tier = -1
 	
-	var card_path = CardDB.return_cards_by_tier(lowest_tier + 1).pick_random()
+	if tier3_chance > 0:
+		if RNG.random_int(1, 100) <= tier3_chance:
+			tier = 3
+	if tier == -1 and tier2_chance > 0:
+		if RNG.random_int(1, 100) <= tier2_chance:
+			tier = 2
+	if tier == -1: #Other tiers impossible or roll failed, always assign tier 1
+		tier = 1
+	
+	var card_path = CardDB.return_cards_by_tier(tier).pick_random()
 	var obtained_card = load(card_path).instantiate()
 	new_card.show()
 	

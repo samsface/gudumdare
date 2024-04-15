@@ -144,7 +144,7 @@ collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
 sort = true
-max_cards = 3
+max_cards = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CardLayer/SubViewportContainer/SubViewport/HandTest/SacrificeSlot"]
 shape = SubResource("BoxShape3D_4a4sw")
@@ -189,20 +189,43 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 1.0
-offset_top = -231.0
+offset_top = -270.5
 offset_right = 5.0
-offset_bottom = -207.0
+offset_bottom = -231.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_84gwk")
 theme_override_font_sizes/font_size = 40
-text = "Drop 3 worms for a dark gift!"
+text = "Drop 2 worms for a dark gift!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ButtonQuit" parent="TopPlayer/Hint" instance=ExtResource("7_30lwx")]
+layout_mode = 0
+offset_left = 0.0
 offset_top = -133.5
+offset_right = 78.0
 offset_bottom = -73.5
+
+[node name="TierOdds" type="Label" parent="TopPlayer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 569.0
+offset_top = -224.0
+offset_right = -532.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_84gwk")
+theme_override_font_sizes/font_size = 40
+text = "Tier 1 chance 100%
+Tier 2 chance 0%
+Teir 3 chance 0%"
+vertical_alignment = 1
 
 [node name="SacrificeButton" type="Button" parent="TopPlayer"]
 anchors_preset = 8
