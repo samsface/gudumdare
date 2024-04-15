@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-const BUS_SOUND = 4
-const BUS_MUSIC = 3
+const BUS_SOUND = 1
+const BUS_MUSIC = 2
 
 @onready var arrow := $Button/Arrow
 @onready var controls := $Controls 
