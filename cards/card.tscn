@@ -28,8 +28,8 @@ resource_local_to_scene = true
 render_priority = -2
 shader = ExtResource("3_gmvpr")
 shader_parameter/mana = 1.0
-shader_parameter/modulate = Color(1, 1, 0, 1)
-shader_parameter/rand = 0.493384
+shader_parameter/modulate = Color(1, 0.388235, 0.278431, 1)
+shader_parameter/rand = 0.557371
 shader_parameter/TEXTURE = ExtResource("3_po2xc")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_1xxou")
 
@@ -84,8 +84,8 @@ outline_size = 0
 
 [node name="TierLabel" type="Label3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.865399, 0, 0, 0, 0.865399, 0, 0, 0, 1, 0, -0.159487, 0)
-pixel_size = 0.001
+transform = Transform3D(0.865399, 0, 0, 0, 0.865399, 0, 0, 0, 1, 0, -0.209975, 0)
+pixel_size = 0.0007
 double_sided = false
 texture_filter = 1
 modulate = Color(0.5, 0.194118, 0.139216, 0.5)

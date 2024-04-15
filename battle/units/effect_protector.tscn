@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://battle/units/effect_protector.gd" id="1_fi8pv"]
 [ext_resource type="PackedScene" uid="uid://4pjcvfsasuvd" path="res://minigames/minigame_spike_the_birds/minigame_spike_the_birds.tscn" id="2_erdju"]
-[ext_resource type="AudioStream" uid="uid://c3glj4ugx1wcv" path="res://minigames/ninja.wav" id="3_c5rlb"]
+[ext_resource type="AudioStream" uid="uid://bv4k2i3j6n7sw" path="res://battle/units/sfx/571273__princeofworms__hawkeagle-cry-distant.mp3" id="3_634uo"]
 [ext_resource type="Shader" path="res://battle/units/area_circle.gdshader" id="4_lwnbo"]
 [ext_resource type="Script" path="res://battle/units/area_circle.gd" id="5_dt027"]
 [ext_resource type="AudioStream" uid="uid://biot1nx0dhtkc" path="res://sfx/transition_swish.wav" id="6_dgvdv"]
@@ -78,7 +78,7 @@ explosiveness = 0.81
 
 [node name="AudioPlay" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("3_c5rlb")
+stream = ExtResource("3_634uo")
 autoplay = true
 
 [node name="AreaCircle" type="Sprite2D" parent="."]
