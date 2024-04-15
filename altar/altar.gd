@@ -5,12 +5,12 @@ const TIER_2 = 2
 const TIER_3 = 3
 const REQUIRED_SACRIFICE_COUNT = 2
 
-@onready var player_hand = $CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand
+@onready var player_hand = %PlayerHand
 @onready var sacrifice_button := $TopPlayer/SacrificeButton
 @onready var new_card := $TopPlayer/NewCard
 @onready var new_card_label := $TopPlayer/NewCard/Label
 @onready var new_card_image := $TopPlayer/NewCard/Image
-@onready var sacrifice_slot := $CardLayer/SubViewportContainer/SubViewport/HandTest/SacrificeSlot
+@onready var sacrifice_slot := %SacrificeSlot
 @onready var tier_odds := %TierOdds
 
 var tier2_chance: int

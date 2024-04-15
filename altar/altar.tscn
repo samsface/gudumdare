@@ -269,6 +269,7 @@ render_target_update_mode = 4
 [node name="HandTest" type="Node3D" parent="BackLayer/SubViewportContainer/SubViewport"]
 
 [node name="PlayerHand" parent="BackLayer/SubViewportContainer/SubViewport/HandTest" instance=ExtResource("5_lgg7v")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05885, 0)
 collision_layer = 2
 collision_mask = 0
@@ -280,6 +281,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.126)
 shape = SubResource("BoxShape3D_xvlid")
 
 [node name="SacrificeSlot" parent="BackLayer/SubViewportContainer/SubViewport/HandTest" instance=ExtResource("5_lgg7v")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, -0.51066)
 collision_layer = 2
 collision_mask = 0
@@ -320,10 +322,6 @@ max_cards = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BackLayer/SubViewportContainer/SubViewport/HandTest/BackgroundHand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19768, -0.737752)
 shape = SubResource("BoxShape3D_skted")
-
-[node name="CardLayer" type="CanvasLayer" parent="."]
-layer = 0
-follow_viewport_enabled = true
 
 [node name="TopPlayer" type="CanvasLayer" parent="."]
 
