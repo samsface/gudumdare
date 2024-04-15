@@ -51,7 +51,7 @@ func timer_ended():
 
 func minigame_over():
 	printt(birds_spiked, total_birds)
-	win(birds_spiked as float / (birds_missed + birds_spiked) as float)
+	_finished()
 
 
 func _on_worm_area_entered(area: Area2D) -> void:
@@ -86,3 +86,5 @@ func _on_shield_area_entered(area: Area2D) -> void:
 		check_if_minigame_over()
 		$AudioSpike.pitch_scale = randf_range(0.9, 1.1)
 		$AudioSpike.play()
+
+		score = birds_spiked * 0.2

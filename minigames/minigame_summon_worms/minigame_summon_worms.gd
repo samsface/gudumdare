@@ -59,7 +59,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("LMB"):
 		place(get_global_mouse_position())
 		Game.game.duck_music(true)
-		win(total_worm_count)
+		score = total_worm_count
+		_finished()
 
 func place(pos):
 	timer.stop()
@@ -76,4 +77,5 @@ func place(pos):
 func _on_timer_timeout() -> void:
 	player.place(player.global_position) #Place player whereever he is right now
 	timer_running = false
-	win(0)
+	score = 0
+	_finished()

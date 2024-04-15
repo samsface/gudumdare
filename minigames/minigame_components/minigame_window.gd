@@ -1,7 +1,7 @@
 class_name MinigameWindow
 extends CanvasLayer
 
-signal minigame_ended(rating: float)
+signal finished(rating: float)
 
 @onready var minigame_viewport = $MiniGameControl/SubViewportContainer/SubViewport
 @onready var minigame_timer = $Timer
@@ -17,6 +17,8 @@ var rating: float = 0
 func _ready():
 	Game.game_speed = 0.3
 	#load_minigame("res://minigames/minigame_burn_the_wood/minigame_burn_the_wood.tscn")
+	$LeftArm.power = 0.0
+	$RightArm.power = 0.0
 
 # call this function to start the minigame.
 func load_minigame(minigame: String):
@@ -28,14 +30,14 @@ func load_minigame(minigame: String):
 	minigame_timer.minigame_timer_ended.connect(minigame_scene.timer_ended)
 	minigame_timer.start_timer()
 	
-	minigame_scene.minigame_gameover_lost.connect(gameover_lost)
-	minigame_scene.minigame_gameover_won.connect(gameover_won)
+	minigame_scene.score_changed.connect(_score_changed)
+	minigame_scene.finished.connect(gameover_won)
 	minigame_scene.window = self
 	$MusicBonus.play()
 
-func gameover_lost():
-	gameover_group_lost.show()
-	complete()
+func _score_changed(score: float) -> void:
+	$LeftArm.power = score
+	$RightArm.power = score
 
 func gameover_won(rating: float):
 	self.rating = rating
@@ -53,12 +55,13 @@ func complete():
 		$AudioPerfect.play()
 
 func _on_ok_button_pressed() -> void:
+	$Score.text = "[shake]+%s BUFF[/shake]" % int(round(rating * 10))
 	$Score.visible = true
 	await get_tree().create_timer(0.1).timeout
 	# hack way to pause the mini game
 	%SubViewport.render_target_update_mode = 0
 	await get_tree().create_timer(0.5).timeout
-	minigame_ended.emit(rating)
+	finished.emit(rating)
 	
 	Game.game_speed = 1.0
 	queue_free()
