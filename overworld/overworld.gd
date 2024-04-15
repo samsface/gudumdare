@@ -14,6 +14,7 @@ var hovering := false
 var current_battle_node: Node2D
 
 func _ready() -> void:
+	AudioControls._set_overworld_position()
 	Game.game.play_music_overworld()
 	Game.game.duck_music(false)
 	Game.game.lowpass_music(false)
