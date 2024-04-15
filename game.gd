@@ -37,7 +37,8 @@ func _ready() -> void:
 	game = self
 	transition = %Transition
 	open_overworld()
-	#open_worm_summon()
+	#open_intro()
+	
 	duck_music(false)
 	
 	#add_card(CardDB.CN_ARCHER)
@@ -82,6 +83,10 @@ func open_shop():
 func open_worm_summon():
 	start_scene("res://minigames/minigame_summon_worms/minigame_summon_worms.tscn")
 
+func open_intro():
+	start_scene("res://intro/intro.tscn")
+	
+
 func start_scene(path):
 	transition.close()
 	await transition.closed
@@ -116,7 +121,6 @@ func _process(delta: float) -> void:
 		AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
 	
 	worm_added += delta
-	
 	
 	var difference = worms - worms_shown
 	if difference > 0:
