@@ -396,12 +396,13 @@ custom_effects = [SubResource("RichTextEffect_jy63y")]
 [node name="MusicBonus" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_rnlgl")
 volume_db = -10.0
-bus = &"Chorus"
+bus = &"ChorusMusic"
 
 [node name="AudioWin" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_ooopl")
 pitch_scale = 1.5
 bus = &"Echo"
+parameters/looping = false
 
 [node name="AudioPerfect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_1g4xp")
