@@ -320,22 +320,6 @@ grow_vertical = 2
 theme = ExtResource("3_crilh")
 text = "You Won"
 
-[node name="OkButton" type="Button" parent="MiniGameControl/SubViewportContainer/SubViewport/CanvasLayer/GameOver"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -56.5
-offset_top = 145.0
-offset_right = 56.5
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_crilh")
-text = "Okay"
-
 [node name="Border" type="NinePatchRect" parent="MiniGameControl"]
 unique_name_in_owner = true
 modulate = Color(0.717519, 0.00132148, 0.846041, 1)
@@ -407,5 +391,3 @@ parameters/looping = false
 [node name="AudioPerfect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_1g4xp")
 bus = &"Chorus"
-
-[connection signal="pressed" from="MiniGameControl/SubViewportContainer/SubViewport/CanvasLayer/GameOver/OkButton" to="." method="_on_ok_button_pressed"]
