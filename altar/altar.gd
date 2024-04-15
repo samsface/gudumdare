@@ -19,7 +19,7 @@ var tier3_chance: int
 var filled := 0.0
 
 func _ready() -> void:
-	AudioServer.set_bus_mute(AudioControls.BUS_MUSIC, true)
+	Game.game.stop_music_overworld()
 	#Signals
 	sacrifice_slot.card_dropped.connect(_check_sacrifice_button)
 	player_hand.card_dropped.connect(_check_sacrifice_button)
@@ -152,4 +152,4 @@ func _process(delta: float) -> void:
 
 
 func _on_button_quit_pressed():
-	AudioServer.set_bus_mute(AudioControls.BUS_MUSIC, false)
+	Game.game.play_music_overworld()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxaqk6lkr8gyp"]
+[gd_scene load_steps=13 format=3 uid="uid://dxaqk6lkr8gyp"]
 
 [ext_resource type="Script" path="res://battle/units/foe_tower.gd" id="1_1ixdg"]
 [ext_resource type="Script" path="res://addons/flipnode/brush2d.gd" id="1_iywlp"]
 [ext_resource type="Script" path="res://addons/flipnode/stroke.gd" id="2_vtad3"]
+[ext_resource type="Texture2D" uid="uid://cr3jjcx57fxll" path="res://battle/battles/towers/tower_enemysmol2.png" id="4_hqahd"]
 
 [sub_resource type="Resource" id="Resource_x8xlj"]
 script = ExtResource("2_vtad3")
@@ -65,7 +66,13 @@ position = Vector2(858, 303)
 script = ExtResource("1_1ixdg")
 
 [node name="Brush2D" type="Node2D" parent="."]
+visible = false
 script = ExtResource("1_iywlp")
 strokes = [SubResource("Resource_x8xlj"), SubResource("Resource_q7vr8"), SubResource("Resource_hmpef"), SubResource("Resource_5ajtm")]
 bounds = Rect2(-38.0443, -122.397, 94.6381, 142.274)
 lods = [[SubResource("Resource_1vn61"), SubResource("Resource_7hscw"), SubResource("Resource_wp5s7"), SubResource("Resource_x6om3")]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, -88)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_hqahd")
