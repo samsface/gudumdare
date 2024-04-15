@@ -51,9 +51,9 @@ func _mouse_exited() -> void:
 func _ready() -> void:
 	%CardLoading.material_override.set_shader_parameter("cost", mana_cost)
 	
-	color = [Color.YELLOW, Color.DODGER_BLUE, Color.TOMATO][tier]
+	color = [Color.YELLOW, Color.DODGER_BLUE, Color.TOMATO][tier-1]
 	%TierLabel.modulate = color * 0.5
-	%TierLabel.text = ["GRUB", "STRONG", "BEAST"][tier]
+	%TierLabel.text = ["GRUB", "STRONG", "BEAST"][tier-1]
 
 func set_render_priority(value):
 	%MeshInstance3D3.render_priority = value

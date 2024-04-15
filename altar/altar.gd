@@ -61,9 +61,9 @@ func _calculate_tier_odds() -> void:
 	
 	if lowest_tier == highest_tier: #Same tiers
 		match lowest_tier:
-			1: tier1_chance = 100
-			2: tier2_chance = 100
-			3: tier3_chance = 100
+			1: tier2_chance = 100
+			_: tier3_chance = 100
+			#3: tier3_chance = 100
 	else:
 		if lowest_tier == 1:
 			if highest_tier == 2:
