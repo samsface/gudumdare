@@ -104,7 +104,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	mana = move_toward(mana, max_mana, delta * mana_regen_per_sec)
+	mana = move_toward(mana, max_mana, delta * mana_regen_per_sec * Game.game_speed)
 	%Mana.value = mana
 	%ManaWhole.value = floor(mana)
 	%ManaText.text = "%s/%s" % [floor(mana), max_mana]

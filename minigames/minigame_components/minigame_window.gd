@@ -15,7 +15,7 @@ var rating: float = 0
 
 # if you want to test, uncomment the following lines
 func _ready():
-	Game.game_speed = 0.3
+	Game.game_speed = 0.1
 	#load_minigame("res://minigames/minigame_burn_the_wood/minigame_burn_the_wood.tscn")
 
 # call this function to start the minigame.
