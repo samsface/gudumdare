@@ -7,6 +7,12 @@ const CN_RAIN = "res://cards/cards/card_rain.tscn"
 const CN_SHOTGUN = "res://cards/cards/card_shotgun.tscn"
 const CN_PROTECTOR = "res://cards/cards/card_protector.tscn"
 const CN_BUFF = "res://cards/cards/card_buff.tscn"
+const CN_DRAGON = "res://cards/cards/card_dragon.tscn"
+const CN_KNIGHT2 = "res://cards/cards/card_knight2.tscn"
+const CN_WIZARD = "res://cards/cards/card_wizard.tscn"
+const CN_ROBOT = "res://cards/cards/card_robot.tscn"
+const CN_LASER = "res://cards/cards/card_laser.tscn"
+const CN_ARM = "res://cards/cards/card_arm.tscn"
 
 const CARD_PATHS = [
 	CN_KNIGHT,
@@ -15,6 +21,12 @@ const CARD_PATHS = [
 	CN_PROTECTOR,
 	CN_SHOTGUN,
 	CN_BUFF,
+	CN_DRAGON,
+	CN_KNIGHT2,
+	CN_WIZARD,
+	CN_ROBOT,
+	CN_LASER,
+	CN_ARM,
 ]
 
 var cards = {} #Key: Card Name, contains instiatated card object
@@ -23,7 +35,6 @@ var cards = {} #Key: Card Name, contains instiatated card object
 func _ready() -> void:
 	for path in CARD_PATHS:
 		var card = load(path).instantiate()
-		
 		cards[path] = card
 
 func return_cards_by_tier(tier: int) -> Array:

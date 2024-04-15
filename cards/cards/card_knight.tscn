@@ -30,12 +30,17 @@ shader_parameter/texture = ExtResource("3_7fb56")
 [node name="StaticBody3D" instance=ExtResource("1_xtdbm")]
 card_name = "squire"
 spawns = ExtResource("2_qjtq5")
+tier = 1
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_nvamb")
 
 [node name="CardNameLabel" parent="." index="3"]
 text = "squire"
+
+[node name="TierLabel" parent="." index="4"]
+modulate = Color(0.5, 0.5, 0, 0.5)
+text = "GRUB"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "2"

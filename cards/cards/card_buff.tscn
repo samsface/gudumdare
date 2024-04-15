@@ -33,7 +33,7 @@ card_name = "big boy"
 art = ExtResource("2_u801x")
 spawns = ExtResource("3_idn84")
 mana_cost = 4
-tier = 1
+tier = 2
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_4yr2w")
@@ -41,9 +41,13 @@ material_override = SubResource("ShaderMaterial_4yr2w")
 [node name="CardNameLabel" parent="." index="3"]
 text = "big boy"
 
+[node name="TierLabel" parent="." index="4"]
+modulate = Color(0.0588235, 0.282353, 0.5, 0.5)
+text = "STRONG"
+
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "4"
 
-[node name="Art" parent="." index="5"]
+[node name="Art" parent="." index="6"]
 transform = Transform3D(0.667601, 0, 0, 0, 0.667601, 0, 0, 0, 1, 0, 0.0645928, 0.01)
 texture = ExtResource("2_u801x")

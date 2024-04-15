@@ -33,6 +33,10 @@ card_name = "archy"
 art = ExtResource("2_tf5by")
 spawns = ExtResource("2_5rdev")
 mana_cost = 3
+tier = 1
+
+[node name="Card" parent="." index="1"]
+modulate = Color(1, 0.388235, 0.278431, 1)
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_sd53v")
@@ -40,8 +44,12 @@ material_override = SubResource("ShaderMaterial_sd53v")
 [node name="CardNameLabel" parent="." index="3"]
 text = "archy"
 
+[node name="TierLabel" parent="." index="4"]
+modulate = Color(0.5, 0.5, 0, 0.5)
+text = "GRUB"
+
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "3"
 
-[node name="Art" parent="." index="5"]
+[node name="Art" parent="." index="6"]
 texture = ExtResource("2_tf5by")

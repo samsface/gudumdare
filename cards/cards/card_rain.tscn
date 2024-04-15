@@ -33,9 +33,12 @@ card_name = "Rain"
 art = ExtResource("2_hot8j")
 spawns = ExtResource("3_kpceh")
 mana_cost = 3
-tier = 1
+tier = 2
 sidelay = true
 spawn_region = 1
+
+[node name="Card" parent="." index="1"]
+modulate = Color(0.117647, 0.564706, 1, 1)
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_6k0xl")
@@ -43,8 +46,12 @@ material_override = SubResource("ShaderMaterial_6k0xl")
 [node name="CardNameLabel" parent="." index="3"]
 text = "Rain"
 
+[node name="TierLabel" parent="." index="4"]
+modulate = Color(0.0588235, 0.282353, 0.5, 0.5)
+text = "STRONG"
+
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "3"
 
-[node name="Art" parent="." index="5"]
+[node name="Art" parent="." index="6"]
 texture = ExtResource("2_hot8j")

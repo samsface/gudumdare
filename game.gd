@@ -20,6 +20,7 @@ var worms_wait_add := 0.0
 #Overworld nodes
 @onready var battle_won := false
 @onready var unlocked_nodes: Array = ["Czechia"]
+@onready var conquered_nodes: Array = []
 var current_battle_node_name: String
 
 #CARD CODE
@@ -44,6 +45,22 @@ func _ready() -> void:
 	#add_card(CardDB.CN_SHOTGUN)
 	#add_card(CardDB.CN_RAIN)
 	#add_card(CardDB.CN_PROTECTOR)
+	
+	#upgrades.push_back("More Health 1")
+	#upgrades.push_back("More Health 2")
+	#upgrades.push_back("More Health 3")
+	#upgrades.push_back("Fast Mana 1")
+	#upgrades.push_back("Fast Mana 2")
+	#upgrades.push_back("Fast Mana 3")
+	#upgrades.push_back("Hand Size 1")
+	#upgrades.push_back("Hand Size 2")
+	
+	#add_card(CardDB.CN_ARM)
+	#add_card(CardDB.CN_DRAGON)
+	#add_card(CardDB.CN_WIZARD)
+	#add_card(CardDB.CN_LASER)
+	#add_card(CardDB.CN_KNIGHT2)
+	
 	%WormCount.text = str(0)
 
 func open_overworld():
@@ -129,3 +146,8 @@ func unlock_upgrade(upgrade):
 
 func has_upgrade(upgrade):
 	return upgrades.has(upgrade)
+
+
+func _on_button_pressed() -> void:
+	var bus = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_mute(bus, not AudioServer.is_bus_mute(bus))

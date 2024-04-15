@@ -12,10 +12,12 @@ var t := 0.0
 
 func init(battle: Battle, target: Unit, is_foe: bool):
 	self.battle = battle
+	self.is_foe = is_foe
 	velocity = position.direction_to(target.position) * 1000.0
 	%Model.rotation = velocity.angle()
 
 func _process(delta: float) -> void:
+	delta *= Game.game_speed
 	var range_squared := 20.0 ** 2
 	position += velocity * delta
 	

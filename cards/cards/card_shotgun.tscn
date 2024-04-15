@@ -32,6 +32,7 @@ shader_parameter/texture = ExtResource("3_vmiy2")
 card_name = "buckshot"
 art = ExtResource("2_hmdb5")
 spawns = ExtResource("3_fwtxm")
+tier = 1
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_nvamb")
@@ -39,9 +40,13 @@ material_override = SubResource("ShaderMaterial_nvamb")
 [node name="CardNameLabel" parent="." index="3"]
 text = "buckshot"
 
+[node name="TierLabel" parent="." index="4"]
+modulate = Color(0.5, 0.5, 0, 0.5)
+text = "GRUB"
+
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "2"
 
-[node name="Art" parent="." index="5"]
+[node name="Art" parent="." index="6"]
 transform = Transform3D(0.540038, 0, 0, 0, 0.540038, 0, 0, 0, 1, 0, 0.0715648, 0.01)
 texture = ExtResource("2_hmdb5")

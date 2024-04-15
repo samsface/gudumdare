@@ -66,6 +66,7 @@ shape = SubResource("BoxShape3D_iguum")
 unique_name_in_owner = true
 transform = Transform3D(1.29202, 0, 0, 0, 1.29202, 0, 0, 0, 1, 0, 0.071, 0)
 cast_shadow = 0
+modulate = Color(1, 1, 0, 1)
 pixel_size = 0.0018
 double_sided = false
 render_priority = -2
@@ -89,6 +90,18 @@ pixel_size = 0.001
 double_sided = false
 texture_filter = 1
 modulate = Color(0, 0, 0, 1)
+text = "Knight"
+font = ExtResource("4_afrcq")
+font_size = 128
+outline_size = 0
+
+[node name="TierLabel" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.865399, 0, 0, 0, 0.865399, 0, 0, 0, 1, 0, -0.159487, 0)
+pixel_size = 0.001
+double_sided = false
+texture_filter = 1
+modulate = Color(0.268241, 0.0944064, 0.014459, 1)
 text = "Knight"
 font = ExtResource("4_afrcq")
 font_size = 128

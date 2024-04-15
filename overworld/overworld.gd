@@ -21,16 +21,14 @@ func _ready() -> void:
 	#Check if battle was won and unlock new nodes
 	var just_unlocked_nodes: Array = []
 	if Game.game.battle_won:
-		
-		
 		Game.game.battle_won = false
-		var conquered_node: OverworldNode = get_node(Game.game.current_battle_node_name)
 		
+		var conquered_node: OverworldNode = get_node(Game.game.current_battle_node_name)
+		Game.game.conquered_nodes.append(conquered_node)
 		for neighbor in conquered_node.neighbors:
-			#var neighbour_name = neighbor.name
-			#neighbour_name = neighbour_name.replace("&","") #Wtf Godot
-			Game.game.unlocked_nodes.append(neighbor.my_name)
-			just_unlocked_nodes.append(neighbor.my_name)
+			if not neighbor.available:
+				Game.game.unlocked_nodes.append(neighbor.my_name)
+				just_unlocked_nodes.append(neighbor.my_name)
 	
 	for node_name in Game.game.unlocked_nodes:
 		var node: OverworldNode = get_node(node_name)
