@@ -54,6 +54,7 @@ stream = ExtResource("3_yi30o")
 volume_db = -9.019
 pitch_scale = 1.35
 autoplay = true
+bus = &"Sound"
 
 [node name="AreaCircle" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -69,10 +70,12 @@ scale = Vector2(0.879653, 1.18876)
 skew = -0.0032016
 stream = ExtResource("6_m1vcj")
 pitch_scale = 1.21
+bus = &"Sound"
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_c8yli")
 volume_db = 8.0
+bus = &"Sound"
 
 [node name="Slash" type="Node2D" parent="."]
 unique_name_in_owner = true

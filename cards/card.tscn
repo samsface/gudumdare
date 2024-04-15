@@ -29,7 +29,7 @@ render_priority = -2
 shader = ExtResource("3_gmvpr")
 shader_parameter/mana = 1.0
 shader_parameter/modulate = Color(1, 0.388235, 0.278431, 1)
-shader_parameter/rand = 0.557371
+shader_parameter/rand = 0.924144
 shader_parameter/TEXTURE = ExtResource("3_po2xc")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_1xxou")
 
@@ -124,10 +124,12 @@ texture = ExtResource("2_27jvq")
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_aus35")
 volume_db = 5.0
+bus = &"Sound"
 
 [node name="AudioHover" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("11_upqjo")
+bus = &"Sound"
 
 [connection signal="input_event" from="." to="." method="_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_mouse_entered"]
