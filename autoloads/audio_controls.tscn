@@ -138,14 +138,15 @@ lods = [[SubResource("Resource_mu5p1"), SubResource("Resource_sbv87"), SubResour
 
 [node name="Hover" type="AudioStreamPlayer2D" parent="Button"]
 stream = ExtResource("4_w2037")
+bus = &"Sound"
 
 [node name="Controls" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1.0
-offset_top = -2.0
+offset_top = -5.0
 offset_right = 1.0
-offset_bottom = -2.0
+offset_bottom = -5.0
 
 [node name="Panel" type="Panel" parent="Controls"]
 layout_mode = 0
