@@ -13,6 +13,8 @@ const CN_WIZARD = "res://cards/cards/card_wizard.tscn"
 const CN_ROBOT = "res://cards/cards/card_robot.tscn"
 const CN_LASER = "res://cards/cards/card_laser.tscn"
 const CN_ARM = "res://cards/cards/card_arm.tscn"
+const CN_KFC = "res://cards/cards/card_kfc.tscn"
+const CN_TICKLE = "res://cards/cards/card_tickle.tscn"
 
 const CARD_PATHS = [
 	CN_KNIGHT,
@@ -27,6 +29,8 @@ const CARD_PATHS = [
 	CN_ROBOT,
 	CN_LASER,
 	CN_ARM,
+	CN_KFC,
+	CN_TICKLE,
 ]
 
 var cards = {} #Key: Card Name, contains instiatated card object
