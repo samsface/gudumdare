@@ -39,6 +39,7 @@ var battle_track_paths := {
 }
 var summon
 func _ready() -> void:
+	AudioControls._set_battle_position()
 	Game.battle = self
 	
 	# some hacky bullshit to make the worm minigame work
