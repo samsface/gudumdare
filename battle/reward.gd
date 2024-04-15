@@ -13,7 +13,7 @@ func _ready() -> void:
 		Game.game.lowpass_music(true)
 		
 	%HandArea.max_cards = reward_count
-	%LocationName.text = "[jiggle amp=0.4 freq=0.5][center]Pick " + str(reward_count) + " worms![/center][/jiggle]"
+	%LocationName.text = "[jiggle amp=0.4 freq=0.5][center]YOU WIN! Pick " + str(reward_count) + " worms![/center][/jiggle]"
 
 	var cards = []
 	#RNG for tier 3

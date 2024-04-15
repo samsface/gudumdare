@@ -39,29 +39,20 @@ func _mouse_entered() -> void:
 		return
 	%AudioHover.play()
 	hovered = true
-	set_render_priority(-1)
 
 func _mouse_exited() -> void:
 	if dragging:
 		return
 
 	hovered = false
-	set_render_priority(-5)
 
 func _ready() -> void:
-	%CardLoading.material_override.set_shader_parameter("cost", mana_cost)
-	
 	color = [Color.YELLOW, Color.DODGER_BLUE, Color.TOMATO][tier-1]
+	%Card.set_instance_shader_parameter("modulate", color)
+	%Card.set_instance_shader_parameter("rand", randf())
 	%TierLabel.modulate = color * 0.5
 	%TierLabel.text = ["GRUB", "STRONG", "BEAST"][tier-1]
 
-func set_render_priority(value):
-	%MeshInstance3D3.render_priority = value
-	%ManaCost.render_priority = value
-	%CardNameLabel.render_priority = value
-	%Card.render_priority = value - 1
-	%Art.render_priority = value + 1
-	
 func _input_event(camera: Node, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
@@ -85,8 +76,6 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	if is_instance_valid(Game.battle):
-		%CardLoading.material_override.set_shader_parameter("mana", Game.battle.mana)
-		%Card.modulate = color if Game.battle.mana > mana_cost else color * Color(1.0, 0.7, 0.8)
+		%Card.set_instance_shader_parameter("mana", Game.battle.mana / mana_cost)
 	else:
-		%CardLoading.material_override.set_shader_parameter("mana", 10.0)
-		%Card.modulate = color
+		%Card.set_instance_shader_parameter("mana", 1.0)

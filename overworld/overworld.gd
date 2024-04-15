@@ -16,7 +16,7 @@ var current_battle_node: Node2D
 func _ready() -> void:
 	Game.game.play_music_overworld()
 	Game.game.duck_music(false)
-	%Camera2D.zoom = Vector2.ONE * 3.3
+	%Camera2D.zoom = Vector2.ONE * 0.1
 	
 	#Check victory
 	var total_nodes = get_tree().get_node_count_in_group("overworld_nodes")

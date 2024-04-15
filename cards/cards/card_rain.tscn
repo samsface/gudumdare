@@ -32,7 +32,6 @@ shader_parameter/texture = ExtResource("4_vob44")
 card_name = "Rain"
 art = ExtResource("2_hot8j")
 spawns = ExtResource("3_kpceh")
-mana_cost = 3
 tier = 2
 sidelay = true
 spawn_region = 1
@@ -51,7 +50,7 @@ modulate = Color(0.0588235, 0.282353, 0.5, 0.5)
 text = "STRONG"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
-text = "3"
+text = "2"
 
 [node name="Art" parent="." index="6"]
 texture = ExtResource("2_hot8j")

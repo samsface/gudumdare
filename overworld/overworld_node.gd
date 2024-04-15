@@ -41,6 +41,13 @@ func _ready() -> void:
 func pop_flag():
 	$Flag.visible = false
 	await get_tree().create_timer(1.0).timeout
+	
+	for i in 10:
+		var worm_pickup = load("res://battle/pickup_worm.tscn").instantiate()
+		get_parent().add_child(worm_pickup)
+		worm_pickup.global_position = global_position
+		worm_pickup.velocity = Vector2.from_angle(randf() * TAU) * randf_range(0.2, 1.0) * 800.0
+	
 	$AudioWin.play()
 	$Flag.visible = true
 	GenericTween.squish($Flag)
