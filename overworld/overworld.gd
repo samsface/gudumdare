@@ -47,7 +47,8 @@ func _ready() -> void:
 			beaten_nodes += 1
 	print("beaten nodes " + str(beaten_nodes))
 	if beaten_nodes >= total_nodes:
-		$CanvasLayer/WinScreen.show()
+		Game.game.lowpass_music()
+		%AnimationPlayerCredits.play("finish")
 		return
 	
 	await get_tree().create_timer(1.5).timeout
@@ -82,3 +83,6 @@ func set_title(value := ""):
 	else:
 		title_visible = true
 		%LocationName.text = "[jiggle amp=0.4 freq=0.5][center]%s[/center][/jiggle]" % value.to_upper()
+
+func goto_credits():
+	Game.game.open_credits()

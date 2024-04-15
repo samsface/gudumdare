@@ -1,0 +1,150 @@
+[gd_scene load_steps=4 format=3 uid="uid://csataokuo8vpj"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_asmg0"]
+[ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="1_vs1am"]
+[ext_resource type="AudioStream" uid="uid://cals1r4rxpf56" path="res://music/credits.ogg" id="3_qcqhh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_vs1am")
+script = ExtResource("1_asmg0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -85.0
+offset_right = 1584.0
+offset_bottom = 897.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Scroll" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="Scroll"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 129.0
+offset_top = 757.0
+offset_right = 1292.0
+offset_bottom = 1554.0
+text = "and all the birds were dead, and the worms were happy
+
+they danced and they sung, they wiggled and they wrung
+the whole night, and the whole of the next day too
+a new era had began!
+with no natural predator, they didnt have to spend their days hiding and worrying about being eaten.
+they could pick up a book, have a relaxing walk along the river and watch the sunset.
+knowing what the birds had been keeping from them all this time, their little worm hearts churned.
+but soon enough they'd forget about it, because life was good
+they said to themselves \"being a worm is just fine, i like being a worm, there is no animal id rather be\"
+and wouldnt you agree?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Scroll"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1675.0
+offset_right = 1434.0
+offset_bottom = 1722.0
+text = "A GAME BY"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Scroll"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2283.0
+offset_right = 1434.0
+offset_bottom = 2830.0
+text = "MUSIC
+
+SupaBubba - Battle Against a Suave Opponent
+ZaneLittle - Rhythm Factory
+Tritnew - ~Romance~
+LowEsTTGG - Bonus Stage
+midgetsausage & TeffyD - Pii Shop Channel
+ParagonX9 - Chaoz Japan
+GameBoyFireworks - Spanish Fields
+FlyMaX - Russian Hardbass
+ausk - Vitamina de Lua - Ausk
+Yahtzei - End Credits/Game Over
+Lambtaco - Retarded Credits Song"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Scroll"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 3018.0
+offset_right = 1434.0
+offset_bottom = 3565.0
+text = "for Ludum Dare 55
+
+
+THANKS FOR PLAYING!
+
+GOOD BYE!"
+horizontal_alignment = 1
+
+[node name="Wheel" type="Control" parent="Scroll"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 458.0
+offset_top = 1917.0
+offset_right = 498.0
+offset_bottom = 1957.0
+
+[node name="Label" type="Label" parent="Scroll/Wheel"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 47.0
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Scroll/Wheel"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 47.0
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Scroll/Wheel"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 47.0
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Scroll/Wheel"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 47.0
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="Scroll/Wheel"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 47.0
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="Scroll/Wheel"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 47.0
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qcqhh")
+autoplay = true
