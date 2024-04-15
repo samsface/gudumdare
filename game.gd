@@ -107,6 +107,10 @@ func play_music_overworld():
 	$Music.stream = stream_overworld
 	$Music.play()
 
+func stop_music_overworld():
+	if $Music.stream == stream_overworld:
+		$Music.stop()
+
 func play_music_battle(path):
 	$Music.stream = load(path)
 	$Music.play()
