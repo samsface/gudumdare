@@ -9,6 +9,7 @@ var spawn_t := 3.0
 @export var spawn_types := ["res://battle/units/unit_foe_cop.tscn"]
 
 func _process(delta: float) -> void:
+	delta *= Game.game_speed
 	if battle.won:
 		return
 	spawn_t -= delta
