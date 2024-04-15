@@ -13,7 +13,6 @@ const REQUIRED_SACRIFICE_COUNT = 2
 @onready var sacrifice_slot := $CardLayer/SubViewportContainer/SubViewport/HandTest/SacrificeSlot
 @onready var tier_odds := %TierOdds
 
-var tier1_chance: int
 var tier2_chance: int
 var tier3_chance: int
 
@@ -51,54 +50,58 @@ func _calculate_tier_odds() -> void:
 	var tiers: Array = []
 	
 	#Reset tier chances
-	tier1_chance = 0
 	tier2_chance = 0
 	tier3_chance = 0
 	
 	for card in sacrifice_slot.get_card_children():
+		print("card " + card.card_name + " tier " + str(card.tier))
 		tiers.append(card.tier)
 		if card.tier < lowest_tier:
 			lowest_tier = card.tier
-		elif card.tier > highest_tier:
+		if card.tier > highest_tier: #elif doesnt work
 			highest_tier = card.tier
 	
 	if lowest_tier == highest_tier: #BOTH cards are SAME TIER 
+		print("same tier")
 		match lowest_tier:
 			TIER_1: tier2_chance = 100
 			_: tier3_chance = 100
 	else: #cards are DIFFERENT TIER
+		print("tiers are diff")
 		if lowest_tier == TIER_1:
+			print("lowest tier is 1")
 			if highest_tier == TIER_2: #TIER 1 and 2
-				tier1_chance = 90
-				tier2_chance = 10
-			elif highest_tier == TIER_3: #TIER 1 and 3
-				tier1_chance = 95
+				tier2_chance = 95
 				tier3_chance = 5
+			elif highest_tier == TIER_3: #TIER 1 and 3
+				tier2_chance = 75
+				tier3_chance = 25
 		elif lowest_tier == TIER_2: #TIER 2 and 3
-			tier2_chance = 75
-			tier3_chance = 25
+			tier3_chance = 100
 			
-	tier_odds.text = "Tier 1 chance " + str(tier1_chance) + "%"
-	tier_odds.text += "\nTier 2 chance " + str(tier2_chance) + "%"
+	tier_odds.text = "Tier 2 chance " + str(tier2_chance) + "%"
 	tier_odds.text += "\nTier 3 chance " + str(tier3_chance) + "%"
 			
 			
 func _on_sacrifice_button_pressed() -> void:
+	print("tier 2 chance " + str(tier2_chance))
+	print("tier 3 chance " + str(tier3_chance))
+	print("roll")
 	sacrifice_button.hide()
 	%Hint.hide()
 	$Sacrafice.play()
 	tier_odds.hide()
 	
-	var tier = -1
+	var tier := -1
 	if tier3_chance > 0:
+		print("tier 3 chance > 0")
 		if RNG.random_int(1, 100) <= tier3_chance:
+			print("tier 3 roll sucess")
 			tier = 3
-	if tier == -1 and tier2_chance > 0:
-		if RNG.random_int(1, 100) <= tier2_chance:
-			tier = 2
-	if tier == -1: #Other tiers impossible or roll failed, always assign tier 1
-		tier = 1
-	
+	if tier == -1:
+		print("guruanteed tier 2")
+		tier = 2
+
 	var card_path = CardDB.return_cards_by_tier(tier).pick_random()
 	var obtained_card = load(card_path).instantiate()
 	new_card.show()
@@ -117,10 +120,10 @@ func _on_sacrifice_button_pressed() -> void:
 	GenericTween.squish(%wowworm)
 	if Game.game:
 		Game.game.lowpass_music(false)
-	await get_tree().create_timer(1.5).timeout
+	#await get_tree().create_timer(1.5).timeout messes with pressing button
 	
 	await %ConfirmButton.pressed
-	player_hand.add_child(obtained_card)
+	player_hand.add_child(obtained_card) #Add card to player hand
 	
 
 func _on_confirm_button_pressed() -> void:

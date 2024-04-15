@@ -35,7 +35,6 @@ var cards = {} #Key: Card Name, contains instiatated card object
 func _ready() -> void:
 	for path in CARD_PATHS:
 		var card = load(path).instantiate()
-		
 		cards[path] = card
 
 func return_cards_by_tier(tier: int) -> Array:
