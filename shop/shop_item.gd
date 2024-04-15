@@ -6,7 +6,7 @@ extends Button
 func _ready() -> void:
 	if Game.game.upgrades.has(upgrade):
 		set_bought()
-	text = upgrade
+	%ItemName.text = upgrade
 	%Cost.text = str(cost)
 
 func _on_pressed() -> void:
@@ -19,7 +19,7 @@ func _on_pressed() -> void:
 	set_bought()
 
 func set_bought():
-	$Panel.queue_free()
+	%Cost.queue_free()
 	disabled = true
 
 func _process(delta: float) -> void:

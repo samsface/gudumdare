@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgtdudopevw5u"]
+
+[ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_erl5p"]
+[ext_resource type="Texture2D" uid="uid://d2wb0ur1xy4et" path="res://battle/units/sprites/kfc_card_art.png" id="2_g7u8f"]
+[ext_resource type="PackedScene" uid="uid://5lm10avdcpjy" path="res://battle/units/effect_tickle.tscn" id="3_3plui"]
+[ext_resource type="Texture2D" uid="uid://b0vh380dk77mn" path="res://battle/units/sprites/tick_card_art.png" id="4_ij06p"]
+
+[node name="StaticBody3D" instance=ExtResource("1_erl5p")]
+card_name = "Tickle"
+art = ExtResource("2_g7u8f")
+spawns = ExtResource("3_3plui")
+mana_cost = 3
+tier = 1
+sidelay = true
+spawn_region = 1
+
+[node name="Card" parent="." index="1"]
+instance_shader_parameters/modulate = Color(1, 1, 0, 1)
+instance_shader_parameters/rand = 0.385124
+
+[node name="CardNameLabel" parent="." index="2"]
+text = "Tickle"
+
+[node name="TierLabel" parent="." index="3"]
+modulate = Color(0.5, 0.5, 0, 0.5)
+text = "GRUB"
+
+[node name="ManaCost" parent="MeshInstance3D3" index="0"]
+text = "3"
+
+[node name="Art" parent="." index="5"]
+texture = ExtResource("4_ij06p")

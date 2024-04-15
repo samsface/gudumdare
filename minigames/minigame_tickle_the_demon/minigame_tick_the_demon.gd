@@ -19,6 +19,8 @@ func _input(event: InputEvent) -> void:
 			print(laughs)
 
 			laughs +=1 
+			score += 0.1
+			score = clamp(score, 0.0, 1.0)
 			
 			%Meter.position.y -= 16
 			%Meter.position.y = clamp(%Meter.position.y, -14, 1000)

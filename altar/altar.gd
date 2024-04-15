@@ -84,6 +84,9 @@ func _calculate_tier_odds() -> void:
 			
 			
 func _on_sacrifice_button_pressed() -> void:
+	if sacrifice_slot.get_card_children().size() != REQUIRED_SACRIFICE_COUNT:
+		return
+	
 	print("tier 2 chance " + str(tier2_chance))
 	print("tier 3 chance " + str(tier3_chance))
 	print("roll")

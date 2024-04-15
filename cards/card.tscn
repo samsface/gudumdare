@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cpljr016pccwd"]
+[gd_scene load_steps=19 format=3 uid="uid://cpljr016pccwd"]
 
 [ext_resource type="Script" path="res://cards/card.gd" id="1_0wbyr"]
 [ext_resource type="Texture2D" uid="uid://b5kke4ccmrcpt" path="res://battle/units/sprites/worm_knight_card_art.png" id="2_27jvq"]
+[ext_resource type="Shader" path="res://cards/card.gdshader" id="3_gmvpr"]
 [ext_resource type="Texture2D" uid="uid://dgr7ggakdl3b4" path="res://cards/card.png" id="3_po2xc"]
 [ext_resource type="Texture2D" uid="uid://dqooanq3p2h7v" path="res://cards/mana_circle.png" id="3_q3enn"]
 [ext_resource type="FontFile" uid="uid://da7xd0ojorof3" path="res://Mario-Party-Hudson-Font.ttf" id="4_afrcq"]
@@ -15,28 +16,29 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_iguum"]
 size = Vector3(0.5, 0.65, 0.01)
 
-[sub_resource type="Shader" id="Shader_trstd"]
-code = "shader_type spatial;
-uniform sampler2D texture;
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gx4ep"]
+frequency = 0.0013
 
-uniform float mana;
-uniform float cost;
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1xxou"]
+seamless = true
+noise = SubResource("FastNoiseLite_gx4ep")
 
-void fragment() {
-	ALPHA = texture(texture, UV).a;
-	float pct = mana / cost;
-	ALPHA *= smoothstep(pct, pct, UV.y) * 0.8;
-	ALBEDO = vec3(0.0);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nan0f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7drc"]
 resource_local_to_scene = true
-render_priority = 0
-shader = SubResource("Shader_trstd")
-shader_parameter/mana = 10.0
-shader_parameter/cost = null
-shader_parameter/texture = ExtResource("3_po2xc")
+render_priority = -2
+shader = ExtResource("3_gmvpr")
+shader_parameter/mana = 1.0
+shader_parameter/modulate = Color(1, 1, 0, 1)
+shader_parameter/rand = 0.493384
+shader_parameter/TEXTURE = ExtResource("3_po2xc")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_1xxou")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8jwiu"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_b7drc")
+uv2_padding = 1.15
+size = Vector2(0.4, 0.6)
+orientation = 2
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aus35"]
 random_pitch = 1.2
@@ -62,26 +64,11 @@ mana_cost = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.115283, 0)
 shape = SubResource("BoxShape3D_iguum")
 
-[node name="Card" type="Sprite3D" parent="."]
+[node name="Card" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1.29202, 0, 0, 0, 1.29202, 0, 0, 0, 1, 0, 0.071, 0)
 cast_shadow = 0
-modulate = Color(1, 1, 0, 1)
-pixel_size = 0.0018
-double_sided = false
-render_priority = -2
-texture = ExtResource("3_po2xc")
-
-[node name="CardLoading" type="Sprite3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1.29202, 0, 0, 0, 1.29202, 0, 0, 0, 1, 0, 0.0749192, 0)
-material_override = SubResource("ShaderMaterial_nan0f")
-cast_shadow = 0
-modulate = Color(0.531336, 0.00023353, 0.354648, 1)
-pixel_size = 0.0018
-double_sided = false
-render_priority = 1
-texture = ExtResource("3_po2xc")
+mesh = SubResource("PlaneMesh_8jwiu")
 
 [node name="CardNameLabel" type="Label3D" parent="."]
 unique_name_in_owner = true
@@ -101,8 +88,8 @@ transform = Transform3D(0.865399, 0, 0, 0, 0.865399, 0, 0, 0, 1, 0, -0.159487, 0
 pixel_size = 0.001
 double_sided = false
 texture_filter = 1
-modulate = Color(0.268241, 0.0944064, 0.014459, 1)
-text = "Knight"
+modulate = Color(0.5, 0.194118, 0.139216, 0.5)
+text = "BEAST"
 font = ExtResource("4_afrcq")
 font_size = 128
 outline_size = 0
