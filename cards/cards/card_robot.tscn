@@ -1,44 +1,51 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsfn6kjate0wh"]
+[gd_scene load_steps=10 format=3 uid="uid://bsfn6kjate0wh"]
 
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_cdhj3"]
+[ext_resource type="Texture2D" uid="uid://c08rvyko30sww" path="res://battle/units/sprites/worm_robot_card_art.png" id="2_lxcjf"]
 [ext_resource type="PackedScene" uid="uid://es0rvug4nu7" path="res://battle/units/unit_robot.tscn" id="2_m5ty0"]
 [ext_resource type="Texture2D" uid="uid://dgr7ggakdl3b4" path="res://cards/card.png" id="3_jnomg"]
+[ext_resource type="Shader" path="res://cards/card.gdshader" id="4_pj0bg"]
 
-[sub_resource type="Shader" id="Shader_trstd"]
-code = "shader_type spatial;
-uniform sampler2D texture;
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gx4ep"]
+frequency = 0.0013
 
-uniform float mana;
-uniform float cost;
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1xxou"]
+seamless = true
+noise = SubResource("FastNoiseLite_gx4ep")
 
-void fragment() {
-	ALPHA = texture(texture, UV).a;
-	float pct = mana / cost;
-	ALPHA *= smoothstep(pct, pct, UV.y) * 0.8;
-	ALBEDO = vec3(0.0);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvamb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pbuwd"]
 resource_local_to_scene = true
-render_priority = 0
-shader = SubResource("Shader_trstd")
-shader_parameter/mana = 10.0
-shader_parameter/cost = null
-shader_parameter/texture = ExtResource("3_jnomg")
+render_priority = -2
+shader = ExtResource("4_pj0bg")
+shader_parameter/mana = 1.0
+shader_parameter/modulate = Color(0.117647, 0.564706, 1, 1)
+shader_parameter/rand = 0.322328
+shader_parameter/TEXTURE = ExtResource("3_jnomg")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_1xxou")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0bsut"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_pbuwd")
+uv2_padding = 1.15
+size = Vector2(0.4, 0.6)
+orientation = 2
 
 [node name="StaticBody3D" instance=ExtResource("1_cdhj3")]
 card_name = "robot"
+art = ExtResource("2_lxcjf")
 spawns = ExtResource("2_m5ty0")
 mana_cost = 1
 tier = 2
 
-[node name="CardLoading" parent="." index="2"]
-material_override = SubResource("ShaderMaterial_nvamb")
+[node name="Card" parent="." index="1"]
+mesh = SubResource("PlaneMesh_0bsut")
 
-[node name="CardNameLabel" parent="." index="3"]
+[node name="CardNameLabel" parent="." index="2"]
 text = "robot"
 
-[node name="TierLabel" parent="." index="4"]
+[node name="TierLabel" parent="." index="3"]
 modulate = Color(0.0588235, 0.282353, 0.5, 0.5)
 text = "STRONG"
+
+[node name="Art" parent="." index="5"]
+texture = ExtResource("2_lxcjf")
