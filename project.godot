@@ -18,6 +18,7 @@ config/icon="res://overworld/worms_tile.png"
 [autoload]
 
 CardDB="*res://autoloads/card_db.gd"
+AudioControls="*res://autoloads/audio_controls.tscn"
 
 [display]
 
