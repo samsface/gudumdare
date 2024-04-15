@@ -1,55 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfoby4hjxj3aq"]
+[gd_scene load_steps=10 format=3 uid="uid://bfoby4hjxj3aq"]
 
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_hyubj"]
-[ext_resource type="Texture2D" uid="uid://cwh77y4vvcaw4" path="res://battle/units/sprites/worm_archer_card_art.png" id="2_njwtb"]
+[ext_resource type="Texture2D" uid="uid://dk0vsoe257ri2" path="res://battle/units/sprites/worm_drag_cart_art.png" id="2_qy6x0"]
 [ext_resource type="PackedScene" uid="uid://t745lglewwx7" path="res://battle/units/unit_dragon.tscn" id="3_5fonw"]
+[ext_resource type="Shader" path="res://cards/card.gdshader" id="4_1ghdv"]
 [ext_resource type="Texture2D" uid="uid://dgr7ggakdl3b4" path="res://cards/card.png" id="4_xxe6i"]
 
-[sub_resource type="Shader" id="Shader_trstd"]
-code = "shader_type spatial;
-uniform sampler2D texture;
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gx4ep"]
+frequency = 0.0013
 
-uniform float mana;
-uniform float cost;
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1xxou"]
+seamless = true
+noise = SubResource("FastNoiseLite_gx4ep")
 
-void fragment() {
-	ALPHA = texture(texture, UV).a;
-	float pct = mana / cost;
-	ALPHA *= smoothstep(pct, pct, UV.y) * 0.8;
-	ALBEDO = vec3(0.0);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sd53v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ybt26"]
 resource_local_to_scene = true
-render_priority = 0
-shader = SubResource("Shader_trstd")
-shader_parameter/mana = 10.0
-shader_parameter/cost = null
-shader_parameter/texture = ExtResource("4_xxe6i")
+render_priority = -2
+shader = ExtResource("4_1ghdv")
+shader_parameter/mana = 1.0
+shader_parameter/modulate = Color(1, 0.388235, 0.278431, 1)
+shader_parameter/rand = 0.587669
+shader_parameter/TEXTURE = ExtResource("4_xxe6i")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_1xxou")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lwsxb"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_ybt26")
+uv2_padding = 1.15
+size = Vector2(0.4, 0.6)
+orientation = 2
 
 [node name="StaticBody3D" instance=ExtResource("1_hyubj")]
 card_name = "draak"
-art = ExtResource("2_njwtb")
+art = ExtResource("2_qy6x0")
 spawns = ExtResource("3_5fonw")
 mana_cost = 3
 tier = 3
 
 [node name="Card" parent="." index="1"]
-modulate = Color(1, 0.388235, 0.278431, 1)
+mesh = SubResource("PlaneMesh_lwsxb")
 
-[node name="CardLoading" parent="." index="2"]
-material_override = SubResource("ShaderMaterial_sd53v")
-
-[node name="CardNameLabel" parent="." index="3"]
+[node name="CardNameLabel" parent="." index="2"]
 text = "draak"
 
-[node name="TierLabel" parent="." index="4"]
+[node name="TierLabel" parent="." index="3"]
 modulate = Color(0.5, 0.194118, 0.139216, 0.5)
-text = "BEAST"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "3"
 
-[node name="Art" parent="." index="6"]
-texture = ExtResource("2_njwtb")
+[node name="Art" parent="." index="5"]
+texture = ExtResource("2_qy6x0")
