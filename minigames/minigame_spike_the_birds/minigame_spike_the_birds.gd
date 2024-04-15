@@ -32,6 +32,8 @@ func spawn_bird():
 	add_child(b)
 	b.global_position = spawn_location.global_position
 	b.spawn(worm.global_position)
+	$AudioSpawn.pitch_scale = randf_range(0.9, 1.1)
+	$AudioSpawn.play()
 
 
 func _physics_process(delta: float) -> void:
@@ -44,8 +46,12 @@ func check_if_minigame_over():
 		minigame_over()
 
 
+func timer_ended():
+	minigame_over()
+
 func minigame_over():
-	win(birds_spiked as float / total_birds as float)
+	printt(birds_spiked, total_birds)
+	win(birds_spiked as float / (birds_missed + birds_spiked) as float)
 
 
 func _on_worm_area_entered(area: Area2D) -> void:
@@ -59,6 +65,8 @@ func _on_worm_area_entered(area: Area2D) -> void:
 		check_if_minigame_over()
 		$Worm/wormAudio.play()
 		$Worm/WormAnimationPlayer.play("damage")
+		#$AudioHurt.pitch_scale = randf_range(1.5, 1.6)
+		#$AudioHurt.play()
 
 
 func _on_bird_timer_timeout() -> void:
@@ -79,4 +87,5 @@ func _on_shield_area_entered(area: Area2D) -> void:
 		$Shield/ShieldAudio.play()
 		area.play_particles()
 		check_if_minigame_over()
-		
+		#$AudioSpike.pitch_scale = randf_range(0.9, 1.1)
+		#$AudioSpike.play()

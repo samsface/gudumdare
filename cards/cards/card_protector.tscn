@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_5y18s"]
 [ext_resource type="Texture2D" uid="uid://dc8spyv3omnor" path="res://minigames/minigame_spike_the_birds/art/boyWorm.png" id="2_jwgaj"]
-[ext_resource type="PackedScene" path="res://battle/units/effect_protector.tscn" id="3_xw3vu"]
+[ext_resource type="PackedScene" uid="uid://d3syqr3yt2sxw" path="res://battle/units/effect_protector.tscn" id="3_xw3vu"]
 [ext_resource type="Texture2D" uid="uid://dgr7ggakdl3b4" path="res://cards/card.png" id="4_ca6s0"]
 
 [sub_resource type="Shader" id="Shader_trstd"]
@@ -32,7 +32,8 @@ shader_parameter/texture = ExtResource("4_ca6s0")
 card_name = "protector"
 art = ExtResource("2_jwgaj")
 spawns = ExtResource("3_xw3vu")
-mana_cost = 5
+mana_cost = 3
+tier = 1
 sidelay = true
 spawn_region = 1
 
@@ -43,7 +44,7 @@ material_override = SubResource("ShaderMaterial_6k0xl")
 text = "protector"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
-text = "5"
+text = "3"
 
 [node name="Art" parent="." index="5"]
 texture = ExtResource("2_jwgaj")

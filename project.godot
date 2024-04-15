@@ -23,7 +23,7 @@ CardDB="*res://autoloads/card_db.gd"
 
 window/size/viewport_width=1440
 window/size/viewport_height=810
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [editor_plugins]
 

@@ -31,9 +31,6 @@ func _ready() -> void:
 	tween.tween_property(camera, "global_position", original_camera_position, 0.2)
 	tween.tween_property(camera, "zoom", Vector2.ONE, 0.2)
 	
-	#tween.tween_property(card, "position:z", 0.5, 0.2).set_delay(0.1)
-	tween.tween_property($Explosion, "emitting", true, 0.00).set_delay(0.2)
-	tween.tween_property(card, "scale", Vector3.ZERO, 0.00).set_delay(0.2)
 
 	await tween.finished
 	
@@ -41,7 +38,6 @@ func _ready() -> void:
 	
 	effect(grade)
 	
-	await $Explosion.finished
 	
 	
 	
@@ -51,11 +47,15 @@ func _ready() -> void:
 func effect(grade:float) -> void:
 	var foes = battle.foes.duplicate()
 	
+	attack_range = 400.0 * grade
+	%Slash.visible = true
 	for foe in foes:
 		if not is_instance_valid(foe):
 			continue
 		if global_position.distance_to(foe.global_position) < attack_range:
-			foe.hit(grade * 10.0)
+			foe.hit(16.0)
 			$HitSound.play()
-		
-		await get_tree().create_timer(0.1).timeout
+			%Slash.global_position = foe.global_position
+			GenericTween.squish(%Slash)
+			await get_tree().create_timer(0.1).timeout
+	remove()

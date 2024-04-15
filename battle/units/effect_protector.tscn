@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cv1rkunj1bhcr"]
+[gd_scene load_steps=17 format=3 uid="uid://d3syqr3yt2sxw"]
 
 [ext_resource type="Script" path="res://battle/units/effect_protector.gd" id="1_fi8pv"]
 [ext_resource type="PackedScene" uid="uid://4pjcvfsasuvd" path="res://minigames/minigame_spike_the_birds/minigame_spike_the_birds.tscn" id="2_erdju"]
