@@ -44,8 +44,8 @@ func _ready() -> void:
 	#add_card(CardDB.CN_ARCHER)
 	add_card(CardDB.CN_KNIGHT)
 	#add_card(CardDB.CN_SHOTGUN)
-	add_card(CardDB.CN_RAIN)
-	add_card(CardDB.CN_PROTECTOR)
+	#add_card(CardDB.CN_RAIN)
+	#add_card(CardDB.CN_PROTECTOR)
 	
 	#upgrades.push_back("More Health 1")
 	#upgrades.push_back("More Health 2")
