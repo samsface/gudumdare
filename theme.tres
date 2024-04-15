@@ -1,7 +1,55 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bd071vba4lnc4"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bd071vba4lnc4"]
 
 [ext_resource type="FontFile" uid="uid://da7xd0ojorof3" path="res://Mario-Party-Hudson-Font.ttf" id="1_50e4w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i27pt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcnw4"]
+content_margin_bottom = 14.0
+bg_color = Color(0.834984, 0.511963, 0.785644, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo0dl"]
+content_margin_bottom = 13.0
+bg_color = Color(0.653619, 0.299083, 0.607741, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0kwr"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [resource]
 default_font = ExtResource("1_50e4w")
 default_font_size = 48
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 12
+Button/styles/focus = SubResource("StyleBoxEmpty_i27pt")
+Button/styles/hover = SubResource("StyleBoxFlat_mcnw4")
+Button/styles/normal = SubResource("StyleBoxFlat_xo0dl")
+Button/styles/pressed = SubResource("StyleBoxFlat_i0kwr")

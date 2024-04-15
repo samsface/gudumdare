@@ -37,7 +37,8 @@ func _ready() -> void:
 	game = self
 	transition = %Transition
 	open_overworld()
-	#open_worm_summon()
+	#open_intro()
+	
 	duck_music(false)
 	
 	#add_card(CardDB.CN_ARCHER)
@@ -82,6 +83,10 @@ func open_shop():
 func open_worm_summon():
 	start_scene("res://minigames/minigame_summon_worms/minigame_summon_worms.tscn")
 
+func open_intro():
+	start_scene("res://intro/intro.tscn")
+	
+
 func start_scene(path):
 	transition.close()
 	await transition.closed
@@ -117,7 +122,6 @@ func _process(delta: float) -> void:
 	
 	worm_added += delta
 	
-	
 	var difference = worms - worms_shown
 	if difference > 0:
 		%WormCountAdd.text = "+%s" % difference
@@ -151,3 +155,9 @@ func has_upgrade(upgrade):
 func _on_button_pressed() -> void:
 	var bus = AudioServer.get_bus_index("Music")
 	AudioServer.set_bus_mute(bus, not AudioServer.is_bus_mute(bus))
+
+static func give_worm(global_position):
+	var worm_pickup = load("res://battle/pickup_worm.tscn").instantiate()
+	game.get_node("CanvasLayer2").add_child(worm_pickup)
+	worm_pickup.global_position = global_position
+	worm_pickup.pick()
