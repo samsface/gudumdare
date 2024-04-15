@@ -53,8 +53,8 @@ func pop_flag():
 	GenericTween.squish($Flag)
 
 func _process(delta: float) -> void:
-	if not Engine.is_editor_hint() and Input.is_key_pressed(KEY_P):
-		unlock()
+	#if not Engine.is_editor_hint() and Input.is_key_pressed(KEY_P):
+		#unlock()
 	t += delta
 	
 	if not available:

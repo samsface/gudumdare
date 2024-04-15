@@ -121,8 +121,8 @@ func _process(delta: float) -> void:
 	t += delta
 	$SpawnZone.modulate.a = move_toward($SpawnZone.modulate.a, (0.5 + sin(t * TAU) * 0.1) if show_left_zone else 0.0, delta / 0.4)
 	
-	if Input.is_key_pressed(KEY_P):
-		_tower_enemy_died()
+	#if Input.is_key_pressed(KEY_P):
+		#_tower_enemy_died()
 
 func _physics_process(delta: float) -> void:
 	for i in units.size():

@@ -37,8 +37,8 @@ func remove_card(card_name: String): #Erase card by name, names are consts in Ca
 func _ready() -> void:
 	game = self
 	transition = %Transition
-	open_overworld()
-	#open_intro()
+	#open_overworld()
+	open_intro()
 	
 	duck_music(false)
 	
