@@ -64,8 +64,8 @@ unique_name_in_owner = true
 transform = Transform3D(1.29202, 0, 0, 0, 1.29202, 0, 0, 0, 1, 0, 0.071, 0)
 cast_shadow = 0
 instance_shader_parameters/mana = 1.0
-instance_shader_parameters/modulate = Color(0.38154, 0.779548, 0, 1)
-instance_shader_parameters/rand = 0.484
+instance_shader_parameters/modulate = Color(1, 0.388235, 0.278431, 1)
+instance_shader_parameters/rand = 0.352806
 mesh = SubResource("PlaneMesh_8jwiu")
 
 [node name="CardNameLabel" type="Label3D" parent="."]
