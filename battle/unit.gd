@@ -29,11 +29,14 @@ var reload_boost_multi := 1.0
 var speed_boost_t := 0.0
 var speed_boost_multi := 1.0
 
+
 var damage_tween:Tween
 var shake_tween:Tween
 @export var spawn_sound := 0
 
 @export var max_reward := 3
+var shield_hits = 0
+
 
 func _ready() -> void:
 	if spawn_sound != 0:
@@ -58,6 +61,9 @@ func _process(delta: float) -> void:
 		reload_boost_t -= delta
 		if reload_boost_t <= 0:
 			reload_boost_multi = 1.0
+	
+	%Shield.visible = shield_hits > 0
+	%Shield.scale = Vector2.ONE * (0.5 + shield_hits * 0.2)
 
 func process_movement(delta):
 	delta *= Game.game_speed
@@ -81,7 +87,11 @@ func attack():
 func hit(damage):
 	if health <= 0:
 		return
-
+	
+	if shield_hits > 0:
+		shield_hits -= 1
+		return
+	
 	health -= damage
 	if health <= 0:
 		remove()
@@ -150,3 +160,6 @@ func boost_speed(scale: float, duration: float):
 
 func heal_to_max():
 	health = max_health
+
+func add_shield(amount):
+	shield_hits = max(shield_hits, amount)

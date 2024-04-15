@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dkkh48urdwihi"
+path="res://.godot/imported/crow hit.wav-3e069217b5d4a34818d72a27356e30c4.sample"
+
+[deps]
+
+source_file="res://minigames/minigame_spike_the_birds/crow hit.wav"
+dest_files=["res://.godot/imported/crow hit.wav-3e069217b5d4a34818d72a27356e30c4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

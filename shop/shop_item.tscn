@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq6167ynnoefw"]
+[gd_scene load_steps=6 format=3 uid="uid://cq6167ynnoefw"]
 
 [ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="1_06u54"]
 [ext_resource type="Script" path="res://shop/shop_item.gd" id="1_xujye"]
+[ext_resource type="AudioStream" uid="uid://bwqp48jfkt476" path="res://shop/buy.wav" id="3_qprk6"]
+[ext_resource type="AudioStream" uid="uid://bkqm4evoc6n6p" path="res://shop/no_do.wav" id="4_dqtv6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jryu"]
 
@@ -12,7 +14,10 @@ offset_top = 159.0
 offset_right = 240.0
 offset_bottom = 321.0
 theme = ExtResource("1_06u54")
+theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5jryu")
+text = "text"
+autowrap_mode = 2
 script = ExtResource("1_xujye")
 
 [node name="Panel" type="Panel" parent="."]
@@ -33,5 +38,11 @@ grow_vertical = 2
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioBuy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qprk6")
+
+[node name="AudioNot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dqtv6")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

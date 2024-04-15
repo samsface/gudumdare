@@ -40,13 +40,10 @@ func _ready() -> void:
 	duck_music(false)
 	
 	#add_card(CardDB.CN_ARCHER)
-	#add_card(CardDB.CN_ARCHER)
-	#add_card(CardDB.CN_ARCHER)
 	add_card(CardDB.CN_KNIGHT)
-	add_card(CardDB.CN_SHOTGUN)
-	add_card(CardDB.CN_BUFF)
-	#add_card(CardDB.CN_PROTECTOR)
+	#add_card(CardDB.CN_SHOTGUN)
 	#add_card(CardDB.CN_RAIN)
+	#add_card(CardDB.CN_PROTECTOR)
 	%WormCount.text = str(0)
 
 func open_overworld():

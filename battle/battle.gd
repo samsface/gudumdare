@@ -54,12 +54,14 @@ func _ready() -> void:
 		keep_level.queue_free()
 	
 	mana_regen_per_sec = 0.8
-	if Game.game.has_upgrade("Fast Mana"):
+	if Game.game.has_upgrade("Fast Mana 1"):
 		mana_regen_per_sec *= 1.3
 	if Game.game.has_upgrade("Fast Mana 2"):
 		mana_regen_per_sec *= 1.3
+	if Game.game.has_upgrade("Fast Mana 3"):
+		mana_regen_per_sec *= 1.4
 		
-	if Game.game.has_upgrade("Hand Size"):
+	if Game.game.has_upgrade("Hand Size 1"):
 		MIN_HAND_CARDS += 1
 	if Game.game.has_upgrade("Hand Size 2"):
 		MIN_HAND_CARDS += 1
@@ -113,7 +115,7 @@ func _process(delta: float) -> void:
 	%Camera2D.position = lerp(%Camera2D.position, cam_to, delta * 10.0)
 	%Camera2D.rotation = lerp(%Camera2D.rotation, cam_angle_to, delta * 5.0)
 	
-	var show_left_zone = Game.dragging_card and Game.dragging_card.spawn_region == Game.dragging_card.SpawnRegion.LEFT
+	var show_left_zone = Game.dragging_card and Game.dragging_card.spawn_region == Game.dragging_card.SpawnRegion.LEFT and not won
 	t += delta
 	$SpawnZone.modulate.a = move_toward($SpawnZone.modulate.a, (0.5 + sin(t * TAU) * 0.1) if show_left_zone else 0.0, delta / 0.4)
 	
