@@ -1,5 +1,8 @@
 extends Control
 
+const TIER_1 = 1
+const TIER_2 = 2
+const TIER_3 = 3
 const REQUIRED_SACRIFICE_COUNT = 2
 
 @onready var player_hand = $CardLayer/SubViewportContainer/SubViewport/HandTest/PlayerHand
@@ -44,7 +47,7 @@ func _check_sacrifice_button():
 		
 func _calculate_tier_odds() -> void:
 	var lowest_tier := 999 
-	var highest_tier := 1
+	var highest_tier := TIER_1
 	var tiers: Array = []
 	
 	#Reset tier chances
@@ -59,26 +62,25 @@ func _calculate_tier_odds() -> void:
 		elif card.tier > highest_tier:
 			highest_tier = card.tier
 	
-	if lowest_tier == highest_tier: #Same tiers
+	if lowest_tier == highest_tier: #BOTH cards are SAME TIER 
 		match lowest_tier:
-			1: tier1_chance = 100
-			2: tier2_chance = 100
-			3: tier3_chance = 100
-	else:
-		if lowest_tier == 1:
-			if highest_tier == 2:
+			TIER_1: tier2_chance = 100
+			_: tier3_chance = 100
+	else: #cards are DIFFERENT TIER
+		if lowest_tier == TIER_1:
+			if highest_tier == TIER_2: #TIER 1 and 2
 				tier1_chance = 90
 				tier2_chance = 10
-			elif highest_tier == 3:
+			elif highest_tier == TIER_3: #TIER 1 and 3
 				tier1_chance = 95
 				tier3_chance = 5
-		elif lowest_tier == 2: #only other tie can be tier 3
+		elif lowest_tier == TIER_2: #TIER 2 and 3
 			tier2_chance = 75
 			tier3_chance = 25
 			
-		tier_odds.text = "Tier 1 chance " + str(tier1_chance) + "%"
-		tier_odds.text += "\nTier 2 chance " + str(tier2_chance) + "%"
-		tier_odds.text += "\nTier 3 chance " + str(tier3_chance) + "%"
+	tier_odds.text = "Tier 1 chance " + str(tier1_chance) + "%"
+	tier_odds.text += "\nTier 2 chance " + str(tier2_chance) + "%"
+	tier_odds.text += "\nTier 3 chance " + str(tier3_chance) + "%"
 			
 			
 func _on_sacrifice_button_pressed() -> void:

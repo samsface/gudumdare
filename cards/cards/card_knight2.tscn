@@ -30,10 +30,10 @@ shader_parameter/texture = ExtResource("3_561pu")
 [node name="StaticBody3D" instance=ExtResource("1_iddft")]
 card_name = "spacemn"
 spawns = ExtResource("2_4wwkh")
-tier = 2
+tier = 3
 
 [node name="Card" parent="." index="1"]
-modulate = Color(1, 0.388235, 0.278431, 1)
+modulate = Color(0.117647, 0.564706, 1, 1)
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_nvamb")
@@ -42,8 +42,8 @@ material_override = SubResource("ShaderMaterial_nvamb")
 text = "spacemn"
 
 [node name="TierLabel" parent="." index="4"]
-modulate = Color(0.5, 0.194118, 0.139216, 0.5)
-text = "BEAST"
+modulate = Color(0.0588235, 0.282353, 0.5, 0.5)
+text = "STRONG"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "2"

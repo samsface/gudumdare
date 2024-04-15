@@ -63,6 +63,7 @@ func _on_worm_area_entered(area: Area2D) -> void:
 		missed_label.text = str(birds_missed)
 		area.queue_free()
 		check_if_minigame_over()
+		$Worm/WormAnimationPlayer.play("damage")
 		$AudioHurt.pitch_scale = randf_range(1.5, 1.6)
 		$AudioHurt.play()
 
@@ -82,7 +83,8 @@ func _on_shield_area_entered(area: Area2D) -> void:
 		area.is_dead = true
 		birds_spiked += 1
 		spiked_label.text = str(birds_spiked)
-		area.queue_free()
+		$Shield/ShieldSplat.play()
+		area.play_particles()
 		check_if_minigame_over()
 		$AudioSpike.pitch_scale = randf_range(0.9, 1.1)
 		$AudioSpike.play()

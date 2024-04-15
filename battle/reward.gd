@@ -18,13 +18,13 @@ func _ready() -> void:
 	var cards = []
 	#RNG for tier 3
 	if RNG.random_int(1,100) >= 95:
-		cards.append(CardDB.return_cards_by_tier(2).pick_random())
+		cards.append(CardDB.return_cards_by_tier(3).pick_random())
 	#RNG for tier 2
 	if RNG.random_int(1,100) >= 80:
-		cards.append(CardDB.return_cards_by_tier(1).pick_random())
+		cards.append(CardDB.return_cards_by_tier(2).pick_random())
 		
 	#FILL the rest of tiers with 1, take higher tears into account
-	var tier_1_cards = CardDB.return_cards_by_tier(0)
+	var tier_1_cards = CardDB.return_cards_by_tier(1)
 	
 	for i in CARDS_TO_OFFER - cards.size():
 		tier_1_cards.shuffle()
@@ -34,7 +34,7 @@ func _ready() -> void:
 	print("CARDS TO OFFER ARE:\n" + str(cards))
 	
 	for card in cards:
-		if card == null: #Crash prevent since we dont have tier 2/3 cards yet
+		if card == null: #Crash prevent if card is null
 			continue
 		
 		var new_card: Node3D = load(card).instantiate()

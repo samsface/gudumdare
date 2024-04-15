@@ -14,3 +14,10 @@ func spawn(target: Vector2):
 
 func _physics_process(delta: float) -> void:
 	global_position += speed * direction * delta
+
+func play_particles():
+	$Outline2.hide()
+	$Brush2D.hide()
+	$GPUParticles2D.emitting = true
+	await $GPUParticles2D.finished
+	queue_free()

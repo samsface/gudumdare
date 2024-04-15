@@ -30,6 +30,7 @@ shader_parameter/texture = ExtResource("3_7fb56")
 [node name="StaticBody3D" instance=ExtResource("1_xtdbm")]
 card_name = "squire"
 spawns = ExtResource("2_qjtq5")
+tier = 1
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_nvamb")
