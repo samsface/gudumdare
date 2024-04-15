@@ -116,9 +116,11 @@ spawn_delay = 1.0
 spawn_types = ["res://battle/units/unit_foe_tiny.tscn"]
 
 [node name="TowerPlayer" parent="Fight" index="3"]
+shooting = true
 burst = 1
 
 [node name="TowerEnemy" parent="Fight" index="4"]
+shooting = true
 burst = 1
 health = 250
 

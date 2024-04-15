@@ -152,7 +152,11 @@ spawn_types = ["res://battle/units/unit_foe_shooting.tscn"]
 position = Vector2(1093, 675)
 spawn_types = ["res://battle/units/unit_foe_shooting.tscn"]
 
+[node name="TowerPlayer" parent="Fight" index="4"]
+shooting = true
+
 [node name="TowerEnemy" parent="Fight" index="5"]
+shooting = true
 burst = 1
 health = 450
 

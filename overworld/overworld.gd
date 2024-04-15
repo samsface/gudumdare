@@ -24,6 +24,7 @@ func _ready() -> void:
 		Game.game.battle_won = false
 		
 		var conquered_node: OverworldNode = get_node(Game.game.current_battle_node_name)
+		Game.game.conquered_nodes.append(conquered_node)
 		for neighbor in conquered_node.neighbors:
 			if not neighbor.available:
 				Game.game.unlocked_nodes.append(neighbor.my_name)

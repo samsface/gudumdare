@@ -45,8 +45,8 @@ material_override = SubResource("ShaderMaterial_sd53v")
 text = "archy"
 
 [node name="TierLabel" parent="." index="4"]
-modulate = Color(0.5, 0.194118, 0.139216, 0.5)
-text = "BEAST"
+modulate = Color(0.5, 0.5, 0, 0.5)
+text = "GRUB"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
 text = "3"

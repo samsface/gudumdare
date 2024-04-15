@@ -40,5 +40,5 @@ material_override = SubResource("ShaderMaterial_nvamb")
 text = "robot"
 
 [node name="TierLabel" parent="." index="4"]
-modulate = Color(0.5, 0.5, 0, 0.5)
-text = "GRUB"
+modulate = Color(0.0588235, 0.282353, 0.5, 0.5)
+text = "STRONG"

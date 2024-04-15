@@ -30,9 +30,12 @@ func _ready() -> void:
 	
 	if is_shop or is_altar:
 		color_normal = Color.WHITE
-
+	
 	if not available:
 		%Sprite.modulate = Color("466856")
+	
+	if Game.game.conquered_nodes.has(name):
+		$Flag.visible = true
 
 func _process(delta: float) -> void:
 	if not Engine.is_editor_hint() and Input.is_key_pressed(KEY_P):

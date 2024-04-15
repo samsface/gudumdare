@@ -45,6 +45,10 @@ func _ready() -> void:
 		$AudioSpawn.play()
 	$AudioSpawn2.pitch_scale = randf_range(0.7, 0.8) if is_foe else randf_range(1.1, 1.3) 
 	$AudioSpawn2.play()
+	
+	if not is_foe and Game.game.has_upgrade("Worm Health"):
+		health = ceil(health * 1.3)
+	
 	max_health = health
 
 func _process(delta: float) -> void:
@@ -69,13 +73,16 @@ func process_movement(delta):
 	delta *= Game.game_speed
 	if health <= 0:
 		return
-
+	
 	get_closest_enemy()
 	if closest_enemy:
 		if distance_to_closest_enemy > attack_range:
 			position = position.move_toward(closest_enemy.position, delta * speed * speed_boost_multi)
 		else:
-			reload_t -= delta * reload_boost_multi
+			var reload_scale := 1.0
+			if not is_foe and Game.game.has_upgrade("Attack Speed"):
+				reload_scale *= 1.3
+			reload_t -= delta * reload_boost_multi * reload_scale
 			if reload_t <= 0:
 				$AudioAttack.play()
 				attack()

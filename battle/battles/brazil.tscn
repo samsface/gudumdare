@@ -415,9 +415,11 @@ bounds = Rect2(-47.25, -33.25, 1198, 297.49)
 lods = [[SubResource("Resource_1tyoj"), SubResource("Resource_60n0t"), SubResource("Resource_qmfq7"), SubResource("Resource_joqrv"), SubResource("Resource_mjh82"), SubResource("Resource_jxqwy"), SubResource("Resource_whlyg"), SubResource("Resource_e77pt")]]
 
 [node name="TowerPlayer" parent="Fight" index="0"]
+shooting = true
 burst = 1
 
 [node name="TowerEnemy" parent="Fight" index="1"]
+shooting = true
 burst = 1
 health = 400
 

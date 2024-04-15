@@ -97,9 +97,11 @@ texture = ExtResource("2_o3e6l")
 position = Vector2(1087, 290)
 
 [node name="TowerPlayer" parent="Fight" index="1"]
+shooting = true
 burst = 1
 
 [node name="TowerEnemy" parent="Fight" index="2"]
+shooting = true
 burst = 1
 health = 300
 

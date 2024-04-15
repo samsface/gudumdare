@@ -450,9 +450,11 @@ color = Color(0.814854, 0.887434, 0.849183, 1)
 position = Vector2(1087, 290)
 
 [node name="TowerPlayer" parent="Fight" index="1"]
+shooting = true
 burst = 1
 
 [node name="TowerEnemy" parent="Fight" index="2"]
+shooting = true
 burst = 1
 health = 200
 
