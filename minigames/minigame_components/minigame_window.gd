@@ -24,12 +24,12 @@ func _ready():
 func load_minigame(minigame: String):
 	minigame_scene = load(minigame).instantiate()
 	minigame_viewport.add_child(minigame_scene)
-	
+
 	%Prompt.text = "[jiggle amp=2 freq=5][center]%s[/center][/jiggle]" % minigame_scene.prompt.to_upper()
 	# connect signals
 	minigame_timer.minigame_timer_ended.connect(minigame_scene.timer_ended)
 	minigame_timer.start_timer()
-	
+
 	minigame_scene.score_changed.connect(_score_changed)
 	minigame_scene.finished.connect(gameover_won)
 	minigame_scene.window = self
@@ -47,14 +47,17 @@ func gameover_won(rating: float):
 func complete():
 	minigame_timer.stop_timer()
 	gameover_group.show()
-	_on_ok_button_pressed()
+	handle_minigame_complete()
 	Game.game.duck_music(false)
 	$MusicBonus.stop()
 	$AudioWin.play()
 	if rating == 1.0:
 		$AudioPerfect.play()
 
-func _on_ok_button_pressed() -> void:
+# This used to be the function that was called when you clicked the "Okay" button to close
+# a minigame. We got rid of the button, but still need what this function does, so keeping
+# it in here for now.
+func handle_minigame_complete() -> void:
 	$Score.text = "[shake]+%s BUFF[/shake]" % int(round(rating * 10))
 	$Score.visible = true
 	await get_tree().create_timer(0.1).timeout
@@ -62,7 +65,7 @@ func _on_ok_button_pressed() -> void:
 	%SubViewport.render_target_update_mode = 0
 	await get_tree().create_timer(0.5).timeout
 	finished.emit(rating)
-	
+
 	Game.game_speed = 1.0
 	queue_free()
 
@@ -72,9 +75,9 @@ var time := 0.0
 func _process(delta: float) -> void:
 	border_color_t += delta * 2.0
 	%Border.modulate = lerp(Color.MAGENTA, Color.BLUE, pingpong(border_color_t, 1.0))
-	
+
 	process_shake(delta)
-	
+
 	time += delta / 1.2
 	$MusicBonus.pitch_scale = 1.0 + time
 
