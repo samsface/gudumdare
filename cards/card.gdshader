@@ -3,9 +3,9 @@ render_mode unshaded;
 
 uniform sampler2D TEXTURE;
 uniform sampler2D noise_texture;
-instance uniform float mana : hint_range(0.0, 1.0);
-instance uniform vec3 modulate : source_color;
-instance uniform float rand : hint_range(0.0, 1.0);
+uniform float mana : hint_range(0.0, 1.0);
+uniform vec3 modulate : source_color;
+uniform float rand : hint_range(0.0, 1.0);
 
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);

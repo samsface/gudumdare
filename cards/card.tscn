@@ -24,12 +24,17 @@ seamless = true
 noise = SubResource("FastNoiseLite_gx4ep")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b7drc"]
+resource_local_to_scene = true
 render_priority = -2
 shader = ExtResource("3_gmvpr")
+shader_parameter/mana = 1.0
+shader_parameter/modulate = Color(1, 1, 0, 1)
+shader_parameter/rand = 0.493384
 shader_parameter/TEXTURE = ExtResource("3_po2xc")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_1xxou")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8jwiu"]
+resource_local_to_scene = true
 material = SubResource("ShaderMaterial_b7drc")
 uv2_padding = 1.15
 size = Vector2(0.4, 0.6)
@@ -63,9 +68,6 @@ shape = SubResource("BoxShape3D_iguum")
 unique_name_in_owner = true
 transform = Transform3D(1.29202, 0, 0, 0, 1.29202, 0, 0, 0, 1, 0, 0.071, 0)
 cast_shadow = 0
-instance_shader_parameters/mana = 1.0
-instance_shader_parameters/modulate = Color(1, 0.388235, 0.278431, 1)
-instance_shader_parameters/rand = 0.352806
 mesh = SubResource("PlaneMesh_8jwiu")
 
 [node name="CardNameLabel" type="Label3D" parent="."]
