@@ -140,6 +140,8 @@ func _physics_process(delta: float) -> void:
 				unit_a.position -= direction * push * ratio * delta
 				unit_b.position += direction * push * (1.0 - ratio) * delta
 	
+	if won: #Otherwise %HandArea causes error because it doesnt exist anymore
+		return
 	if card_add_delay <= 0:
 		if is_instance_valid(%HandArea) and %HandArea.get_card_children().size() < MIN_HAND_CARDS:
 			_draw_from_deck()
