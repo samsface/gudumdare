@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/layer_2.ogg-e896098aba84f51c3536d7c763cd3e72.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
