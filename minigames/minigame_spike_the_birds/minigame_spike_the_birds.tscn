@@ -405,6 +405,13 @@ libraries = {
 }
 autoplay = "shake"
 
+[node name="BackgroundFade" type="ColorRect" parent="Decoration" index="2"]
+offset_left = -21.0
+offset_top = -18.0
+offset_right = 1475.0
+offset_bottom = 834.0
+color = Color(0, 0, 0, 0.156863)
+
 [node name="Worm" type="Area2D" parent="." index="1"]
 position = Vector2(718, 443)
 
@@ -736,7 +743,7 @@ theme_override_constants/separation = 10
 [node name="Title" type="Label" parent="CanvasLayer/VBoxContainer/Info/Spiked" index="0"]
 auto_translate_mode = 1
 layout_mode = 2
-theme_override_colors/font_color = Color(0.120786, 1, 0.524944, 1)
+theme_override_colors/font_color = Color(0.228491, 0.593629, 1, 1)
 theme_override_fonts/font = ExtResource("2_qkkat")
 theme_override_font_sizes/font_size = 42
 text = "Spiked:"
@@ -745,7 +752,7 @@ text = "Spiked:"
 unique_name_in_owner = true
 auto_translate_mode = 1
 layout_mode = 2
-theme_override_colors/font_color = Color(0.120786, 1, 0.524944, 1)
+theme_override_colors/font_color = Color(0.227451, 0.592157, 1, 1)
 theme_override_fonts/font = ExtResource("2_qkkat")
 theme_override_font_sizes/font_size = 42
 text = "0"
