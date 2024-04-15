@@ -143,9 +143,9 @@ func _process(delta: float) -> void:
 	%Foreground.position = -mouse_off * 0.02 + Vector2(-35, -20)
 	%Camera2D.position = mouse_off * 0.02 + Game.SCREEN_SIZE * 0.5
 	
-	%MusicLayer0.volume_db = 0.0 if filled_to > 0 else -80.0
-	%MusicLayer1.volume_db = 0.0 if filled_to > 1 else -80.0
-	%MusicLayer2.volume_db = 0.0 if filled_to > 2 else -80.0
+	%MusicLayer0.volume_db = 10.0 if filled_to > 0 else -80.0
+	%MusicLayer1.volume_db = 10.0 if filled_to > 1 else -80.0
+	%MusicLayer2.volume_db = 10.0 if filled_to > 2 else -80.0
 
 
 func _on_button_quit_pressed():
