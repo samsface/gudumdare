@@ -1,22 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgtdudopevw5u"]
+[gd_scene load_steps=11 format=3 uid="uid://bbp5k7doois8w"]
 
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_erl5p"]
 [ext_resource type="Texture2D" uid="uid://d2wb0ur1xy4et" path="res://battle/units/sprites/kfc_card_art.png" id="2_g7u8f"]
 [ext_resource type="PackedScene" uid="uid://5lm10avdcpjy" path="res://battle/units/effect_tickle.tscn" id="3_3plui"]
 [ext_resource type="Texture2D" uid="uid://b0vh380dk77mn" path="res://battle/units/sprites/tick_card_art.png" id="4_ij06p"]
+[ext_resource type="Shader" path="res://cards/card.gdshader" id="4_ituxa"]
+[ext_resource type="Texture2D" uid="uid://dgr7ggakdl3b4" path="res://cards/card.png" id="5_4bkvj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gx4ep"]
+frequency = 0.0013
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1xxou"]
+seamless = true
+noise = SubResource("FastNoiseLite_gx4ep")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uch7l"]
+resource_local_to_scene = true
+render_priority = -2
+shader = ExtResource("4_ituxa")
+shader_parameter/mana = 1.0
+shader_parameter/modulate = Color(1, 1, 0, 1)
+shader_parameter/rand = 0.548568
+shader_parameter/TEXTURE = ExtResource("5_4bkvj")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_1xxou")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_esyvh"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_uch7l")
+uv2_padding = 1.15
+size = Vector2(0.4, 0.6)
+orientation = 2
 
 [node name="StaticBody3D" instance=ExtResource("1_erl5p")]
 card_name = "Tickle"
 art = ExtResource("2_g7u8f")
 spawns = ExtResource("3_3plui")
-mana_cost = 3
+mana_cost = 1
 tier = 1
 sidelay = true
 spawn_region = 1
 
 [node name="Card" parent="." index="1"]
-instance_shader_parameters/modulate = Color(1, 1, 0, 1)
-instance_shader_parameters/rand = 0.385124
+mesh = SubResource("PlaneMesh_esyvh")
 
 [node name="CardNameLabel" parent="." index="2"]
 text = "Tickle"
@@ -24,9 +49,6 @@ text = "Tickle"
 [node name="TierLabel" parent="." index="3"]
 modulate = Color(0.5, 0.5, 0, 0.5)
 text = "GRUB"
-
-[node name="ManaCost" parent="MeshInstance3D3" index="0"]
-text = "3"
 
 [node name="Art" parent="." index="5"]
 texture = ExtResource("4_ij06p")

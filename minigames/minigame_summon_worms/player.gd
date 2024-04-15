@@ -32,7 +32,7 @@ enum SpriteAnimations {
 ]
 
 var placed := false
-
+var t := 0.0
 
 func _ready() -> void:
 	#sprite.play(ANIM_IDLE)
@@ -67,7 +67,10 @@ func return_reached_areas() -> Array:
 func _on_god_song_finished() -> void:
 	god_song.play()
 
-
+func _process(delta: float) -> void:
+	if visible:
+		t += delta
+	
 func _on_sprite_timer_timeout() -> void:
 	var index := 0 
 	var sprites_to_check: Array

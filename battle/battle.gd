@@ -141,6 +141,9 @@ func _physics_process(delta: float) -> void:
 				unit_a.position -= direction * push * ratio * delta
 				unit_b.position += direction * push * (1.0 - ratio) * delta
 	
+	if summon.player.placed:
+		%FindWorms.visible = false
+	
 	if won: #Otherwise %HandArea causes error because it doesnt exist anymore
 		return
 	if card_add_delay <= 0:
@@ -206,6 +209,8 @@ func _tower_enemy_died() -> void:
 	
 	if levels.size() > 0:
 		summon.player.visible = true
+		tower_player.hide_player()
+		%FindWorms.visible = true
 	else:
 		give_card()
 	

@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	player.global_position.x = clamp(global_mouse_pos.x, min_x, max_x)
 	player.global_position.y = clamp(global_mouse_pos.y, min_y, max_y)
 		
-	if Input.is_action_just_pressed("LMB"):
+	if Input.is_action_just_pressed("LMB") and player.t > 0.4:
 		place(get_global_mouse_position())
 		Game.game.duck_music(true)
 		score = total_worm_count

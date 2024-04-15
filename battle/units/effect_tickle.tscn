@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://5lm10avdcpjy"]
 
-[ext_resource type="Script" path="res://battle/units/effect_kfc.gd" id="1_k28ke"]
+[ext_resource type="Script" path="res://battle/units/effect_tickle.gd" id="1_qq07j"]
 [ext_resource type="PackedScene" uid="uid://beut41nq1245a" path="res://minigames/minigame_tickle_the_demon/minigame_tickle_the_demon.tscn" id="2_mtun1"]
 [ext_resource type="AudioStream" uid="uid://gw0eomuo2xgn" path="res://battle/units/sfx/want_chicken.wav" id="3_yi30o"]
 [ext_resource type="Shader" path="res://battle/units/area_circle.gdshader" id="4_o6u0n"]
@@ -42,9 +42,9 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.51, 0.5)
 
 [node name="EffectRain" type="Node2D"]
-script = ExtResource("1_k28ke")
+script = ExtResource("1_qq07j")
 mini_game = ExtResource("2_mtun1")
-health = 10000
+health = 1000
 attack_range = 400.0
 attackable = false
 

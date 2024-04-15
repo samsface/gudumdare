@@ -63,3 +63,5 @@ func talk(message: String):
 	await get_tree().create_timer(2.0).timeout
 	%SpeechBubble.visible = false
 	
+func hide_player():
+	$Model/AnimationPlayer.play("hidden")
