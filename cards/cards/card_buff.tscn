@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cpljr016pccwd" path="res://cards/card.tscn" id="1_wubgd"]
 [ext_resource type="Texture2D" uid="uid://bteiopkhbwn4o" path="res://battle/units/sprites/buffworm_card.png" id="2_u801x"]
-[ext_resource type="PackedScene" uid="uid://tivqdbwul3u2" path="res://battle/units/unit_archer.tscn" id="2_uepi3"]
 [ext_resource type="Texture2D" uid="uid://dgr7ggakdl3b4" path="res://cards/card.png" id="3_51f01"]
+[ext_resource type="PackedScene" uid="uid://f36p3k2kkw07" path="res://battle/units/unit_buff.tscn" id="3_idn84"]
 
 [sub_resource type="Shader" id="Shader_trstd"]
 code = "shader_type spatial;
@@ -31,7 +31,8 @@ shader_parameter/texture = ExtResource("3_51f01")
 [node name="StaticBody3D" instance=ExtResource("1_wubgd")]
 card_name = "big boy"
 art = ExtResource("2_u801x")
-spawns = ExtResource("2_uepi3")
+spawns = ExtResource("3_idn84")
+mana_cost = 4
 tier = 1
 
 [node name="CardLoading" parent="." index="2"]
@@ -41,7 +42,7 @@ material_override = SubResource("ShaderMaterial_4yr2w")
 text = "big boy"
 
 [node name="ManaCost" parent="MeshInstance3D3" index="0"]
-text = "2"
+text = "4"
 
 [node name="Art" parent="." index="5"]
 transform = Transform3D(0.667601, 0, 0, 0, 0.667601, 0, 0, 0, 1, 0, 0.0645928, 0.01)

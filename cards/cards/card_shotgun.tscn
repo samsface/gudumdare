@@ -32,7 +32,6 @@ shader_parameter/texture = ExtResource("3_vmiy2")
 card_name = "buckshot"
 art = ExtResource("2_hmdb5")
 spawns = ExtResource("3_fwtxm")
-spawn_region = null
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_nvamb")

@@ -12,7 +12,7 @@ enum Type{BATTLE, BATTLE_PATH, MINI_1, MINI_2, MINI_3}
 
 var completed := false
 
-var color_normal = Color.DARK_ORCHID
+var color_normal = Color.LIGHT_GOLDENROD
 var color_hover = Color.ORANGE
 
 var hovering := false
@@ -27,20 +27,23 @@ func _ready() -> void:
 				neighbor.neighbors.push_back(self)
 	%Name.text = name.capitalize()
 	my_name = name
+	
+	if is_shop or is_altar:
+		color_normal = Color.WHITE
 
 	if not available:
-		%Sprite.modulate = Color.DIM_GRAY
+		%Sprite.modulate = Color("466856")
 
 func _process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_P):
+	if not Engine.is_editor_hint() and Input.is_key_pressed(KEY_P):
 		unlock()
 	t += delta
 	
 	if not available:
 		return
 	
-	if Engine.is_editor_hint():
-		queue_redraw()
+	#if Engine.is_editor_hint():
+	queue_redraw()
 	if hovering:
 		%Sprite.modulate = color_hover if fmod(t / 0.1, 1.0) < 0.5 else color_normal
 	else:
@@ -63,11 +66,13 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	for neighbor in neighbors:
+		var width := 25.0
 		var color = Color.WHITE
 		if not neighbor.available or not available:
 			color = Color.DIM_GRAY
-			
-		draw_line(Vector2.ZERO, neighbor.position - position, color, 4.0)
+			color.a *= 0.5
+			width = 15.0
+		draw_line(Vector2.ZERO, (neighbor.position - position) * 0.5 / 0.7, color, width)
 
 
 func _on_area_brush_2d_mouse_clicked() -> void:

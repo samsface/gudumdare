@@ -65,7 +65,7 @@ func drag(delta, card) -> void:
 	card.global_rotation = lerp(card.global_rotation, drop_area_rotation, delta)
 
 
-func drop(card):
+func drop(card: CardEx):
 	card.just_dropped = false
 	
 	var nearest_drop = get_nearest_drop()
@@ -76,6 +76,8 @@ func drop(card):
 		return
 	
 	if battle:
+		if card.spawn_region == card.SpawnRegion.LEFT and battle.get_global_mouse_position().x > Game.SCREEN_SIZE.x * 0.35:
+			return
 		if battle.mana < card.mana_cost:
 			battle.card_rejected()
 			return

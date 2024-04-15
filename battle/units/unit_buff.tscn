@@ -178,7 +178,9 @@ stream_5/weight = 1.0
 
 [node name="Unit2" instance=ExtResource("1_b4xv3")]
 script = ExtResource("2_f0q4a")
-damage = 1
+damage = 2
+health = 40
+speed = 100.0
 spawn_sound = 2
 
 [node name="Shadow" parent="." index="0"]
@@ -202,6 +204,12 @@ libraries = {
 "": SubResource("AnimationLibrary_vhllq")
 }
 autoplay = "walk"
+
+[node name="Healthbar" parent="." index="2"]
+offset_left = -24.0
+offset_top = -132.0
+offset_right = 34.0
+offset_bottom = -125.0
 
 [node name="AudioAttack" parent="." index="4"]
 stream = SubResource("AudioStreamRandomizer_g1aar")

@@ -35,6 +35,7 @@ spawns = ExtResource("3_kpceh")
 mana_cost = 3
 tier = 1
 sidelay = true
+spawn_region = 1
 
 [node name="CardLoading" parent="." index="2"]
 material_override = SubResource("ShaderMaterial_6k0xl")

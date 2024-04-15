@@ -3,7 +3,7 @@ extends Node2D
 
 const SCREEN_SIZE = Vector2(1440, 810)
 static var game: Game
-static var dragging_card
+static var dragging_card: CardEx
 static var battle
 
 static var game_speed := 1.0
@@ -44,10 +44,7 @@ func _ready() -> void:
 	#add_card(CardDB.CN_ARCHER)
 	add_card(CardDB.CN_KNIGHT)
 	add_card(CardDB.CN_SHOTGUN)
-	add_card(CardDB.CN_SHOTGUN)
-	add_card(CardDB.CN_SHOTGUN)
-	add_card(CardDB.CN_SHOTGUN)
-	add_card(CardDB.CN_SHOTGUN)
+	add_card(CardDB.CN_BUFF)
 	#add_card(CardDB.CN_PROTECTOR)
 	#add_card(CardDB.CN_RAIN)
 	%WormCount.text = str(0)
@@ -127,7 +124,7 @@ func _process(delta: float) -> void:
 
 static func add_worm(value := 1):
 	worms += value
-	game.worms_wait_add = 2.0
+	game.worms_wait_add = 1.0
 
 var upgrades := []
 func unlock_upgrade(upgrade):

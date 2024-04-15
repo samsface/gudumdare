@@ -27,6 +27,7 @@ enum BattleTrack {REGULAR, EGYPT, JAPAN, RUSSIA, SPAIN}
 
 @export var levels: Array[Node2D]
 
+var t := 0.0
 
 var battle_track_paths := {
 	BattleTrack.REGULAR: "res://music/Battle Against a Suave Opponent.mp3",
@@ -39,15 +40,18 @@ var summon
 func _ready() -> void:
 	Game.battle = self
 	
+	# some hacky bullshit to make the worm minigame work
 	if levels.size() > 0:
 		var keep_level = levels.pick_random()
 		keep_level.visible = true
 		for level in levels:
 			if level != keep_level:
 				level.queue_free()
-		for child in keep_level.get_children():
-			keep_level.remove_child(child)
-			$Fight.add_child(child)
+		while keep_level.get_children().size() > 0:
+			var item = keep_level.get_child(0)
+			keep_level.remove_child(item)
+			$Fight.add_child(item)
+		keep_level.queue_free()
 	
 	mana_regen_per_sec = 0.8
 	if Game.game.has_upgrade("Fast Mana"):
@@ -101,12 +105,17 @@ func _process(delta: float) -> void:
 	mana = move_toward(mana, max_mana, delta * mana_regen_per_sec)
 	%Mana.value = mana
 	%ManaWhole.value = floor(mana)
+	%ManaText.text = "%s/%s" % [floor(mana), max_mana]
 	
 	var mouse_off = (get_local_mouse_position() - Game.SCREEN_SIZE * 0.5)
 	var cam_to = mouse_off * 0.05 + Game.SCREEN_SIZE * 0.5
 	var cam_angle_to = mouse_off.x * 0.00005
 	%Camera2D.position = lerp(%Camera2D.position, cam_to, delta * 10.0)
 	%Camera2D.rotation = lerp(%Camera2D.rotation, cam_angle_to, delta * 5.0)
+	
+	var show_left_zone = Game.dragging_card and Game.dragging_card.spawn_region == Game.dragging_card.SpawnRegion.LEFT
+	t += delta
+	$SpawnZone.modulate.a = move_toward($SpawnZone.modulate.a, (0.5 + sin(t * TAU) * 0.1) if show_left_zone else 0.0, delta / 0.4)
 	
 	if Input.is_key_pressed(KEY_P):
 		_tower_enemy_died()

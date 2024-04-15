@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4qsvwn6ivxh3"]
+[gd_scene load_steps=4 format=3 uid="uid://b4qsvwn6ivxh3"]
 
 [ext_resource type="Theme" uid="uid://bd071vba4lnc4" path="res://theme.tres" id="1_gwfxw"]
+[ext_resource type="Script" path="res://button_quit.gd" id="2_8y4ff"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6rpiy"]
 
@@ -13,3 +14,6 @@ offset_bottom = 83.0
 theme = ExtResource("1_gwfxw")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6rpiy")
 text = "BACK"
+script = ExtResource("2_8y4ff")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
