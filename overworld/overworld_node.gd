@@ -19,6 +19,7 @@ var hovering := false
 var t := 0.0
 
 var my_name: String
+@export var click_range := 40.0
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -69,14 +70,14 @@ func _process(delta: float) -> void:
 	
 	
 
-	if not hovering and get_local_mouse_position().length() < 40.0:
+	if not hovering and get_local_mouse_position().length() < click_range:
 		get_parent().set_title(name.capitalize())
 		hovering = true
 		$AudioHover.play()
 		get_parent().hovering = true
 
 
-	if hovering and get_local_mouse_position().length() > 60.0:
+	if hovering and get_local_mouse_position().length() > click_range + 20.0:
 		get_parent().set_title()
 		hovering = false
 		get_parent().hovering = false
