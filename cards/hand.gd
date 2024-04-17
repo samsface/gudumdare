@@ -57,12 +57,12 @@ func drag(delta, card) -> void:
 	if not nearest_drop:
 		return
 
-	card.global_position = lerp(card.global_position, nearest_drop[0], delta * 5.0)
-	card.global_rotation = lerp(card.global_rotation, nearest_drop[1].global_rotation, delta * 5.0)
+	card.global_position = lerp(card.global_position, nearest_drop[0], min(delta * 5.0, 1.0))
+	card.global_rotation = lerp(card.global_rotation, nearest_drop[1].global_rotation, min(delta * 5.0, 1.0))
 
 	var drop_area_rotation = nearest_drop[1].global_rotation
 
-	card.global_rotation = lerp(card.global_rotation, drop_area_rotation, delta)
+	card.global_rotation = lerp(card.global_rotation, drop_area_rotation, min(delta, 1.0, 1.0))
 
 
 func drop(card: CardEx):
@@ -130,7 +130,7 @@ func sort_(delta:float) -> void:
 		
 		var x = card.position.x
 		var to = i * spread - (total_length * 0.5) + spread * 0.5
-		card.position.x = lerp(x, to, delta)
+		card.position.x = lerp(x, to, min(delta, 1.0))
 
 		var t = -1.0 if invert else 1.0
 
@@ -146,16 +146,16 @@ func sort_(delta:float) -> void:
 			continue
 
 		if card.hovered:
-			card.scale = lerp(card.scale, Vector3.ONE * 1.2, delta * 5.0)
-			card.position.y = lerp(card.position.y, 0.1, delta)
-			card.position.z = lerp(card.position.z, 0.3, delta)
+			card.scale = lerp(card.scale, Vector3.ONE * 1.2, min(delta * 5.0,1.0))
+			card.position.y = lerp(card.position.y, 0.1, min(delta,1.0))
+			card.position.z = lerp(card.position.z, 0.3, min(delta,1.0))
 			inc_recusive(card, "render_priority", 100)
 			#get_child(i).position.z = 0.01
 		else:
-			card.scale = lerp(card.scale, Vector3.ONE, delta * 3.0)
-			card.position.y = lerp(card.position.y, 0.0, delta)
-			card.position.z = lerp(card.position.z, 0.0, delta)
-			card.rotation = lerp(card.rotation, Vector3.ZERO, delta)
+			card.scale = lerp(card.scale, Vector3.ONE, min(delta * 3.0,1.0))
+			card.position.y = lerp(card.position.y, 0.0, min(delta,1.0))
+			card.position.z = lerp(card.position.z, 0.0, min(delta,1.0))
+			card.rotation = lerp(card.rotation, Vector3.ZERO, min(delta,1.0))
 			
 			inc_recusive(card, "render_priority", i)
 
