@@ -15,6 +15,10 @@ run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://overworld/worms_tile.png"
 
+[audio]
+
+driver/output_latency.web=80
+
 [autoload]
 
 CardDB="*res://autoloads/card_db.gd"
